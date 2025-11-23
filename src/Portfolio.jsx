@@ -8,7 +8,7 @@
  */
 import React, { useEffect, useRef, useState } from 'react';
 import { ArrowRight, ChevronRight, Github, Linkedin, Mail, Menu, Minus, Plus, X } from 'lucide-react';
-import heroBackground from '../assest/hero_image_1.jpeg';
+import heroBackground from '../assest/Hero_img_backround.jpg';
 import controlInfotechImage from '../assest/cit offfice.jpg';
 import controlInfotechLogo from '../assest/control_inftech_logo.png';
 import nexthinkIcon from '../assest/nexthink_icon.png';
@@ -72,7 +72,7 @@ const experienceEntries = [
     role: 'DATA ENGINEER (ML & CLOUD)',
     period: 'AUG 2025 - PRESENT',
     location: 'RALEIGH, NC',
-    metrics: ['DEPLOYMENT TIME -40%', 'PROCESSING SPEED +55%', 'ANALYTICS DELIVERY +20%'],
+    metrics: ['DEPLOYMENT TIME -40%', 'PROCESSING SPEED +55%', 'RELEASE ERRORS -40%'],
     details: [
       'Engineered a monorepo-based MLOps framework with Docker, Kubernetes, and GitHub Actions, cutting deployment time by 40% and standardizing CI/CD automation across teams.',
       'Designed ETL pipelines in Python, SQL & Databricks (GCP), improving data processing speed by 55% and analytics delivery by 20%.',
@@ -109,7 +109,7 @@ const experienceEntries = [
     role: 'CYBERSECURITY ANALYST INTERN',
     period: 'MAY 2023 - AUG 2023',
     location: 'RALEIGH, NC',
-    metrics: ['MANUAL WORKLOAD -30%', 'PROCESSING SPEED +40%', 'AUDIT TIME -20%'],
+    metrics: ['MANUAL WORKLOAD -30%', 'PROCESSING SPEED +40%', 'DETECTION ACCURACY +15%'],
     details: [
       'Automated security testing workflows and vulnerability scans with Python, reducing manual workload by 30%.',
       'Conducted malware analysis and log-parsing tools (Python & C) that improved data processing speed by 40%.',
@@ -306,6 +306,7 @@ const contactInfo = {
 // --- UTILS & PRIMITIVES ---
 const focusRing =
   'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black focus-visible:ring-0';
+const navSafeAreaStyle = { top: 'env(safe-area-inset-top, 0px)' };
 
 const useScrollReveal = () => {
   const ref = useRef(null);
@@ -373,20 +374,23 @@ const Reveal = ({ children, className = '' }) => {
 const NavBar = ({ brand, links, isMenuOpen, onToggleMenu, scrolled, onNavigate }) => {
   return (
     <nav
-      className={`sticky top-0 z-50 relative overflow-hidden bg-gradient-to-r from-[#4b5563] to-[#111827] transition-all duration-500 border-b ${
+      style={navSafeAreaStyle}
+      className={`sticky top-0 z-50 relative overflow-visible bg-gradient-to-r from-[#2563eb]/90 to-[#0f172a]/90 transition-all duration-500 border-b ${
         scrolled ? 'py-3 border-gray-700' : 'py-6 border-transparent'
       }`}
       aria-label="Primary"
     >
-      <div
-        className="absolute inset-0 opacity-10"
-        style={{
-          backgroundImage:
-            'repeating-linear-gradient(90deg, transparent, transparent 50px, #9ca3af 50px, #9ca3af 51px)',
-        }}
-        aria-hidden="true"
-      />
-      <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent" aria-hidden="true" />
+      <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+        <div
+          className="absolute inset-0 opacity-10"
+          style={{
+            backgroundImage:
+              'repeating-linear-gradient(90deg, transparent, transparent 50px, #ffffff 50px, #ffffff 51px)',
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent" />
+        <div className="absolute inset-0 bg-black/30" />
+      </div>
 
       <div className="relative z-10 max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-10 flex items-center justify-between">
         <button
@@ -422,7 +426,7 @@ const NavBar = ({ brand, links, isMenuOpen, onToggleMenu, scrolled, onNavigate }
       {isMenuOpen && (
         <div
           id="mobile-menu"
-          className="md:hidden absolute top-full left-0 w-full bg-[#111827] border-t border-gray-700 py-6 px-6 flex flex-col gap-4 text-center shadow-2xl text-white"
+          className="md:hidden absolute top-full left-0 w-full z-[60] bg-[#0f172a] border-t border-gray-700 py-6 px-6 flex flex-col gap-4 text-center shadow-2xl text-white"
         >
           {links.map((link) => (
             <NavLink key={link.label} link={link} onNavigate={onNavigate} isMobile />
@@ -438,7 +442,7 @@ const NavLink = ({ link, onNavigate, isMobile }) => (
     href={link.href}
     target={link.external ? '_blank' : undefined}
     rel={link.external ? 'noreferrer' : undefined}
-    className={`text-xs font-bold tracking-[0.2em] uppercase text-white transition-all duration-200 hover:text-[#86efac] hover:scale-105 ${
+    className={`text-xs font-bold tracking-[0.2em] uppercase text-white transition-all duration-200 hover:text-white hover:scale-105 ${
       isMobile ? 'py-2' : ''
     } ${focusRing}`}
     onClick={(e) => onNavigate(e, link)}
@@ -448,69 +452,94 @@ const NavLink = ({ link, onNavigate, isMobile }) => (
   </a>
 );
 
-const Hero = ({ content, stats, onPrimaryClick, onSecondaryClick }) => (
-  <header
-    id={content.resumeAnchorId}
-    className="relative w-full min-h-[80vh] md:h-[88vh] overflow-hidden bg-black group"
-  >
-    <div
-      className="absolute inset-0 bg-cover bg-center opacity-80 transition-transform duration-[2000ms] group-hover:scale-105"
-      style={{ backgroundImage: `url("${content.backgroundImage}")` }}
-      aria-hidden="true"
-    />
-    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/70 to-black/40 mix-blend-multiply" aria-hidden="true" />
-    <div className="absolute inset-0 bg-black/40" aria-hidden="true" />
+const Hero = ({ content, stats, onPrimaryClick, onSecondaryClick }) => {
+  const [heroPointer, setHeroPointer] = useState({ x: 50, y: 50 });
 
-    <div className="absolute inset-0 flex items-end pb-14 md:pb-24 px-4 sm:px-8 lg:px-14">
-      <div className="max-w-4xl text-white space-y-5">
-        {content.subheadline ? (
-          <p className="text-[11px] sm:text-xs font-bold tracking-[0.3em] uppercase text-gray-100 bg-black/60 inline-block px-3 py-1">
-            {content.subheadline}
+  const handleMouseMove = (event) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const x = ((event.clientX - rect.left) / rect.width) * 100;
+    const y = ((event.clientY - rect.top) / rect.height) * 100;
+    setHeroPointer({ x, y });
+  };
+
+  const handleMouseLeave = () => setHeroPointer({ x: 50, y: 50 });
+
+  return (
+    <header
+      id={content.resumeAnchorId}
+      className="relative w-full min-h-[80vh] md:h-[88vh] overflow-hidden bg-black group"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+    >
+      <div
+        className="absolute inset-0 bg-cover bg-center opacity-80 transition-transform duration-[2000ms] group-hover:scale-105"
+        style={{ backgroundImage: `url("${content.backgroundImage}")` }}
+        aria-hidden="true"
+      />
+      <div
+        className="absolute inset-0 bg-gradient-to-t from-[#0f172a]/90 via-[#2563eb]/60 to-[#0f172a]/40 mix-blend-multiply"
+        aria-hidden="true"
+      />
+      <div className="absolute inset-0 bg-black/20" aria-hidden="true" />
+      <div
+        className="pointer-events-none absolute inset-0 transition-opacity duration-300"
+        style={{
+          background: `radial-gradient(600px at ${heroPointer.x}% ${heroPointer.y}%, rgba(255,255,255,0.08), transparent 60%)`,
+        }}
+        aria-hidden="true"
+      />
+
+      <div className="absolute inset-0 flex items-end pb-14 md:pb-24 px-4 sm:px-8 lg:px-14">
+        <div className="max-w-4xl text-white space-y-5">
+          {content.subheadline ? (
+            <p className="text-[11px] sm:text-xs font-bold tracking-[0.3em] uppercase text-gray-100 bg-black/60 inline-block px-3 py-1">
+              {content.subheadline}
+            </p>
+          ) : null}
+          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-medium uppercase tracking-[0.18em] leading-tight drop-shadow-[0_2px_12px_rgba(0,0,0,0.75)]">
+            {content.title}
+          </h1>
+          <p className="text-sm sm:text-base font-medium tracking-[0.18em] text-gray-200 max-w-2xl uppercase drop-shadow-[0_2px_10px_rgba(0,0,0,0.7)]">
+            {content.description}
           </p>
-        ) : null}
-        <h1 className="text-4xl sm:text-5xl lg:text-7xl font-medium uppercase tracking-[0.18em] leading-tight drop-shadow-[0_2px_12px_rgba(0,0,0,0.75)]">
-          {content.title}
-        </h1>
-        <p className="text-sm sm:text-base font-medium tracking-[0.18em] text-gray-200 max-w-2xl uppercase drop-shadow-[0_2px_10px_rgba(0,0,0,0.7)]">
-          {content.description}
-        </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 pt-2">
-          {stats.map((stat) => (
-            <div
-              key={stat.label}
-              className="border border-white/30 bg-white/5 px-4 py-3 flex flex-col gap-1 text-left transition-all duration-300 hover:bg-white/10"
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 pt-2">
+            {stats.map((stat) => (
+              <div
+                key={stat.label}
+                className="border border-white/30 bg-white/5 px-4 py-3 flex flex-col gap-1 text-left transition-all duration-300 hover:bg-white/10"
+              >
+                <span className="text-[10px] font-bold tracking-[0.25em] uppercase text-gray-300">{stat.label}</span>
+                <span className="text-sm sm:text-base font-semibold tracking-[0.12em] uppercase">{stat.value}</span>
+              </div>
+            ))}
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4">
+            <button
+              type="button"
+              onClick={onPrimaryClick}
+              className={`inline-flex items-center justify-center gap-2 bg-[#2563eb]/20 border-2 border-[#2563eb] text-white px-8 sm:px-10 py-3 text-[10px] sm:text-xs font-bold tracking-[0.25em] uppercase transition-all duration-300 hover:bg-[#2563eb] ${focusRing}`}
+              aria-label={`${content.primaryCta.label} section`}
             >
-              <span className="text-[10px] font-bold tracking-[0.25em] uppercase text-gray-300">{stat.label}</span>
-              <span className="text-sm sm:text-base font-semibold tracking-[0.12em] uppercase">{stat.value}</span>
-            </div>
-          ))}
-        </div>
-
-        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4">
-          <button
-            type="button"
-            onClick={onPrimaryClick}
-            className={`inline-flex items-center justify-center gap-2 border border-white px-8 sm:px-10 py-3 text-[10px] sm:text-xs font-bold tracking-[0.25em] uppercase transition-all duration-300 hover:bg-white hover:text-black ${focusRing}`}
-            aria-label={`${content.primaryCta.label} section`}
-          >
-            {content.primaryCta.label}
-            <ArrowRight size={14} />
-          </button>
-          <button
-            type="button"
-            onClick={onSecondaryClick}
-            className={`inline-flex items-center justify-center gap-2 bg-white text-black px-8 sm:px-10 py-3 text-[10px] sm:text-xs font-bold tracking-[0.25em] uppercase transition-all duration-300 hover:bg-gray-100 ${focusRing}`}
-            aria-label={`${content.secondaryCta.label} section`}
-          >
-            {content.secondaryCta.label}
-            <ChevronRight size={14} />
-          </button>
+              {content.primaryCta.label}
+              <ArrowRight size={14} />
+            </button>
+            <button
+              type="button"
+              onClick={onSecondaryClick}
+              className={`inline-flex items-center justify-center gap-2 bg-white/10 border-2 border-white/50 text-white px-8 sm:px-10 py-3 text-[10px] sm:text-xs font-bold tracking-[0.25em] uppercase transition-all duration-300 hover:bg-white hover:text-[#0f172a] ${focusRing}`}
+              aria-label={`${content.secondaryCta.label} section`}
+            >
+              {content.secondaryCta.label}
+              <ChevronRight size={14} />
+            </button>
+          </div>
         </div>
       </div>
-    </div>
-  </header>
-);
+    </header>
+  );
+};
 
 const ExperienceSection = ({ entries, expandedId, onToggle }) => (
   <section id="experience" className="w-full">
@@ -980,7 +1009,7 @@ const Footer = ({ contact }) => {
   return (
     <footer
       id="contact"
-      className="relative overflow-hidden bg-gradient-to-br from-[#ea580c] to-[#7c2d12] text-white py-16 sm:py-20"
+      className="relative overflow-hidden bg-gradient-to-br from-[#7f1d1d] to-[#450a0a] text-white py-6 sm:py-8"
     >
       <div
         className="absolute inset-0 opacity-10"
@@ -990,53 +1019,54 @@ const Footer = ({ contact }) => {
         }}
         aria-hidden="true"
       />
+      <div className="absolute inset-0 bg-black/30" aria-hidden="true" />
 
-      <div className="relative z-10 max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-10 flex flex-col min-h-[340px] gap-10 text-center">
+      <div className="relative z-10 max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-10 flex flex-col min-h-[240px] gap-6 text-center">
         <div className="flex-1 flex items-center justify-center">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 w-full">
             <a
               href={`mailto:${contact.email}`}
-              className={`group border-2 border-white/20 bg-white/5 hover:bg-white hover:text-[#7c2d12] transition-all duration-200 ease-out rounded-lg p-7 flex items-center justify-between gap-4 text-left hover:scale-[1.03] hover:-translate-y-1 hover:shadow-xl hover:shadow-black/30 min-h-[190px] ${focusRing}`}
+              className={`group border border-white/25 bg-transparent backdrop-blur-md hover:bg-white/10 hover:border-white transition-all duration-300 ease-out rounded-lg p-7 flex items-center justify-between gap-4 text-left hover:scale-[1.03] hover:-translate-y-1 hover:shadow-2xl hover:shadow-red-900/40 min-h-[190px] ${focusRing}`}
               aria-label="Email Shravan"
             >
               <div className="flex items-center gap-4">
-                <div className="h-12 w-12 rounded-full bg-white/10 flex items-center justify-center">
+                <div className="h-12 w-12 rounded-full bg-white/10 flex items-center justify-center text-white">
                   <Mail size={24} />
                 </div>
                 <div className="space-y-1">
-                  <p className="text-[11px] font-bold tracking-[0.24em] uppercase">Email</p>
-                  <p className="text-sm sm:text-base font-semibold">{contact.email}</p>
+                  <p className="text-[11px] font-bold tracking-[0.24em] uppercase text-white">Email</p>
+                  <p className="text-sm sm:text-base font-semibold text-white">{contact.email}</p>
                 </div>
               </div>
-              <ArrowRight size={18} />
+              <ArrowRight size={18} className="text-white" />
             </a>
 
             <a
               href={linkedin?.href || '#'}
               target="_blank"
               rel="noreferrer"
-              className={`group border-2 border-white/20 bg-white/5 hover:bg-white hover:text-[#7c2d12] transition-all duration-200 ease-out rounded-lg p-7 flex items-center justify-between gap-4 text-left hover:scale-[1.03] hover:-translate-y-1 hover:shadow-xl hover:shadow-black/30 min-h-[190px] ${
+              className={`group border border-white/25 bg-transparent backdrop-blur-md hover:bg-white/10 hover:border-white transition-all duration-300 ease-out rounded-lg p-7 flex items-center justify-between gap-4 text-left hover:scale-[1.03] hover:-translate-y-1 hover:shadow-2xl hover:shadow-red-900/40 min-h-[190px] ${
                 linkedin ? focusRing : ''
               }`}
               aria-label="LinkedIn profile (opens in new tab)"
             >
               <div className="flex items-center gap-4">
-                <div className="h-12 w-12 rounded-full bg-white/10 flex items-center justify-center">
+                <div className="h-12 w-12 rounded-full bg-white/10 flex items-center justify-center text-white">
                   <Linkedin size={24} />
                 </div>
                 <div className="space-y-1">
-                  <p className="text-[11px] font-bold tracking-[0.24em] uppercase">LinkedIn</p>
-                  <p className="text-sm sm:text-base font-semibold">
+                  <p className="text-[11px] font-bold tracking-[0.24em] uppercase text-white">LinkedIn</p>
+                  <p className="text-sm sm:text-base font-semibold text-white">
                     {linkedin ? linkedin.label : 'Profile'}
                   </p>
                 </div>
               </div>
-              <ArrowRight size={18} />
+              <ArrowRight size={18} className="text-white" />
             </a>
           </div>
         </div>
 
-        <p className="text-xs tracking-[0.2em] uppercase text-white/60">
+        <p className="text-xs tracking-[0.2em] uppercase text-white">
           © 2025 {contact.branding} · Data &amp; Analytics.
         </p>
       </div>
@@ -1090,16 +1120,10 @@ const Portfolio = () => {
         Skip to content
       </a>
 
-      <div className="relative overflow-hidden bg-gray-900 text-white text-[10px] sm:text-[11px] font-bold tracking-[0.2em] text-center py-2 uppercase">
-        <div
-          className="absolute inset-0 opacity-10"
-          style={{
-            backgroundImage:
-              'repeating-linear-gradient(90deg, transparent, transparent 50px, #ffffff 50px, #ffffff 51px)',
-          }}
-          aria-hidden="true"
-        />
+      <div className="relative overflow-hidden bg-gradient-to-r from-[#2563eb]/90 to-[#0f172a]/90 text-white text-[10px] sm:text-[11px] font-bold tracking-[0.2em] text-center py-2 uppercase">
+        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'repeating-linear-gradient(90deg, transparent, transparent 50px, #ffffff 50px, #ffffff 51px)' }} aria-hidden="true" />
         <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent" aria-hidden="true" />
+        <div className="absolute inset-0 bg-black/30" aria-hidden="true" />
         <div className="relative z-10">
           {topBanner.message} •{' '}
           <a
