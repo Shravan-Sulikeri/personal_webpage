@@ -1081,7 +1081,7 @@ const Portfolio = () => {
   return (
     <div
       id="top"
-      className="min-h-screen bg-white font-sans text-black selection:bg-black selection:text-white scroll-smooth"
+      className="safe-area-top min-h-screen bg-white font-sans text-black selection:bg-black selection:text-white scroll-smooth"
     >
       <a
         href="#main"
