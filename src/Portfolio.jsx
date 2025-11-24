@@ -306,7 +306,7 @@ const contactInfo = {
 // --- UTILS & PRIMITIVES ---
 const focusRing =
   'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black focus-visible:ring-0';
-const navSafeAreaStyle = { top: 'env(safe-area-inset-top, 0px)' };
+const navSafeAreaStyle = { top: 'env(safe-area-inset-top, 0px)', paddingTop: 'env(safe-area-inset-top, 0px)' };
 
 const useScrollReveal = () => {
   const ref = useRef(null);
@@ -503,11 +503,11 @@ const Hero = ({ content, stats, onPrimaryClick, onSecondaryClick }) => {
             {content.description}
           </p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 pt-2">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 pt-2 items-stretch">
             {stats.map((stat) => (
               <div
                 key={stat.label}
-                className="border border-white/30 bg-white/5 px-4 py-3 flex flex-col gap-1 text-left transition-all duration-300 hover:bg-white/10"
+                className="border border-white/30 bg-white/5 px-4 py-3 flex flex-col gap-1 text-left transition-all duration-300 hover:bg-white/10 h-full"
               >
                 <span className="text-[10px] font-bold tracking-[0.25em] uppercase text-gray-300">{stat.label}</span>
                 <span className="text-sm sm:text-base font-semibold tracking-[0.12em] uppercase">{stat.value}</span>
