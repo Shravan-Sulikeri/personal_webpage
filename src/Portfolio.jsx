@@ -29,6 +29,7 @@ import dataModelIcon from '../assest/data_model_icon.jpg';
 import etlPipelineIcon from '../assest/etl_pipeline_icon.png';
 import resumePdf from '../assest/Shravan_Sulikeri_Resume_2025.pdf';
 import diplomaPdf from '../assest/Diploma.pdf';
+import ChatBot from './ChatBot';
 
 // --- GLOBAL CONTENT CONFIG ---
 const topBanner = {
@@ -1160,6 +1161,8 @@ const Portfolio = () => {
         <EducationSection content={educationContent} />
         <CertificationsSection items={certifications} />
       </main>
+
+      <ChatBot email={contactInfo.email} />
 
       <Footer contact={contactInfo} />
     </div>
