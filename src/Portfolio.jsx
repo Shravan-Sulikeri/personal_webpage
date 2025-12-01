@@ -17,11 +17,14 @@ import deltaLakeIcon from '../assest/delta_lake_icon.png';
 import gitOpsIcon from '../assest/git_ops_icon.png';
 import uncCharlotteImage from '../assest/unc_clt.jpg';
 import f1Image from '../assest/f1.jpg';
+import f1ArchitectureImage from '../assest/f1_lakehouse_system_arc.png';
 import firstCitizensImage from '../assest/fcb_image.webp';
 import firstCitizensLogo from '../assest/url.jpg';
 import careSightImage from '../assest/care_sight.jpeg';
+import careSightArchitectureImage from '../assest/caresight_system_arc.png';
 import spotifyImage from '../assest/spotify_icon.png';
 import soundSwipeImage from '../assest/sound_swipe_project_card.jpg';
+import soundSwipeArchitectureImage from '../assest/sound_swipe_arc_img.png';
 import varsinixLogo from '../assest/Gemini_Generated_Image_iuo4k9iuo4k9iuo4.jpg';
 import varsinixOfficeImage from '../assest/varsinix_wide_office.png';
 import restApiIcon from '../assest/rest_api_icon.jpg.png';
@@ -29,7 +32,7 @@ import dataModelIcon from '../assest/data_model_icon.jpg';
 import etlPipelineIcon from '../assest/etl_pipeline_icon.png';
 import resumePdf from '../assest/Shravan_Sulikeri_Resume_2025.pdf';
 import diplomaPdf from '../assest/Diploma.pdf';
-import ChatBot from './ChatBot';
+import ProjectDetail from './ProjectDetail';
 
 // --- GLOBAL CONTENT CONFIG ---
 const topBanner = {
@@ -70,15 +73,15 @@ const experienceEntries = [
     id: 'varsinix',
     company: 'Varsinix',
     logoUrl: varsinixLogo,
-    role: 'DATA ENGINEER (ML & CLOUD)',
+    role: 'DATA ENGINEER',
     period: 'AUG 2025 - PRESENT',
     location: 'RALEIGH, NC',
-    metrics: ['DEPLOYMENT TIME -40%', 'PROCESSING SPEED +55%', 'RELEASE ERRORS -40%'],
+    metrics: ['ONBOARDING TIME -30%', 'CI INCONSISTENCIES -25%', 'RECALL@K REPEATABILITY +40%'],
     details: [
-      'Engineered a monorepo-based MLOps framework with Docker, Kubernetes, and GitHub Actions, cutting deployment time by 40% and standardizing CI/CD automation across teams.',
-      'Designed ETL pipelines in Python, SQL & Databricks (GCP), improving data processing speed by 55% and analytics delivery by 20%.',
-      'Automated ML lifecycle and experiment tracking with MLflow & GCP Cloud Build, boosting reproducibility by 45%.',
-      'Deployed monitoring and CI/CD dashboards via Prometheus, Grafana & GitOps, reducing release errors by 40%.',
+      'Standardized the Varsinix monorepo and GitHub workflows, reducing onboarding time by 30% and CI inconsistencies by 25%.',
+      'Developed a reproducible evaluation pipeline for medical concept retrieval on 200k+ data samples, increasing the repeatability of Recall@K metrics by 40%.',
+      'Refactored Qdrant vector search and embedding alignment logic using Python, reducing ANN evaluation failures by 25% and stabilizing retrieval outputs.',
+      'Defined and implemented Medallion Architecture standards (Bronze/Silver/Gold) and versioned naming conventions, improving data lineage clarity and reducing schema drift by 45%.',
     ],
     image: varsinixOfficeImage,
     imageAlt: 'Varsinix office',
@@ -95,9 +98,10 @@ const experienceEntries = [
     location: 'RALEIGH, NC',
     metrics: ['ISSUE DETECTION +25%', 'TRIAGE TIME -35%', 'DEVICE RELIABILITY +20%'],
     details: [
-      'Designed Power BI dashboards from Nexthink data to monitor 20K+ endpoints, boosting issue detection by 25%.',
-      'Engineered high-performance NQL queries to join and analyze endpoint telemetry, reducing triage time by 35%.',
-      'Automated endpoint remediation with Nexthink Remote Actions, boosting device reliability and IT response speed by 20%.',
+      'Designed Power BI dashboards using Nexthink data to monitor 20K+ endpoints, increasing issue detection by 25%.',
+      'Engineered high-performance NQL queries to join and analyze endpoint telemetry, reducing mean time to triage by 35%.',
+      'Automated endpoint remediation with Nexthink Remote Actions, increasing device reliability and IT response speed by 20%.',
+      'Partnered with cross-functional IT teams to enhance digital employee experience (DEX) through Nexthink analytics.',
     ],
     image: firstCitizensImage,
     imageAlt: 'Enterprise data center hallway',
@@ -113,8 +117,9 @@ const experienceEntries = [
     metrics: ['MANUAL WORKLOAD -30%', 'PROCESSING SPEED +40%', 'DETECTION ACCURACY +15%'],
     details: [
       'Automated security testing workflows and vulnerability scans with Python, reducing manual workload by 30%.',
-      'Conducted malware analysis and log-parsing tools (Python & C) that improved data processing speed by 40%.',
-      'Developed cross-platform automation in PowerShell and Bash to ingest Azure resource logs.',
+      'Conducted malware analysis and enhanced log-parsing tools (Python & C) that improved data processing speed by 40% and detection accuracy by 15%.',
+      'Developed cross-platform automation in PowerShell and Bash to ingest Azure resource logs, consolidating 3+ monitoring systems and reducing audit preparation time by 20%.',
+      'Authored documentation and runbooks, cutting onboarding time by 40% and standardizing security operations.',
     ],
     image: controlInfotechImage,
     imageAlt: 'Cybersecurity operations room',
@@ -126,47 +131,59 @@ const projectEntries = [
   {
     title: 'F1 LakeHouse',
     category: 'DATA ARCHITECTURE',
-    description: 'Ollama-Powered Local Lakehouse for F1 Data Analysis.',
-
+    description:
+      'Ollama powered local lakehouse for F1 race and driver analytics, combining Delta tables with vector search and LLM based question answering.',
     image: f1Image,
     link: 'https://github.com/Shravan-Sulikeri/f1-lakehouse',
     logo: 'https://upload.wikimedia.org/wikipedia/commons/3/33/F1.svg',
-    tags: ['Ollama', 'Delta Lake', 'Databricks', 'Data Engineering'],
+    tags: ['OLLAMA', 'DELTA LAKE', 'DATABRICKS', 'DATA ENGINEERING'],
     theme: 'orange',
+    impactStats: [
+      'Latency <50 ms for local vector search',
+      'Data freshness under 5 minutes from raw to Gold tables',
+      'Runs fully on local hardware',
+    ],
+    architectureImage: f1ArchitectureImage,
+    codeSnippet: `# Delta Live Tables config\nspark.conf.set("spark.databricks.delta.formatCheck.enabled", "false")\n\n@dlt.table\ndef bronze_ingest():\n    return spark.readStream.format("cloudFiles")\\\n        .option("cloudFiles.format", "json")\\\n        .load("/mnt/f1/raw")`,
   },
   {
     title: 'CareSight',
     category: 'AI / HEALTHCARE',
-    description: 'AI Powered Patient risk scoring & readmission prediction platform.',
-
+    description: 'AI powered patient risk scoring and readmission prediction platform for clinicians.',
     image: careSightImage,
     imageClass: 'object-center',
     link: 'https://github.com/Shravan-Sulikeri/caresight',
     logo: null,
-    tags: ['TensorFlow', 'Predictive Analytics', 'GCP', 'Healthcare AI'],
+    tags: ['TENSORFLOW', 'PREDICTIVE ANALYTICS', 'GCP', 'HEALTHCARE AI'],
     theme: 'blue',
-  },
-  {
-    title: 'Spotify Data Pipeline',
-    category: 'DATA ENGINEERING',
-    description: 'Azure Data Factory, Databricks & Delta Lake Architecture.',
-
-    image: spotifyImage,
-    link: 'https://github.com/Shravan-Sulikeri/dataeng_azure_project',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg',
-    tags: ['Azure Data Factory', 'Databricks', 'Delta Lake', 'Python'],
-    theme: 'black',
+    impactStats: [
+      'AUC ≥ 0.89 for readmission risk',
+      'Batch risk scoring under 2 minutes',
+      'Compliance-focused audit and access logging',
+    ],
+    architectureImage: careSightArchitectureImage,
+    stackSummary:
+      'Python ML pipeline with TensorFlow and scikit learn, FastAPI backend, PostgreSQL or GCP warehouse, healthcare analytics and monitoring',
   },
   {
     title: 'SOUNDSWIPE APP',
     category: 'FULL STACK',
-    description: 'Music discovery with swipe-based UI & real-time previews.',
+    description:
+      'Music discovery app with Tinder-style swiping, AI-driven recommendations, and instant Spotify playlist building.',
    
     image: soundSwipeImage,
     link: 'https://github.com/Shravan-Sulikeri/sound-swipe-app',
     logo: 'https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg',
-    tags: ['React', 'Node.js', 'Realtime', 'Music'],
+    tags: ['REACT', 'NODE.JS', 'SPOTIFY API', 'AI RECOMMENDATION ENGINE', 'REALTIME'],
     theme: 'purple',
+    impactStats: [
+      'AI-powered song relevance scoring <150ms',
+      'P95 swipe-to-preview latency <120ms',
+      'Auto-playlist sync to Spotify under 3 seconds',
+    ],
+    architectureImage: soundSwipeArchitectureImage,
+    stackSummary:
+      'React • Node.js • Express • Spotify Web API • WebSockets • AI Ranking Engine (Embeddings + Similarity Models)',
   },
 ];
 
@@ -717,7 +734,7 @@ const ExperienceSection = ({ entries, expandedId, onToggle }) => (
   </section>
 );
 
-const ProjectsSection = ({ projects }) => (
+const ProjectsSection = ({ projects, onProjectSelect }) => (
   <section
     id="projects"
     className="w-full relative overflow-hidden bg-gradient-to-br from-[#15803d] to-[#052e16] text-white py-20 sm:py-24"
@@ -738,10 +755,10 @@ const ProjectsSection = ({ projects }) => (
         <div className="h-px w-24 bg-[#86efac] mx-auto" aria-hidden="true" />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 lg:gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8">
         {projects.map((project) => (
           <Reveal key={project.title} className="h-full">
-            <ProjectCard project={project} />
+            <ProjectCard project={project} onSelect={onProjectSelect} />
           </Reveal>
         ))}
       </div>
@@ -749,7 +766,7 @@ const ProjectsSection = ({ projects }) => (
   </section>
 );
 
-const ProjectCard = ({ project }) => {
+const ProjectCard = ({ project, onSelect }) => {
   const isOrange = project.theme === 'orange';
   const isBlack = project.theme === 'black';
   const isBlue = project.theme === 'blue';
@@ -778,13 +795,17 @@ const ProjectCard = ({ project }) => {
     ? 'border border-white text-white hover:bg-white hover:text-black'
     : 'border border-black py-3 text-[10px] font-bold tracking-[0.2em] uppercase bg-black text-white transition-all duration-300 group-hover:bg-white group-hover:text-black';
 
+  const handleClick = (e) => {
+    e.preventDefault();
+    onSelect?.(project);
+  };
+
   return (
-    <a
-      href={project.link}
-      target="_blank"
-      rel="noopener noreferrer"
-      className={`group block h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${cardClasses} ${focusRing}`}
-      aria-label={`${project.title} on GitHub`}
+    <button
+      type="button"
+      onClick={handleClick}
+      className={`group block h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${cardClasses} ${focusRing} text-left`}
+      aria-label={`${project.title} details`}
     >
       <div className="relative aspect-[4/5] bg-gray-50 overflow-hidden">
         <img
@@ -831,7 +852,7 @@ const ProjectCard = ({ project }) => {
         <Github size={14} aria-hidden="true" /> View GitHub Repo
       </span>
     </div>
-  </a>
+    </button>
   );
 };
 
@@ -1080,6 +1101,7 @@ const Portfolio = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [expandedExperience, setExpandedExperience] = useState(null);
+  const [selectedProject, setSelectedProject] = useState(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -1156,13 +1178,13 @@ const Portfolio = () => {
 
       <main id="main">
         <ExperienceSection entries={experienceEntries} expandedId={expandedExperience} onToggle={toggleExperience} />
-        <ProjectsSection projects={projectEntries} />
+        <ProjectsSection projects={projectEntries} onProjectSelect={setSelectedProject} />
         <SkillsSection categories={skillCategories} />
         <EducationSection content={educationContent} />
         <CertificationsSection items={certifications} />
       </main>
 
-      <ChatBot email={contactInfo.email} />
+      <ProjectDetail project={selectedProject} onClose={() => setSelectedProject(null)} />
 
       <Footer contact={contactInfo} />
     </div>
