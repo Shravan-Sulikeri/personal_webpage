@@ -16,6 +16,7 @@ const ProjectDetail = ({ project, onClose }) => {
   const tags = project.tags || [];
   const stackText = project.stackSummary || (tags.length ? tags.join(' • ') : 'Not provided');
   const metrics = project.impactStats || [];
+  const impactSummary = project.impactSummary || (metrics.length ? metrics.join(' • ') : null);
 
   return (
     <div className="fixed inset-0 z-[80] flex items-center justify-center bg-black/70 backdrop-blur-md px-4 py-6 overflow-y-auto">
@@ -77,10 +78,10 @@ const ProjectDetail = ({ project, onClose }) => {
                   <span className="font-semibold text-gray-200">Stack:</span>{' '}
                   <span className="text-gray-300">{stackText}</span>
                 </li>
-                {metrics.length > 0 && (
+                {impactSummary && (
                   <li>
                     <span className="font-semibold text-gray-200">Impact:</span>{' '}
-                    <span className="text-gray-300">{metrics.join(' • ')}</span>
+                    <span className="text-gray-300">{impactSummary}</span>
                   </li>
                 )}
                 {project.link && (

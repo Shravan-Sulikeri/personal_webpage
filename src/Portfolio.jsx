@@ -17,7 +17,7 @@ import deltaLakeIcon from '../assest/delta_lake_icon.png';
 import gitOpsIcon from '../assest/git_ops_icon.png';
 import uncCharlotteImage from '../assest/unc_clt.jpg';
 import f1Image from '../assest/f1.jpg';
-import f1ArchitectureImage from '../assest/f1_lakehouse_system_arc.png';
+import f1ArchitectureImage from '../assest/F1-Dash System arc.png';
 import firstCitizensImage from '../assest/fcb_image.webp';
 import firstCitizensLogo from '../assest/url.jpg';
 import careSightImage from '../assest/care_sight.jpeg';
@@ -129,19 +129,23 @@ const experienceEntries = [
 
 const projectEntries = [
   {
-    title: 'F1 LakeHouse',
-    category: 'DATA ARCHITECTURE',
+    title: 'F1 Dash',
+    category: 'END-TO-END ML PIPELINE',
     description:
-      'Ollama powered local lakehouse for F1 race and driver analytics, combining Delta tables with vector search and LLM based question answering.',
+      'Full-stack racing analytics platform that ingests 2018-2025 telemetry to engineer 61 features, trains three production models, and serves ranked race predictions to an interactive React dashboard.',
     image: f1Image,
     link: 'https://github.com/Shravan-Sulikeri/f1-dash',
     logo: 'https://upload.wikimedia.org/wikipedia/commons/3/33/F1.svg',
-    tags: ['OLLAMA', 'DELTA LAKE', 'DATABRICKS', 'DATA ENGINEERING'],
+    tags: ['PYTHON', 'DUCKDB', 'MACHINE LEARNING', 'REACT'],
+    stackLabel: 'PYTHON • DUCKDB • SCIKIT-LEARN • REACT • TAILWIND',
     theme: 'orange',
+    stackSummary: 'PYTHON • DUCKDB • SCIKIT-LEARN • REACT • TAILWIND',
+    impactSummary:
+      'Achieved 0.9907 AUC for race winner prediction • Engineered 61 ML-ready features • Automated orchestration from raw ingestion to frontend delivery.',
     impactStats: [
-      'Latency <50 ms for local vector search',
-      'Data freshness under 5 minutes from raw to Gold tables',
-      'Runs fully on local hardware',
+      'BEST MODEL TEST AUC: 0.9907 (RANDOM FOREST)',
+      'PROCESSES 220K+ LAPS & 31K+ WEATHER POINTS',
+      'FULL PIPELINE RUNS IN ~15 MINS LOCALLY',
     ],
     architectureImage: f1ArchitectureImage,
     codeSnippet: `# Delta Live Tables config\nspark.conf.set("spark.databricks.delta.formatCheck.enabled", "false")\n\n@dlt.table\ndef bronze_ingest():\n    return spark.readStream.format("cloudFiles")\\\n        .option("cloudFiles.format", "json")\\\n        .load("/mnt/f1/raw")`,
