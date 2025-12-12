@@ -134,7 +134,7 @@ const projectEntries = [
     description:
       'Ollama powered local lakehouse for F1 race and driver analytics, combining Delta tables with vector search and LLM based question answering.',
     image: f1Image,
-    link: 'https://github.com/Shravan-Sulikeri/f1-lakehouse',
+    link: 'https://github.com/Shravan-Sulikeri/f1-dash',
     logo: 'https://upload.wikimedia.org/wikipedia/commons/3/33/F1.svg',
     tags: ['OLLAMA', 'DELTA LAKE', 'DATABRICKS', 'DATA ENGINEERING'],
     theme: 'orange',
@@ -429,7 +429,7 @@ const NavBar = ({ brand, links, isMenuOpen, onToggleMenu, scrolled, onNavigate }
         </div>
 
         <span
-          className="absolute left-1/2 -translate-x-1/2 text-2xl md:text-3xl font-black tracking-widest uppercase text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-white drop-shadow-[0_2px_8px_rgba(255,255,255,0.25)] cursor-default select-none"
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-2xl md:text-3xl font-black tracking-widest uppercase text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-white drop-shadow-[0_2px_8px_rgba(255,255,255,0.25)] cursor-default select-none"
         >
           {brand}
         </span>
