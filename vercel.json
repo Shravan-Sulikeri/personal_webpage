@@ -9,10 +9,5 @@
       "destination": "/index.html"
     }
   ],
-  "cleanUrls": true,
-  "functions": {
-    "api/*.js": {
-      "runtime": "nodejs20.x"
-    }
-  }
+  "cleanUrls": true
 }
