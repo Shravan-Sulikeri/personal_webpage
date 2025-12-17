@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Bot, MessageCircle, Send, X } from 'lucide-react';
+import { Bot, Loader2, MessageCircle, Send, X } from 'lucide-react';
 import resumePdf from '../assest/Shravan_Sulikeri_Resume_2025.pdf';
 
 const ChatBot = ({ email }) => {
@@ -7,6 +7,7 @@ const ChatBot = ({ email }) => {
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState([]);
   const [hasGreeted, setHasGreeted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
@@ -14,7 +15,7 @@ const ChatBot = ({ email }) => {
       setMessages([
         {
           sender: 'bot',
-          text: "Hi! I'm Shravan's virtual assistant. Ask me about his experience, skills, or projects!",
+          text: "Hi! I'm Shravan's AI assistant. Ask me anything about his experience, skills, projects, or background!",
         },
       ]);
       setHasGreeted(true);
@@ -27,45 +28,55 @@ const ChatBot = ({ email }) => {
     }
   }, [messages]);
 
-  const getBotReply = (userInput) => {
+  const getBotReply = async (userInput) => {
     const lower = userInput.toLowerCase();
+
+    // Handle resume request locally (no API call needed)
     if (lower.includes('resume') || lower.includes('cv')) {
       return {
         sender: 'bot',
-        text: 'Here is his resume:',
-        link: { href: resumePdf, label: 'Open Resume PDF' },
+        text: 'Here is Shravan\'s resume:',
+        link: { href: resumePdf, label: 'Download Resume PDF' },
       };
     }
-    if (lower.includes('contact') || lower.includes('email')) {
-      return { sender: 'bot', text: `You can reach Shravan at ${email}.` };
-    }
-    if (lower.includes('skill') || lower.includes('stack')) {
+
+    // Call the AI API for all other questions
+    try {
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ message: userInput }),
+      });
+
+      if (!response.ok) {
+        throw new Error('API request failed');
+      }
+
+      const data = await response.json();
+      return { sender: 'bot', text: data.response };
+    } catch (error) {
+      console.error('Chat API error:', error);
       return {
         sender: 'bot',
-        text:
-          'Top skills: Python, Data Engineering (Databricks, Delta Lake), MLflow, Azure, GCP, Docker, Kubernetes, Power BI.',
+        text: `I'm having trouble connecting right now. Feel free to email Shravan directly at ${email} for any questions!`,
       };
     }
-    if (lower.includes('project') || lower.includes('experience') || lower.includes('work')) {
-      return {
-        sender: 'bot',
-        text:
-          'Shravan has delivered cloud-native ETL, MLOps, and analytics solutions across Azure, GCP, Databricks, and Kubernetes.',
-      };
-    }
-    return {
-      sender: 'bot',
-      text: "I'm still learning! For complex questions, please email Shravan directly.",
-    };
   };
 
-  const handleSend = () => {
+  const handleSend = async () => {
     const trimmed = input.trim();
-    if (!trimmed) return;
+    if (!trimmed || isLoading) return;
+
     const userMessage = { sender: 'user', text: trimmed };
-    const botMessage = getBotReply(trimmed);
-    setMessages((prev) => [...prev, userMessage, botMessage]);
+    setMessages((prev) => [...prev, userMessage]);
     setInput('');
+    setIsLoading(true);
+
+    const botMessage = await getBotReply(trimmed);
+    setMessages((prev) => [...prev, botMessage]);
+    setIsLoading(false);
   };
 
   const handleKeyDown = (event) => {
@@ -87,16 +98,15 @@ const ChatBot = ({ email }) => {
       </button>
 
       <div
-        className={`w-[320px] sm:w-[380px] bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-200 transform transition-all duration-300 ${
-          isOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-4 pointer-events-none'
-        }`}
+        className={`w-[320px] sm:w-[380px] bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-200 transform transition-all duration-300 ${isOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-4 pointer-events-none'
+          }`}
         role="dialog"
         aria-label="AI Chatbot"
       >
         <div className="bg-gradient-to-r from-[#2563eb] to-[#0f172a] text-white px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-2 font-semibold text-sm uppercase tracking-[0.2em]">
             <Bot size={18} />
-            Ask Me Anything
+            AI Assistant
           </div>
           <button
             type="button"
@@ -117,11 +127,10 @@ const ChatBot = ({ email }) => {
                 className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
               >
                 <div
-                  className={`max-w-[85%] rounded-2xl px-3 py-2 text-sm shadow ${
-                    message.sender === 'user'
+                  className={`max-w-[85%] rounded-2xl px-3 py-2 text-sm shadow ${message.sender === 'user'
                       ? 'bg-[#1e3a8a] text-white rounded-br-sm'
                       : 'bg-white text-gray-800 border border-gray-200 rounded-bl-sm'
-                  }`}
+                    }`}
                 >
                   <p className="whitespace-pre-wrap leading-relaxed">{message.text}</p>
                   {message.link ? (
@@ -137,6 +146,19 @@ const ChatBot = ({ email }) => {
                 </div>
               </div>
             ))}
+
+            {/* Loading indicator */}
+            {isLoading && (
+              <div className="flex justify-start">
+                <div className="max-w-[85%] rounded-2xl px-4 py-3 bg-white text-gray-800 border border-gray-200 rounded-bl-sm shadow">
+                  <div className="flex items-center gap-2">
+                    <Loader2 size={16} className="animate-spin text-[#2563eb]" />
+                    <span className="text-sm text-gray-500">Thinking...</span>
+                  </div>
+                </div>
+              </div>
+            )}
+
             <div ref={messagesEndRef} />
           </div>
         </div>
@@ -147,18 +169,19 @@ const ChatBot = ({ email }) => {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
-            placeholder="Ask about experience, skills, resume..."
-            className="flex-1 border border-gray-200 rounded-full px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#2563eb] focus:border-transparent"
+            placeholder="Ask about experience, skills, projects..."
+            disabled={isLoading}
+            className="flex-1 border border-gray-200 rounded-full px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#2563eb] focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed"
             aria-label="Chat input"
           />
           <button
             type="button"
             onClick={handleSend}
-            className="inline-flex items-center gap-2 bg-gradient-to-r from-[#2563eb] to-[#0f172a] text-white px-4 py-2 rounded-full text-sm font-semibold tracking-wide hover:shadow-md transition-all focus:outline-none focus:ring-2 focus:ring-[#2563eb] focus:ring-offset-2 focus:ring-offset-white"
+            disabled={isLoading || !input.trim()}
+            className="inline-flex items-center gap-2 bg-gradient-to-r from-[#2563eb] to-[#0f172a] text-white px-4 py-2 rounded-full text-sm font-semibold tracking-wide hover:shadow-md transition-all focus:outline-none focus:ring-2 focus:ring-[#2563eb] focus:ring-offset-2 focus:ring-offset-white disabled:opacity-50 disabled:cursor-not-allowed"
             aria-label="Send message"
           >
-            Send
-            <Send size={16} />
+            {isLoading ? <Loader2 size={16} className="animate-spin" /> : <Send size={16} />}
           </button>
         </div>
       </div>
