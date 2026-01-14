@@ -46,7 +46,7 @@ const heroContent = {
   title: 'Shravan Sulikeri',
   subheadline: '',
   description:
-    'Engineer with hands-on experience building cloud-native ETL pipelines, production-grade MLOps frameworks, and analytics systems across Azure, GCP, Databricks, Kubernetes, and Power BI. I design end-to-end data solutions that improve reliability, speed, and insight delivery for enterprise environments',
+    'Ambitious recent graduate working as a Data Engineer to streamline analytics and machine learning workflows. Expertise spans the full data lifecycle, from ingesting raw telemetry in Azure to refining vector retrieval logic in Python. demonstrated success in cutting onboarding times and increasing data throughput by 35%+ in high-pressure environments. Eager to leverage a continuous learning mindset to build robust, future-proof data ecosystems.',
   primaryCta: { label: 'View Projects', targetId: 'projects' },
   secondaryCta: { label: 'View Experience', targetId: 'experience' },
   resumeAnchorId: 'resume',
@@ -55,7 +55,7 @@ const heroContent = {
 
 const quickStats = [
   { label: 'Experience', value: '1+ YEARS' },
-  { label: 'Top Skills', value: 'PYTHON • DATA ANALYSIS • DATA ENGINEERING' },
+  { label: 'Top Skills', value: 'PYTHON • SQL • DATA ENGINEERING' },
   { label: 'Location', value: 'RALEIGH, NC' },
 ];
 
