@@ -471,7 +471,7 @@ const NavLink = ({ link, onNavigate, isMobile }) => (
     href={link.href}
     target={link.external ? '_blank' : undefined}
     rel={link.external ? 'noreferrer' : undefined}
-    className={`text-xs font-bold tracking-[0.2em] uppercase text-white transition-all duration-200 hover:text-white hover:scale-105 ${isMobile ? 'py-2' : ''
+    className={`text-[11px] sm:text-xs font-bold tracking-[0.16em] sm:tracking-[0.2em] uppercase text-white transition-all duration-200 hover:text-white hover:scale-105 ${isMobile ? 'py-2' : ''
       } ${focusRing}`}
     onClick={(e) => onNavigate(e, link)}
     aria-label={link.external ? `${link.label} (opens in new tab)` : link.label}
@@ -520,14 +520,14 @@ const Hero = ({ content, stats, onPrimaryClick, onSecondaryClick }) => {
       <div className="absolute inset-0 flex items-end pb-14 md:pb-24 px-4 sm:px-8 lg:px-14">
         <div className="max-w-4xl text-white space-y-5">
           {content.subheadline ? (
-            <p className="text-[11px] sm:text-xs font-bold tracking-[0.3em] uppercase text-gray-100 bg-black/60 inline-block px-3 py-1">
+            <p className="text-[11px] sm:text-xs font-bold tracking-[0.2em] sm:tracking-[0.3em] uppercase text-gray-100 bg-black/60 inline-block px-3 py-1">
               {content.subheadline}
             </p>
           ) : null}
-          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-medium uppercase tracking-[0.18em] leading-tight drop-shadow-[0_2px_12px_rgba(0,0,0,0.75)]">
+          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-medium uppercase tracking-[0.1em] sm:tracking-[0.18em] leading-snug sm:leading-tight drop-shadow-[0_2px_12px_rgba(0,0,0,0.75)]">
             {content.title}
           </h1>
-          <p className="text-sm sm:text-base font-medium tracking-[0.18em] text-gray-200 max-w-2xl uppercase drop-shadow-[0_2px_10px_rgba(0,0,0,0.7)]">
+          <p className="text-sm sm:text-base font-medium tracking-[0.08em] sm:tracking-[0.18em] text-gray-200 max-w-2xl uppercase leading-relaxed drop-shadow-[0_2px_10px_rgba(0,0,0,0.7)]">
             {content.description}
           </p>
 
@@ -537,8 +537,12 @@ const Hero = ({ content, stats, onPrimaryClick, onSecondaryClick }) => {
                 key={stat.label}
                 className="border border-white/30 bg-white/5 px-4 py-3 flex flex-col gap-1 text-left transition-all duration-300 hover:bg-white/10 h-full"
               >
-                <span className="text-[10px] font-bold tracking-[0.25em] uppercase text-gray-300">{stat.label}</span>
-                <span className="text-sm sm:text-base font-semibold tracking-[0.12em] uppercase">{stat.value}</span>
+                <span className="text-[11px] sm:text-[10px] font-bold tracking-[0.18em] sm:tracking-[0.25em] uppercase text-gray-300">
+                  {stat.label}
+                </span>
+                <span className="text-sm sm:text-base font-semibold tracking-[0.08em] sm:tracking-[0.12em] uppercase">
+                  {stat.value}
+                </span>
               </div>
             ))}
           </div>
@@ -547,7 +551,7 @@ const Hero = ({ content, stats, onPrimaryClick, onSecondaryClick }) => {
             <button
               type="button"
               onClick={onPrimaryClick}
-              className={`inline-flex items-center justify-center gap-2 bg-[#2563eb]/20 border-2 border-[#2563eb] text-white px-8 sm:px-10 py-3 text-[10px] sm:text-xs font-bold tracking-[0.25em] uppercase transition-all duration-300 hover:bg-[#2563eb] ${focusRing}`}
+              className={`inline-flex items-center justify-center gap-2 bg-[#2563eb]/20 border-2 border-[#2563eb] text-white px-8 sm:px-10 py-3 text-[11px] sm:text-xs font-bold tracking-[0.18em] sm:tracking-[0.25em] uppercase transition-all duration-300 hover:bg-[#2563eb] ${focusRing}`}
               aria-label={`${content.primaryCta.label} section`}
             >
               {content.primaryCta.label}
@@ -556,7 +560,7 @@ const Hero = ({ content, stats, onPrimaryClick, onSecondaryClick }) => {
             <button
               type="button"
               onClick={onSecondaryClick}
-              className={`inline-flex items-center justify-center gap-2 bg-white/10 border-2 border-white/50 text-white px-8 sm:px-10 py-3 text-[10px] sm:text-xs font-bold tracking-[0.25em] uppercase transition-all duration-300 hover:bg-white hover:text-[#0f172a] ${focusRing}`}
+              className={`inline-flex items-center justify-center gap-2 bg-white/10 border-2 border-white/50 text-white px-8 sm:px-10 py-3 text-[11px] sm:text-xs font-bold tracking-[0.18em] sm:tracking-[0.25em] uppercase transition-all duration-300 hover:bg-white hover:text-[#0f172a] ${focusRing}`}
               aria-label={`${content.secondaryCta.label} section`}
             >
               {content.secondaryCta.label}
@@ -655,14 +659,16 @@ const ExperienceSection = ({ entries, expandedId, onToggle }) => (
               </div>
 
               <div className="space-y-2">
-                <h3 className="text-2xl sm:text-3xl lg:text-4xl font-medium uppercase tracking-[0.2em]">{exp.company}</h3>
+                <h3 className="text-2xl sm:text-3xl lg:text-4xl font-medium uppercase tracking-[0.14em] sm:tracking-[0.2em]">
+                  {exp.company}
+                </h3>
                 <p
-                  className={`text-[11px] sm:text-xs font-bold tracking-[0.24em] uppercase ${accentTextClass
+                  className={`text-[11px] sm:text-xs font-bold tracking-[0.18em] sm:tracking-[0.24em] uppercase ${accentTextClass
                     }`}
                 >
                   {exp.role}
                 </p>
-                <p className={`text-[10px] sm:text-xs tracking-[0.2em] uppercase ${metaTextClass}`}>
+                <p className={`text-[11px] sm:text-xs tracking-[0.16em] sm:tracking-[0.2em] uppercase ${metaTextClass}`}>
                   {exp.period} • {exp.location}
                 </p>
               </div>
@@ -671,7 +677,7 @@ const ExperienceSection = ({ entries, expandedId, onToggle }) => (
                 {exp.metrics.map((metric) => (
                   <div key={metric} className="flex items-center gap-3 justify-center md:justify-start">
                     <div className={`w-1 h-6 ${metricBarClass}`} />
-                    <span className={`text-[11px] sm:text-xs tracking-[0.2em] uppercase font-bold ${metricTextClass}`}>
+                    <span className={`text-[11px] sm:text-xs tracking-[0.16em] sm:tracking-[0.2em] uppercase font-bold ${metricTextClass}`}>
                       {metric}
                     </span>
                   </div>
@@ -703,7 +709,7 @@ const ExperienceSection = ({ entries, expandedId, onToggle }) => (
                   onClick={() => onToggle(exp.id)}
                   aria-expanded={isExpanded}
                   aria-controls={`${exp.id}-details`}
-                  className={`border px-8 sm:px-10 py-3 text-[10px] font-bold tracking-[0.25em] uppercase transition-all flex items-center gap-2 group ${buttonClass
+                  className={`border px-8 sm:px-10 py-3 text-[11px] sm:text-[10px] font-bold tracking-[0.18em] sm:tracking-[0.25em] uppercase transition-all flex items-center gap-2 group ${buttonClass
                     } ${focusRing}`}
                 >
                   {isExpanded ? 'Close Details' : 'View Details'}
@@ -752,7 +758,9 @@ const ProjectsSection = ({ projects, onProjectSelect }) => (
 
     <div className="relative z-10 max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-10">
       <div className="text-center mb-14">
-        <h2 className="text-3xl sm:text-4xl font-medium uppercase tracking-[0.2em] mb-3">Projects</h2>
+        <h2 className="text-3xl sm:text-4xl font-medium uppercase tracking-[0.14em] sm:tracking-[0.2em] mb-3">
+          Projects
+        </h2>
         <div className="h-px w-24 bg-[#86efac] mx-auto" aria-hidden="true" />
       </div>
 
@@ -818,7 +826,7 @@ const ProjectCard = ({ project, onSelect }) => {
           className={`w-full h-full object-cover ${project.imageClass || ''} mix-blend-multiply opacity-90 group-hover:scale-105 transition-transform duration-700`}
           loading="lazy"
         />
-        <div className="absolute top-4 left-0 bg-black text-white text-[9px] px-3 py-1 font-bold tracking-[0.2em] uppercase">
+        <div className="absolute top-4 left-0 bg-black text-white text-[10px] sm:text-[9px] px-3 py-1 font-bold tracking-[0.16em] sm:tracking-[0.2em] uppercase">
           {project.category}
         </div>
         {project.logo && (
@@ -835,21 +843,24 @@ const ProjectCard = ({ project, onSelect }) => {
       </div>
 
       <div className="px-5 pb-6 pt-3 text-center space-y-3">
-        <p className={`text-[10px] font-bold tracking-[0.2em] uppercase line-clamp-2 ${bodyTextClass}`}>
+        <p className={`text-[11px] sm:text-[10px] font-bold tracking-[0.14em] sm:tracking-[0.2em] uppercase line-clamp-2 ${bodyTextClass}`}>
           {project.description}
         </p>
         <div className="flex flex-wrap justify-center gap-2">
           {project.tags.map((tag) => (
-            <span key={tag} className={`text-[9px] tracking-[0.18em] uppercase font-bold px-3 py-1 ${tagClass}`}>
+            <span
+              key={tag}
+              className={`text-[10px] sm:text-[9px] tracking-[0.14em] sm:tracking-[0.18em] uppercase font-bold px-3 py-1 ${tagClass}`}
+            >
               {tag}
             </span>
           ))}
         </div>
-        <p className={`text-xs font-bold uppercase tracking-[0.2em] ${isOrange || isBlack ? 'text-white' : ''}`}>
+        <p className={`text-xs font-bold uppercase tracking-[0.14em] sm:tracking-[0.2em] ${isOrange || isBlack ? 'text-white' : ''}`}>
           {project.stackLabel}
         </p>
         <span
-          className={`w-full inline-flex items-center justify-center gap-2 py-3 text-[10px] font-bold tracking-[0.2em] uppercase transition-all duration-300 ${isBlack ? buttonClass : 'border border-black bg-black text-white group-hover:bg-white group-hover:text-black'
+          className={`w-full inline-flex items-center justify-center gap-2 py-3 text-[11px] sm:text-[10px] font-bold tracking-[0.16em] sm:tracking-[0.2em] uppercase transition-all duration-300 ${isBlack ? buttonClass : 'border border-black bg-black text-white group-hover:bg-white group-hover:text-black'
             }`}
         >
           <Github size={14} aria-hidden="true" /> View GitHub Repo
@@ -876,8 +887,10 @@ const SkillsSection = ({ categories }) => (
 
     <div className="relative z-10 max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-10">
       <div className="text-center mb-14 space-y-2">
-        <h2 className="text-3xl sm:text-5xl font-medium uppercase tracking-[0.2em] text-white">Technical Arsenal</h2>
-        <p className="text-[11px] sm:text-xs font-bold tracking-[0.28em] text-[#a5d8dd] uppercase">
+        <h2 className="text-3xl sm:text-5xl font-medium uppercase tracking-[0.14em] sm:tracking-[0.2em] text-white">
+          Technical Arsenal
+        </h2>
+        <p className="text-[11px] sm:text-xs font-bold tracking-[0.2em] sm:tracking-[0.28em] text-[#a5d8dd] uppercase">
           Core Technologies & Frameworks
         </p>
       </div>
@@ -887,7 +900,7 @@ const SkillsSection = ({ categories }) => (
           <Reveal key={category.title}>
             <div className="flex flex-col gap-5 h-full bg-white/10 backdrop-blur-sm p-4 sm:p-5 border border-white/20 text-white">
               <div className="flex items-center">
-                <h3 className="text-sm font-black tracking-[0.2em] uppercase border-b border-white/30 pb-2">
+                <h3 className="text-sm font-black tracking-[0.16em] sm:tracking-[0.2em] uppercase border-b border-white/30 pb-2">
                   {category.title}
                 </h3>
               </div>
@@ -906,7 +919,7 @@ const SkillsSection = ({ categories }) => (
                         <div className="w-1.5 h-1.5 bg-white/60 rounded-full group-hover:bg-white transition-colors" />
                       </div>
                     )}
-                    <span className="text-[10px] font-bold tracking-[0.16em] uppercase text-gray-100 group-hover:text-white transition-colors line-clamp-1">
+                    <span className="text-[11px] sm:text-[10px] font-bold tracking-[0.12em] sm:tracking-[0.16em] uppercase text-gray-100 group-hover:text-white transition-colors line-clamp-1">
                       {skill.name}
                     </span>
                   </div>
@@ -946,18 +959,22 @@ const EducationSection = ({ content }) => (
       <div className="relative z-10 space-y-6">
         <h2
           id="education-heading"
-          className="text-3xl sm:text-4xl lg:text-5xl font-medium uppercase tracking-[0.2em] leading-tight text-[#cbb77a] drop-shadow-sm"
+          className="text-3xl sm:text-4xl lg:text-5xl font-medium uppercase tracking-[0.14em] sm:tracking-[0.2em] leading-tight text-[#cbb77a] drop-shadow-sm"
         >
           {content.university}
         </h2>
         <div className="space-y-3 text-[#cbb77a]">
           <div>
-            <p className="text-[10px] font-bold tracking-[0.2em] uppercase opacity-80 mb-1">Degree</p>
+            <p className="text-[11px] sm:text-[10px] font-bold tracking-[0.16em] sm:tracking-[0.2em] uppercase opacity-80 mb-1">
+              Degree
+            </p>
             <p className="text-sm sm:text-lg font-bold tracking-wide uppercase">{content.degree}</p>
             <p className="text-xs opacity-90 tracking-wide mt-1">{content.concentration}</p>
           </div>
           <div>
-            <p className="text-[10px] font-bold tracking-[0.2em] uppercase opacity-80 mb-1">Graduation</p>
+            <p className="text-[11px] sm:text-[10px] font-bold tracking-[0.16em] sm:tracking-[0.2em] uppercase opacity-80 mb-1">
+              Graduation
+            </p>
             <p className="text-sm sm:text-lg font-bold tracking-wide uppercase">{content.graduation}</p>
           </div>
         </div>
@@ -965,7 +982,7 @@ const EducationSection = ({ content }) => (
           href={content.resumeHref}
           target="_blank"
           rel="noreferrer"
-          className={`mt-10 inline-block border-2 border-[#cbb77a] text-[#cbb77a] px-7 py-3 text-[10px] font-bold tracking-[0.25em] uppercase hover:bg-[#cbb77a] hover:text-[#00502b] transition-all w-fit ${focusRing}`}
+          className={`mt-10 inline-block border-2 border-[#cbb77a] text-[#cbb77a] px-7 py-3 text-[11px] sm:text-[10px] font-bold tracking-[0.18em] sm:tracking-[0.25em] uppercase hover:bg-[#cbb77a] hover:text-[#00502b] transition-all w-fit ${focusRing}`}
         >
           {content.ctaLabel}
         </a>
@@ -999,7 +1016,9 @@ const CertificationsSection = ({ items }) => (
     <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent" aria-hidden="true" />
 
     <div className="relative z-10 max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-10 text-center">
-      <h3 className="text-xl sm:text-2xl font-medium uppercase tracking-[0.2em] mb-10">Professional Certifications</h3>
+      <h3 className="text-xl sm:text-2xl font-medium uppercase tracking-[0.14em] sm:tracking-[0.2em] mb-10">
+        Professional Certifications
+      </h3>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
         {items.map((cert) => (
           <a
@@ -1015,10 +1034,10 @@ const CertificationsSection = ({ items }) => (
               aria-hidden="true"
             />
             <h4 className="font-bold text-sm tracking-[0.16em] uppercase mb-2">{cert.title}</h4>
-            <p className="text-[10px] sm:text-xs text-red-200 tracking-[0.24em] uppercase mb-4 group-hover:text-[#7f1d1d]">
+            <p className="text-[11px] sm:text-xs text-red-200 tracking-[0.18em] sm:tracking-[0.24em] uppercase mb-4 group-hover:text-[#7f1d1d]">
               {cert.sub}
             </p>
-            <span className="text-[10px] font-bold border border-white/30 px-3 py-1 rounded-full group-hover:text-[#7f1d1d] group-hover:border-[#7f1d1d]">
+            <span className="text-[11px] sm:text-[10px] font-bold border border-white/30 px-3 py-1 rounded-full group-hover:text-[#7f1d1d] group-hover:border-[#7f1d1d]">
               {cert.year}
             </span>
           </a>
@@ -1059,7 +1078,9 @@ const Footer = ({ contact }) => {
                   <Mail size={24} />
                 </div>
                 <div className="space-y-1">
-                  <p className="text-[11px] font-bold tracking-[0.24em] uppercase text-white">Email</p>
+                  <p className="text-[11px] font-bold tracking-[0.18em] sm:tracking-[0.24em] uppercase text-white">
+                    Email
+                  </p>
                   <p className="text-sm sm:text-base font-semibold text-white">{contact.email}</p>
                 </div>
               </div>
@@ -1079,7 +1100,9 @@ const Footer = ({ contact }) => {
                   <Linkedin size={24} />
                 </div>
                 <div className="space-y-1">
-                  <p className="text-[11px] font-bold tracking-[0.24em] uppercase text-white">LinkedIn</p>
+                  <p className="text-[11px] font-bold tracking-[0.18em] sm:tracking-[0.24em] uppercase text-white">
+                    LinkedIn
+                  </p>
                   <p className="text-sm sm:text-base font-semibold text-white">
                     {linkedin ? linkedin.label : 'Profile'}
                   </p>
@@ -1090,7 +1113,7 @@ const Footer = ({ contact }) => {
           </div>
         </div>
 
-        <p className="text-xs tracking-[0.2em] uppercase text-white">
+        <p className="text-xs tracking-[0.14em] sm:tracking-[0.2em] uppercase text-white">
           © 2025 {contact.branding} · Data Engineer.
         </p>
       </div>
@@ -1145,7 +1168,7 @@ const Portfolio = () => {
         Skip to content
       </a>
 
-      <div className="relative overflow-hidden bg-black/90 text-white text-[10px] sm:text-[11px] font-bold tracking-[0.2em] text-center py-2 uppercase">
+      <div className="relative overflow-hidden bg-black/90 text-white text-[11px] sm:text-[10px] font-bold tracking-[0.14em] sm:tracking-[0.2em] text-center py-2 uppercase">
         <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'repeating-linear-gradient(90deg, transparent, transparent 50px, #ffffff 50px, #ffffff 51px)' }} aria-hidden="true" />
         <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent" aria-hidden="true" />
         <div className="absolute inset-0 bg-black/30" aria-hidden="true" />
