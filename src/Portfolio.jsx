@@ -30,7 +30,7 @@ import varsinixOfficeImage from '../assest/varsinix_wide_office.png';
 import restApiIcon from '../assest/rest_api_icon.jpg.png';
 import dataModelIcon from '../assest/data_model_icon.jpg';
 import etlPipelineIcon from '../assest/etl_pipeline_icon.png';
-import resumePdf from '../assest/Shravan_Sulikeri_Resume_2025.pdf';
+import resumePdf from '../assest/Shravan_Sulikeri_Resume.pdf';
 import diplomaPdf from '../assest/Diploma.pdf';
 import ProjectDetail from './ProjectDetail';
 import ChatBot from './ChatBot';
