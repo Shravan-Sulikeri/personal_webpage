@@ -1088,7 +1088,7 @@ const Footer = ({ contact }) => {
         </div>
 
         <p className="text-xs tracking-[0.2em] uppercase text-white">
-          © 2025 {contact.branding} · Data &amp; Analytics.
+          © 2025 {contact.branding} · Data Engineer.
         </p>
       </div>
     </footer>
