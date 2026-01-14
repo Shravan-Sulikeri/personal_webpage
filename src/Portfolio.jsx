@@ -411,14 +411,14 @@ const NavBar = ({ brand, links, isMenuOpen, onToggleMenu, scrolled, onNavigate }
     >
       <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
         <div
-          className="absolute inset-0 opacity-10"
+          className="absolute inset-0 opacity-10 pointer-events-none"
           style={{
             backgroundImage:
               'repeating-linear-gradient(90deg, transparent, transparent 50px, #ffffff 50px, #ffffff 51px)',
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent" />
-        <div className="absolute inset-0 bg-black/30" />
+        <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-black/30 pointer-events-none" />
       </div>
 
       <div
@@ -503,15 +503,15 @@ const Hero = ({ content, stats, onPrimaryClick, onSecondaryClick }) => {
       onMouseLeave={handleMouseLeave}
     >
       <div
-        className="absolute inset-0 bg-cover bg-center opacity-80 transition-transform duration-[2000ms] group-hover:scale-105"
+        className="absolute inset-0 bg-cover bg-center opacity-80 transition-transform duration-[2000ms] group-hover:scale-105 pointer-events-none"
         style={{ backgroundImage: `url("${content.backgroundImage}")` }}
         aria-hidden="true"
       />
       <div
-        className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/70 to-black/40 mix-blend-multiply"
+        className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/70 to-black/40 mix-blend-multiply pointer-events-none"
         aria-hidden="true"
       />
-      <div className="absolute inset-0 bg-black/20" aria-hidden="true" />
+      <div className="absolute inset-0 bg-black/20 pointer-events-none" aria-hidden="true" />
       <div
         className="pointer-events-none absolute inset-0 transition-opacity duration-300"
         style={{
@@ -632,7 +632,7 @@ const ExperienceSection = ({ entries, expandedId, onToggle }) => (
               }`}
           >
             <div
-              className={`absolute inset-0 ${isDarkTheme ? 'opacity-10' : 'opacity-20'}`}
+              className={`absolute inset-0 pointer-events-none ${isDarkTheme ? 'opacity-10' : 'opacity-20'}`}
               style={{
                 backgroundImage: `repeating-linear-gradient(90deg, transparent, transparent 50px, ${patternColor
                   } 50px, ${patternColor} 51px)`,
@@ -640,7 +640,7 @@ const ExperienceSection = ({ entries, expandedId, onToggle }) => (
               aria-hidden="true"
             />
             <div
-              className={`absolute inset-0 ${isBlueTheme
+              className={`absolute inset-0 pointer-events-none ${isBlueTheme
                 ? 'bg-gradient-to-b from-[#0f2748]/40 to-transparent'
                 : isGrayTheme
                   ? 'bg-gradient-to-b from-black/30 to-transparent'
@@ -750,14 +750,14 @@ const ProjectsSection = ({ projects, onProjectSelect }) => (
     className="w-full relative overflow-hidden bg-gradient-to-br from-[#1f2937] to-[#111827] text-white py-20 sm:py-24"
   >
     <div
-      className="absolute inset-0 opacity-10"
+      className="absolute inset-0 opacity-10 pointer-events-none"
       style={{
         backgroundImage:
           'repeating-linear-gradient(90deg, transparent, transparent 50px, #ffffff 50px, #ffffff 51px)',
       }}
       aria-hidden="true"
     />
-    <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent" aria-hidden="true" />
+    <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent pointer-events-none" aria-hidden="true" />
 
     <div className="relative z-10 max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-10">
       <div className="text-center mb-14">
@@ -879,14 +879,14 @@ const SkillsSection = ({ categories }) => (
     className="w-full relative overflow-hidden bg-gradient-to-br from-[#0b132b] to-[#1c2541] text-white py-20 sm:py-24"
   >
     <div
-      className="absolute inset-0 opacity-10"
+      className="absolute inset-0 opacity-10 pointer-events-none"
       style={{
         backgroundImage:
           'repeating-linear-gradient(90deg, transparent, transparent 50px, #ffffff 50px, #ffffff 51px)',
       }}
       aria-hidden="true"
     />
-    <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent" aria-hidden="true" />
+    <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent pointer-events-none" aria-hidden="true" />
 
     <div className="relative z-10 max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-10">
       <div className="text-center mb-14 space-y-2">
@@ -944,7 +944,7 @@ const EducationSection = ({ content }) => (
   >
     <div className="w-full md:w-1/2 p-10 sm:p-14 lg:p-20 flex flex-col justify-end md:justify-center relative z-10 bg-gradient-to-br from-[#00502b] to-[#00502b]">
       <div
-        className="absolute inset-0 opacity-10"
+        className="absolute inset-0 opacity-10 pointer-events-none"
         style={{
           backgroundImage:
             'repeating-linear-gradient(90deg, transparent, transparent 50px, #ffffff 50px, #ffffff 51px)',
@@ -952,7 +952,7 @@ const EducationSection = ({ content }) => (
         aria-hidden="true"
       />
       <div
-        className="absolute inset-0 opacity-10"
+        className="absolute inset-0 opacity-10 pointer-events-none"
         style={{
           backgroundImage:
             "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E\")",
@@ -1009,14 +1009,14 @@ const CertificationsSection = ({ items }) => (
     className="w-full relative overflow-hidden bg-gradient-to-br from-[#991b1b] to-[#450a0a] text-white py-16 sm:py-20"
   >
     <div
-      className="absolute inset-0 opacity-10"
+      className="absolute inset-0 opacity-10 pointer-events-none"
       style={{
         backgroundImage:
           'repeating-linear-gradient(90deg, transparent, transparent 50px, #ffffff 50px, #ffffff 51px)',
       }}
       aria-hidden="true"
     />
-    <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent" aria-hidden="true" />
+    <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent pointer-events-none" aria-hidden="true" />
 
     <div className="relative z-10 max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-10 text-center">
       <h3 className="text-xl sm:text-2xl font-medium uppercase tracking-[0.14em] sm:tracking-[0.2em] mb-10">
@@ -1059,14 +1059,14 @@ const Footer = ({ contact }) => {
       className="relative overflow-hidden bg-gradient-to-br from-[#7f1d1d] to-[#450a0a] text-white py-6 sm:py-8"
     >
       <div
-        className="absolute inset-0 opacity-10"
+        className="absolute inset-0 opacity-10 pointer-events-none"
         style={{
           backgroundImage:
             'repeating-linear-gradient(90deg, transparent, transparent 50px, #ffffff 50px, #ffffff 51px)',
         }}
         aria-hidden="true"
       />
-      <div className="absolute inset-0 bg-black/30" aria-hidden="true" />
+      <div className="absolute inset-0 bg-black/30 pointer-events-none" aria-hidden="true" />
 
       <div className="relative z-10 max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-10 flex flex-col min-h-[240px] gap-6 text-center">
         <div className="flex-1 flex items-center justify-center">
@@ -1172,9 +1172,9 @@ const Portfolio = () => {
       </a>
 
       <div className="relative overflow-hidden bg-black/90 text-white text-[11px] sm:text-[10px] font-bold tracking-[0.14em] sm:tracking-[0.2em] text-center py-2 uppercase">
-        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'repeating-linear-gradient(90deg, transparent, transparent 50px, #ffffff 50px, #ffffff 51px)' }} aria-hidden="true" />
-        <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent" aria-hidden="true" />
-        <div className="absolute inset-0 bg-black/30" aria-hidden="true" />
+      <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'repeating-linear-gradient(90deg, transparent, transparent 50px, #ffffff 50px, #ffffff 51px)' }} aria-hidden="true" />
+      <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent pointer-events-none" aria-hidden="true" />
+      <div className="absolute inset-0 bg-black/30 pointer-events-none" aria-hidden="true" />
         <div className="relative z-10">
           {topBanner.message} •{' '}
           <a
