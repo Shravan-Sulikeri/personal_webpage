@@ -8,7 +8,7 @@
  */
 import React, { useEffect, useRef, useState } from 'react';
 import { ArrowRight, ChevronRight, Github, Linkedin, Mail, Menu, Minus, Plus, X } from 'lucide-react';
-import heroBackground from '../assest/Hero_img_backround.jpg';
+import heroBackground from '../assest/hero_image_main.jpg';
 import controlInfotechImage from '../assest/cit offfice.jpg';
 import controlInfotechLogo from '../assest/control_inftech_logo.png';
 import nexthinkIcon from '../assest/nexthink_icon.png';
