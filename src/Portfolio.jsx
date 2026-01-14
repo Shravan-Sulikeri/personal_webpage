@@ -160,7 +160,7 @@ const projectEntries = [
     link: 'https://github.com/Shravan-Sulikeri/caresight',
     logo: null,
     tags: ['TENSORFLOW', 'PREDICTIVE ANALYTICS', 'GCP', 'HEALTHCARE AI'],
-    theme: 'blue',
+    theme: 'green',
     impactStats: [
       'AUC ≥ 0.89 for readmission risk',
       'Batch risk scoring under 2 minutes',
@@ -405,7 +405,7 @@ const NavBar = ({ brand, links, isMenuOpen, onToggleMenu, scrolled, onNavigate }
   return (
     <nav
       style={navSafeAreaStyle}
-      className={`sticky top-0 z-50 relative overflow-visible bg-gradient-to-r from-[#2563eb]/90 to-[#0f172a]/90 transition-all duration-500 border-b ${scrolled ? 'py-3 border-gray-700' : 'py-6 border-transparent'
+      className={`sticky top-0 z-50 relative overflow-visible bg-black/90 transition-all duration-500 border-b ${scrolled ? 'py-3 border-gray-700' : 'py-6 border-transparent'
         }`}
       aria-label="Primary"
     >
@@ -455,7 +455,7 @@ const NavBar = ({ brand, links, isMenuOpen, onToggleMenu, scrolled, onNavigate }
       {isMenuOpen && (
         <div
           id="mobile-menu"
-          className="md:hidden absolute top-full left-0 w-full z-[60] bg-[#0f172a] border-t border-gray-700 py-6 px-6 flex flex-col gap-4 text-center shadow-2xl text-white"
+          className="md:hidden absolute top-full left-0 w-full z-[60] bg-black border-t border-gray-700 py-6 px-6 flex flex-col gap-4 text-center shadow-2xl text-white"
         >
           {links.map((link) => (
             <NavLink key={link.label} link={link} onNavigate={onNavigate} isMobile />
@@ -505,7 +505,7 @@ const Hero = ({ content, stats, onPrimaryClick, onSecondaryClick }) => {
         aria-hidden="true"
       />
       <div
-        className="absolute inset-0 bg-gradient-to-t from-[#0f172a]/90 via-[#2563eb]/60 to-[#0f172a]/40 mix-blend-multiply"
+        className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/70 to-black/40 mix-blend-multiply"
         aria-hidden="true"
       />
       <div className="absolute inset-0 bg-black/20" aria-hidden="true" />
@@ -738,7 +738,7 @@ const ExperienceSection = ({ entries, expandedId, onToggle }) => (
 const ProjectsSection = ({ projects, onProjectSelect }) => (
   <section
     id="projects"
-    className="w-full relative overflow-hidden bg-gradient-to-br from-[#15803d] to-[#052e16] text-white py-20 sm:py-24"
+    className="w-full relative overflow-hidden bg-gradient-to-br from-[#1f2937] to-[#111827] text-white py-20 sm:py-24"
   >
     <div
       className="absolute inset-0 opacity-10"
@@ -773,6 +773,7 @@ const ProjectCard = ({ project, onSelect }) => {
   const isBlue = project.theme === 'blue';
   const isPurple = project.theme === 'purple';
   const isLightBlue = project.theme === 'lightblue';
+  const isGreen = project.theme === 'green';
   const cardClasses = isOrange
     ? 'border border-orange-900 bg-gradient-to-br from-[#f97316] to-[#7c2d12] text-white hover:border-orange-700'
     : isBlack
@@ -781,13 +782,15 @@ const ProjectCard = ({ project, onSelect }) => {
         ? 'border border-blue-900 bg-gradient-to-br from-[#3b82f6] to-[#000050] text-white hover:border-blue-800'
         : isPurple
           ? 'border border-purple-900 bg-gradient-to-br from-[#7c3aed] to-[#2e1065] text-white hover:border-purple-800'
-          : isLightBlue
-            ? 'border border-gray-200 hover:border-[#e0f2fe] bg-[#e0f2fe] text-black'
-            : 'border border-gray-200 hover:border-[#86efac] bg-white text-black';
-  const textColorClass = isOrange || isBlack || isBlue || isPurple ? 'text-white' : 'text-black';
-  const bodyTextClass = isOrange || isBlack || isBlue || isPurple ? 'text-white' : 'text-gray-500';
+          : isGreen
+            ? 'border border-emerald-900 bg-gradient-to-br from-[#22c55e] to-[#14532d] text-white hover:border-emerald-700'
+            : isLightBlue
+              ? 'border border-gray-200 hover:border-[#e0f2fe] bg-[#e0f2fe] text-black'
+              : 'border border-gray-200 hover:border-[#86efac] bg-white text-black';
+  const textColorClass = isOrange || isBlack || isBlue || isPurple || isGreen ? 'text-white' : 'text-black';
+  const bodyTextClass = isOrange || isBlack || isBlue || isPurple || isGreen ? 'text-white' : 'text-gray-500';
   const tagClass =
-    isOrange || isBlack || isBlue || isPurple
+    isOrange || isBlack || isBlue || isPurple || isGreen
       ? 'bg-white/20 text-white'
       : isLightBlue
         ? 'bg-blue-100 text-gray-800'
@@ -859,7 +862,7 @@ const ProjectCard = ({ project, onSelect }) => {
 const SkillsSection = ({ categories }) => (
   <section
     id="skills"
-    className="w-full relative overflow-hidden bg-gradient-to-br from-[#3a7ca5] to-[#1d3354] text-white py-20 sm:py-24"
+    className="w-full relative overflow-hidden bg-gradient-to-br from-[#0b132b] to-[#1c2541] text-white py-20 sm:py-24"
   >
     <div
       className="absolute inset-0 opacity-10"
@@ -923,7 +926,7 @@ const EducationSection = ({ content }) => (
     className="w-full min-h-[520px] flex flex-col md:flex-row relative overflow-hidden"
     aria-labelledby="education-heading"
   >
-    <div className="w-full md:w-1/2 p-10 sm:p-14 lg:p-20 flex flex-col justify-end md:justify-center relative z-10 bg-gradient-to-br from-[#a49665] to-[#cbb77a]">
+    <div className="w-full md:w-1/2 p-10 sm:p-14 lg:p-20 flex flex-col justify-end md:justify-center relative z-10 bg-gradient-to-br from-[#00502b] to-[#00502b]">
       <div
         className="absolute inset-0 opacity-10"
         style={{
@@ -943,11 +946,11 @@ const EducationSection = ({ content }) => (
       <div className="relative z-10 space-y-6">
         <h2
           id="education-heading"
-          className="text-3xl sm:text-4xl lg:text-5xl font-medium uppercase tracking-[0.2em] leading-tight text-[#00502b] drop-shadow-sm"
+          className="text-3xl sm:text-4xl lg:text-5xl font-medium uppercase tracking-[0.2em] leading-tight text-[#cbb77a] drop-shadow-sm"
         >
           {content.university}
         </h2>
-        <div className="space-y-3 text-[#00502b]">
+        <div className="space-y-3 text-[#cbb77a]">
           <div>
             <p className="text-[10px] font-bold tracking-[0.2em] uppercase opacity-80 mb-1">Degree</p>
             <p className="text-sm sm:text-lg font-bold tracking-wide uppercase">{content.degree}</p>
@@ -962,7 +965,7 @@ const EducationSection = ({ content }) => (
           href={content.resumeHref}
           target="_blank"
           rel="noreferrer"
-          className={`mt-10 inline-block border-2 border-[#00502b] text-[#00502b] px-7 py-3 text-[10px] font-bold tracking-[0.25em] uppercase hover:bg-[#00502b] hover:text-[#cbb77a] transition-all w-fit ${focusRing}`}
+          className={`mt-10 inline-block border-2 border-[#cbb77a] text-[#cbb77a] px-7 py-3 text-[10px] font-bold tracking-[0.25em] uppercase hover:bg-[#cbb77a] hover:text-[#00502b] transition-all w-fit ${focusRing}`}
         >
           {content.ctaLabel}
         </a>
@@ -1142,7 +1145,7 @@ const Portfolio = () => {
         Skip to content
       </a>
 
-      <div className="relative overflow-hidden bg-gradient-to-r from-[#2563eb]/90 to-[#0f172a]/90 text-white text-[10px] sm:text-[11px] font-bold tracking-[0.2em] text-center py-2 uppercase">
+      <div className="relative overflow-hidden bg-black/90 text-white text-[10px] sm:text-[11px] font-bold tracking-[0.2em] text-center py-2 uppercase">
         <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'repeating-linear-gradient(90deg, transparent, transparent 50px, #ffffff 50px, #ffffff 51px)' }} aria-hidden="true" />
         <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent" aria-hidden="true" />
         <div className="absolute inset-0 bg-black/30" aria-hidden="true" />
