@@ -405,7 +405,7 @@ const NavBar = ({ brand, links, isMenuOpen, onToggleMenu, scrolled, onNavigate }
   return (
     <nav
       style={navSafeAreaStyle}
-      className={`sticky top-0 z-50 relative overflow-visible bg-black/90 transition-all duration-500 border-b ${scrolled ? 'py-3 border-gray-700' : 'py-6 border-transparent'
+      className={`sticky top-0 z-50 relative overflow-visible bg-black/90 transition-all duration-500 border-b ${scrolled ? 'border-gray-700' : 'border-transparent'
         }`}
       aria-label="Primary"
     >
@@ -421,7 +421,10 @@ const NavBar = ({ brand, links, isMenuOpen, onToggleMenu, scrolled, onNavigate }
         <div className="absolute inset-0 bg-black/30" />
       </div>
 
-      <div className="relative z-10 max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-10 flex items-center justify-between">
+      <div
+        className={`relative z-10 max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-10 flex items-center justify-between ${scrolled ? 'py-3' : 'py-6'
+          }`}
+      >
         <button
           type="button"
           className={`md:hidden p-2 text-white ${focusRing}`}
@@ -495,7 +498,7 @@ const Hero = ({ content, stats, onPrimaryClick, onSecondaryClick }) => {
   return (
     <header
       id={content.resumeAnchorId}
-      className="relative w-full min-h-[80vh] md:h-[88vh] overflow-hidden bg-black group"
+      className="relative w-full min-h-[100svh] md:h-[88vh] overflow-hidden bg-black group"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
@@ -517,7 +520,7 @@ const Hero = ({ content, stats, onPrimaryClick, onSecondaryClick }) => {
         aria-hidden="true"
       />
 
-      <div className="absolute inset-0 flex items-end pb-14 md:pb-24 px-4 sm:px-8 lg:px-14">
+      <div className="absolute inset-0 flex items-start md:items-end pt-20 sm:pt-24 pb-10 md:pb-24 px-4 sm:px-8 lg:px-14">
         <div className="max-w-4xl text-white space-y-5">
           {content.subheadline ? (
             <p className="text-[11px] sm:text-xs font-bold tracking-[0.2em] sm:tracking-[0.3em] uppercase text-gray-100 bg-black/60 inline-block px-3 py-1">
