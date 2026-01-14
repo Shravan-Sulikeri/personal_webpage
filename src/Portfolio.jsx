@@ -33,6 +33,7 @@ import etlPipelineIcon from '../assest/etl_pipeline_icon.png';
 import resumePdf from '../assest/Shravan_Sulikeri_Resume_2025.pdf';
 import diplomaPdf from '../assest/Diploma.pdf';
 import ProjectDetail from './ProjectDetail';
+import ChatBot from './ChatBot';
 
 // --- GLOBAL CONTENT CONFIG ---
 const topBanner = {
@@ -78,10 +79,10 @@ const experienceEntries = [
     location: 'RALEIGH, NC',
     metrics: ['ONBOARDING TIME -30%', 'CI INCONSISTENCIES -25%', 'RECALL@K REPEATABILITY +40%'],
     details: [
-      'Standardized the Varsinix monorepo and GitHub workflows, reducing onboarding time by 30% and CI inconsistencies by 25%.',
-      'Developed a reproducible evaluation pipeline for medical concept retrieval on 200k+ data samples, increasing the repeatability of Recall@K metrics by 40%.',
-      'Refactored Qdrant vector search and embedding alignment logic using Python, reducing ANN evaluation failures by 25% and stabilizing retrieval outputs.',
-      'Defined and implemented Medallion Architecture standards (Bronze/Silver/Gold) and versioned naming conventions, improving data lineage clarity and reducing schema drift by 45%.',
+      'Engineered a scalable ingestion pipeline on GCP using Vertex AI and Python to process 3 million+ clinical notes, enforcing schema validation for entity extraction.',
+      'Implemented a Medallion Architecture on Azure Data Lake, standardizing data lineage and reducing schema drift by 45%.',
+      'Refactored Qdrant vector search logic using Python, reducing neural network evolution failures by 35% and stabilizing retrieval outputs.',
+      'Collaborated within an Agile team to build a reproducible pipeline, improving Recall@K reliability by 30% across more than 2 million samples.',
     ],
     image: varsinixOfficeImage,
     imageAlt: 'Varsinix office',
@@ -99,7 +100,7 @@ const experienceEntries = [
     metrics: ['ISSUE DETECTION +25%', 'TRIAGE TIME -35%', 'DEVICE RELIABILITY +20%'],
     details: [
       'Designed Power BI dashboards using Nexthink data to monitor 20K+ endpoints, increasing issue detection by 25%.',
-      'Engineered high-performance NQL queries to join and analyze endpoint telemetry, reducing mean time to triage by 35%.',
+      'Formulated high-performance NQL queries to join and analyze endpoint telemetry, reducing mean time to triage by 35%.',
       'Automated endpoint remediation with Nexthink Remote Actions, increasing device reliability and IT response speed by 20%.',
       'Partnered with cross-functional IT teams to enhance digital employee experience (DEX) through Nexthink analytics.',
     ],
@@ -116,10 +117,10 @@ const experienceEntries = [
     location: 'RALEIGH, NC',
     metrics: ['MANUAL WORKLOAD -30%', 'PROCESSING SPEED +40%', 'DETECTION ACCURACY +15%'],
     details: [
-      'Automated security testing workflows and vulnerability scans with Python, reducing manual workload by 30%.',
-      'Conducted malware analysis and enhanced log-parsing tools (Python & C) that improved data processing speed by 40% and detection accuracy by 15%.',
-      'Developed cross-platform automation in PowerShell and Bash to ingest Azure resource logs, consolidating 3+ monitoring systems and reducing audit preparation time by 20%.',
-      'Authored documentation and runbooks, cutting onboarding time by 40% and standardizing security operations.',
+      'Developed PowerShell and Bash pipelines to ingest Azure resource logs, consolidating data from 3+ monitoring systems.',
+      'Optimized log-processing algorithms using Python and C, increasing data throughput by 35% and detection accuracy by 15%.',
+      'Scripted Python automation scripts for security workflows, reducing the manual workload for vulnerability scans by 30%.',
+      'Standardized security operation by authoring technical runbooks in Jira, reducing new analyst onboarding time by 40%.',
     ],
     image: controlInfotechImage,
     imageAlt: 'Cybersecurity operations room',
@@ -174,7 +175,7 @@ const projectEntries = [
     category: 'FULL STACK',
     description:
       'Music discovery app with Tinder-style swiping, AI-driven recommendations, and instant Spotify playlist building.',
-   
+
     image: soundSwipeImage,
     link: 'https://github.com/Shravan-Sulikeri/sound-swipe-app',
     logo: 'https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg',
@@ -358,9 +359,8 @@ const CompanyLogo = ({ url, name, className = '', isDarkTheme = false }) => {
   if (error || !url) {
     return (
       <div
-        className={`flex items-center justify-center font-serif italic px-4 ${className} ${
-          isDarkTheme ? 'bg-white text-black' : 'bg-neutral-900 text-white'
-        }`}
+        className={`flex items-center justify-center font-serif italic px-4 ${className} ${isDarkTheme ? 'bg-white text-black' : 'bg-neutral-900 text-white'
+          }`}
         aria-label={`${name} logo placeholder`}
       >
         {name}
@@ -383,9 +383,8 @@ const Reveal = ({ children, className = '' }) => {
   return (
     <div
       ref={ref}
-      className={`transition-all duration-700 ease-out will-change-transform ${
-        visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-      } ${className}`}
+      className={`transition-all duration-700 ease-out will-change-transform ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+        } ${className}`}
     >
       {children}
     </div>
@@ -397,9 +396,8 @@ const NavBar = ({ brand, links, isMenuOpen, onToggleMenu, scrolled, onNavigate }
   return (
     <nav
       style={navSafeAreaStyle}
-      className={`sticky top-0 z-50 relative overflow-visible bg-gradient-to-r from-[#2563eb]/90 to-[#0f172a]/90 transition-all duration-500 border-b ${
-        scrolled ? 'py-3 border-gray-700' : 'py-6 border-transparent'
-      }`}
+      className={`sticky top-0 z-50 relative overflow-visible bg-gradient-to-r from-[#2563eb]/90 to-[#0f172a]/90 transition-all duration-500 border-b ${scrolled ? 'py-3 border-gray-700' : 'py-6 border-transparent'
+        }`}
       aria-label="Primary"
     >
       <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
@@ -464,9 +462,8 @@ const NavLink = ({ link, onNavigate, isMobile }) => (
     href={link.href}
     target={link.external ? '_blank' : undefined}
     rel={link.external ? 'noreferrer' : undefined}
-    className={`text-xs font-bold tracking-[0.2em] uppercase text-white transition-all duration-200 hover:text-white hover:scale-105 ${
-      isMobile ? 'py-2' : ''
-    } ${focusRing}`}
+    className={`text-xs font-bold tracking-[0.2em] uppercase text-white transition-all duration-200 hover:text-white hover:scale-105 ${isMobile ? 'py-2' : ''
+      } ${focusRing}`}
     onClick={(e) => onNavigate(e, link)}
     aria-label={link.external ? `${link.label} (opens in new tab)` : link.label}
   >
@@ -574,9 +571,9 @@ const ExperienceSection = ({ entries, expandedId, onToggle }) => (
         ? 'bg-gradient-to-br from-[#3182ce] to-[#1a365d] text-white'
         : isGrayTheme
           ? 'bg-gradient-to-br from-[#4a4a4a] to-[#000000] text-white'
-        : isDarkTheme
-          ? 'bg-gradient-to-br from-[#5c2a70] to-[#83429b] text-white'
-          : 'bg-gray-100 text-black';
+          : isDarkTheme
+            ? 'bg-gradient-to-br from-[#5c2a70] to-[#83429b] text-white'
+            : 'bg-gray-100 text-black';
       const accentTextClass = isBlueTheme
         ? 'text-[#bee3f8]'
         : isGrayTheme
@@ -605,9 +602,9 @@ const ExperienceSection = ({ entries, expandedId, onToggle }) => (
         ? 'border-white text-white hover:bg-white hover:text-[#1a365d]'
         : isGrayTheme
           ? 'border-white text-white hover:bg-white hover:text-[#000000]'
-        : isDarkTheme
-          ? 'border-white text-white hover:bg-white hover:text-[#5c2a70]'
-          : 'border-black hover:bg-black hover:text-white';
+          : isDarkTheme
+            ? 'border-white text-white hover:bg-white hover:text-[#5c2a70]'
+            : 'border-black hover:bg-black hover:text-white';
       const patternColor = isBlueTheme ? '#bee3f8' : isGrayTheme ? '#d1d5db' : isDarkTheme ? '#ffffff' : '#e5e5e5';
       return (
         <article
@@ -615,29 +612,26 @@ const ExperienceSection = ({ entries, expandedId, onToggle }) => (
           className={`flex flex-col ${index % 2 === 1 ? 'md:flex-row-reverse' : 'md:flex-row'} min-h-[560px]`}
         >
           <div
-            className={`w-full md:w-1/2 p-10 sm:p-14 lg:p-20 flex flex-col justify-center relative overflow-hidden transition-all duration-500 ${
-              backgroundClass
-            }`}
+            className={`w-full md:w-1/2 p-10 sm:p-14 lg:p-20 flex flex-col justify-center relative overflow-hidden transition-all duration-500 ${backgroundClass
+              }`}
           >
             <div
               className={`absolute inset-0 ${isDarkTheme ? 'opacity-10' : 'opacity-20'}`}
               style={{
-                backgroundImage: `repeating-linear-gradient(90deg, transparent, transparent 50px, ${
-                  patternColor
-                } 50px, ${patternColor} 51px)`,
+                backgroundImage: `repeating-linear-gradient(90deg, transparent, transparent 50px, ${patternColor
+                  } 50px, ${patternColor} 51px)`,
               }}
               aria-hidden="true"
             />
             <div
-              className={`absolute inset-0 ${
-                isBlueTheme
-                  ? 'bg-gradient-to-b from-[#0f2748]/40 to-transparent'
-                  : isGrayTheme
-                    ? 'bg-gradient-to-b from-black/30 to-transparent'
+              className={`absolute inset-0 ${isBlueTheme
+                ? 'bg-gradient-to-b from-[#0f2748]/40 to-transparent'
+                : isGrayTheme
+                  ? 'bg-gradient-to-b from-black/30 to-transparent'
                   : isDarkTheme
                     ? 'bg-gradient-to-b from-purple-900/10 to-transparent'
                     : 'bg-gradient-to-b from-white/50 to-gray-200/50 mix-blend-overlay'
-              }`}
+                }`}
               aria-hidden="true"
             />
 
@@ -654,9 +648,8 @@ const ExperienceSection = ({ entries, expandedId, onToggle }) => (
               <div className="space-y-2">
                 <h3 className="text-2xl sm:text-3xl lg:text-4xl font-medium uppercase tracking-[0.2em]">{exp.company}</h3>
                 <p
-                  className={`text-[11px] sm:text-xs font-bold tracking-[0.24em] uppercase ${
-                    accentTextClass
-                  }`}
+                  className={`text-[11px] sm:text-xs font-bold tracking-[0.24em] uppercase ${accentTextClass
+                    }`}
                 >
                   {exp.role}
                 </p>
@@ -678,17 +671,15 @@ const ExperienceSection = ({ entries, expandedId, onToggle }) => (
 
               <div
                 id={`${exp.id}-details`}
-                className={`overflow-hidden transition-all duration-700 ease-in-out ${
-                  isExpanded ? 'max-h-[520px] opacity-100 mt-4' : 'max-h-0 opacity-0'
-                }`}
+                className={`overflow-hidden transition-all duration-700 ease-in-out ${isExpanded ? 'max-h-[520px] opacity-100 mt-4' : 'max-h-0 opacity-0'
+                  }`}
               >
                 <ul className="list-none space-y-3 text-left">
                   {exp.details.map((detail) => (
                     <li
                       key={detail}
-                      className={`text-xs sm:text-sm leading-relaxed font-medium flex gap-3 ${
-                        detailTextClass
-                      }`}
+                      className={`text-xs sm:text-sm leading-relaxed font-medium flex gap-3 ${detailTextClass
+                        }`}
                     >
                       <span className={`${detailBulletClass} font-bold`}>•</span>
                       {detail}
@@ -703,9 +694,8 @@ const ExperienceSection = ({ entries, expandedId, onToggle }) => (
                   onClick={() => onToggle(exp.id)}
                   aria-expanded={isExpanded}
                   aria-controls={`${exp.id}-details`}
-                  className={`border px-8 sm:px-10 py-3 text-[10px] font-bold tracking-[0.25em] uppercase transition-all flex items-center gap-2 group ${
-                    buttonClass
-                  } ${focusRing}`}
+                  className={`border px-8 sm:px-10 py-3 text-[10px] font-bold tracking-[0.25em] uppercase transition-all flex items-center gap-2 group ${buttonClass
+                    } ${focusRing}`}
                 >
                   {isExpanded ? 'Close Details' : 'View Details'}
                   {isExpanded ? (
@@ -719,16 +709,14 @@ const ExperienceSection = ({ entries, expandedId, onToggle }) => (
           </div>
 
           <div
-            className={`w-full md:w-1/2 h-[320px] sm:h-[420px] md:h-auto relative order-first md:order-none ${
-              exp.imageWrapperClass || ''
-            }`}
+            className={`w-full md:w-1/2 h-[320px] sm:h-[420px] md:h-auto relative order-first md:order-none ${exp.imageWrapperClass || ''
+              }`}
           >
             <img
               src={exp.image}
               alt={exp.imageAlt || `${exp.company} workspace`}
-              className={`absolute inset-0 w-full h-full ${
-                exp.imageClass || 'object-cover'
-              } grayscale hover:grayscale-0 transition-all duration-700`}
+              className={`absolute inset-0 w-full h-full ${exp.imageClass || 'object-cover'
+                } grayscale hover:grayscale-0 transition-all duration-700`}
               loading="lazy"
             />
           </div>
@@ -784,9 +772,9 @@ const ProjectCard = ({ project, onSelect }) => {
         ? 'border border-blue-900 bg-gradient-to-br from-[#3b82f6] to-[#000050] text-white hover:border-blue-800'
         : isPurple
           ? 'border border-purple-900 bg-gradient-to-br from-[#7c3aed] to-[#2e1065] text-white hover:border-purple-800'
-        : isLightBlue
-          ? 'border border-gray-200 hover:border-[#e0f2fe] bg-[#e0f2fe] text-black'
-          : 'border border-gray-200 hover:border-[#86efac] bg-white text-black';
+          : isLightBlue
+            ? 'border border-gray-200 hover:border-[#e0f2fe] bg-[#e0f2fe] text-black'
+            : 'border border-gray-200 hover:border-[#86efac] bg-white text-black';
   const textColorClass = isOrange || isBlack || isBlue || isPurple ? 'text-white' : 'text-black';
   const bodyTextClass = isOrange || isBlack || isBlue || isPurple ? 'text-white' : 'text-gray-500';
   const tagClass =
@@ -816,46 +804,45 @@ const ProjectCard = ({ project, onSelect }) => {
           src={project.image}
           alt={project.title}
           className={`w-full h-full object-cover ${project.imageClass || ''} mix-blend-multiply opacity-90 group-hover:scale-105 transition-transform duration-700`}
-        loading="lazy"
-      />
-      <div className="absolute top-4 left-0 bg-black text-white text-[9px] px-3 py-1 font-bold tracking-[0.2em] uppercase">
-        {project.category}
-      </div>
-      {project.logo && (
-        <div className="absolute bottom-4 right-4 w-10 h-10 bg-white/70 backdrop-blur-sm rounded-full p-2 flex items-center justify-center">
-          <img src={project.logo} alt={`${project.title} logo`} className="w-full h-full object-contain" loading="lazy" />
+          loading="lazy"
+        />
+        <div className="absolute top-4 left-0 bg-black text-white text-[9px] px-3 py-1 font-bold tracking-[0.2em] uppercase">
+          {project.category}
         </div>
-      )}
-    </div>
-
-    <div className="px-5 pt-4 text-center">
-      <h3 className={`text-lg font-medium uppercase tracking-[0.18em] ${textColorClass}`}>
-        {project.title}
-      </h3>
-    </div>
-
-    <div className="px-5 pb-6 pt-3 text-center space-y-3">
-      <p className={`text-[10px] font-bold tracking-[0.2em] uppercase line-clamp-2 ${bodyTextClass}`}>
-        {project.description}
-      </p>
-      <div className="flex flex-wrap justify-center gap-2">
-        {project.tags.map((tag) => (
-          <span key={tag} className={`text-[9px] tracking-[0.18em] uppercase font-bold px-3 py-1 ${tagClass}`}>
-            {tag}
-          </span>
-        ))}
+        {project.logo && (
+          <div className="absolute bottom-4 right-4 w-10 h-10 bg-white/70 backdrop-blur-sm rounded-full p-2 flex items-center justify-center">
+            <img src={project.logo} alt={`${project.title} logo`} className="w-full h-full object-contain" loading="lazy" />
+          </div>
+        )}
       </div>
-      <p className={`text-xs font-bold uppercase tracking-[0.2em] ${isOrange || isBlack ? 'text-white' : ''}`}>
-        {project.stackLabel}
-      </p>
-      <span
-        className={`w-full inline-flex items-center justify-center gap-2 py-3 text-[10px] font-bold tracking-[0.2em] uppercase transition-all duration-300 ${
-          isBlack ? buttonClass : 'border border-black bg-black text-white group-hover:bg-white group-hover:text-black'
-        }`}
-      >
-        <Github size={14} aria-hidden="true" /> View GitHub Repo
-      </span>
-    </div>
+
+      <div className="px-5 pt-4 text-center">
+        <h3 className={`text-lg font-medium uppercase tracking-[0.18em] ${textColorClass}`}>
+          {project.title}
+        </h3>
+      </div>
+
+      <div className="px-5 pb-6 pt-3 text-center space-y-3">
+        <p className={`text-[10px] font-bold tracking-[0.2em] uppercase line-clamp-2 ${bodyTextClass}`}>
+          {project.description}
+        </p>
+        <div className="flex flex-wrap justify-center gap-2">
+          {project.tags.map((tag) => (
+            <span key={tag} className={`text-[9px] tracking-[0.18em] uppercase font-bold px-3 py-1 ${tagClass}`}>
+              {tag}
+            </span>
+          ))}
+        </div>
+        <p className={`text-xs font-bold uppercase tracking-[0.2em] ${isOrange || isBlack ? 'text-white' : ''}`}>
+          {project.stackLabel}
+        </p>
+        <span
+          className={`w-full inline-flex items-center justify-center gap-2 py-3 text-[10px] font-bold tracking-[0.2em] uppercase transition-all duration-300 ${isBlack ? buttonClass : 'border border-black bg-black text-white group-hover:bg-white group-hover:text-black'
+            }`}
+        >
+          <Github size={14} aria-hidden="true" /> View GitHub Repo
+        </span>
+      </div>
     </button>
   );
 };
@@ -1071,9 +1058,8 @@ const Footer = ({ contact }) => {
               href={linkedin?.href || '#'}
               target="_blank"
               rel="noreferrer"
-              className={`group border border-white/25 bg-transparent backdrop-blur-md hover:bg-white/10 hover:border-white transition-all duration-300 ease-out rounded-lg p-7 flex items-center justify-between gap-4 text-left hover:scale-[1.03] hover:-translate-y-1 hover:shadow-2xl hover:shadow-red-900/40 min-h-[190px] ${
-                linkedin ? focusRing : ''
-              }`}
+              className={`group border border-white/25 bg-transparent backdrop-blur-md hover:bg-white/10 hover:border-white transition-all duration-300 ease-out rounded-lg p-7 flex items-center justify-between gap-4 text-left hover:scale-[1.03] hover:-translate-y-1 hover:shadow-2xl hover:shadow-red-900/40 min-h-[190px] ${linkedin ? focusRing : ''
+                }`}
               aria-label="LinkedIn profile (opens in new tab)"
             >
               <div className="flex items-center gap-4">
@@ -1191,6 +1177,8 @@ const Portfolio = () => {
       <ProjectDetail project={selectedProject} onClose={() => setSelectedProject(null)} />
 
       <Footer contact={contactInfo} />
+
+      <ChatBot email={contactInfo.email} />
     </div>
   );
 };
