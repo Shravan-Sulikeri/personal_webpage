@@ -19,15 +19,18 @@ const ProjectDetail = ({ project, onClose }) => {
   const impactSummary = project.impactSummary || (metrics.length ? metrics.join(' • ') : null);
 
   return (
-    <div className="fixed inset-0 z-[80] flex items-center justify-center bg-black/70 backdrop-blur-md px-4 py-6 overflow-y-auto">
-      <div className="relative w-full max-w-5xl bg-[#0b0f19]/95 text-white border border-white/10 shadow-2xl">
-        <div className={`p-6 bg-gradient-to-r ${gradient} text-white flex items-start justify-between gap-4`}>
+    <div className="fixed inset-0 z-[80] flex items-start sm:items-center justify-center bg-black/70 backdrop-blur-md px-3 sm:px-4 py-4 sm:py-6 overflow-y-auto min-h-[100svh]">
+      <div className="relative w-full max-w-5xl max-h-[92svh] sm:max-h-[90vh] bg-[#0b0f19]/95 text-white border border-white/10 shadow-2xl overflow-y-auto">
+        <div className={`p-4 sm:p-6 bg-gradient-to-r ${gradient} text-white flex items-start justify-between gap-4`}>
           <div className="space-y-2">
             <p className="text-xs uppercase tracking-[0.3em] opacity-80">{project.category}</p>
             <h2 className="text-2xl sm:text-3xl font-semibold tracking-wide">{project.title}</h2>
             <div className="flex flex-wrap gap-2">
               {tags.map((tag) => (
-                <span key={tag} className="text-[10px] uppercase tracking-[0.2em] bg-white/20 px-3 py-1 rounded-full">
+                <span
+                  key={tag}
+                  className="text-[11px] sm:text-[10px] uppercase tracking-[0.16em] sm:tracking-[0.2em] bg-white/20 px-3 py-1 rounded-full"
+                >
                   {tag}
                 </span>
               ))}
@@ -44,11 +47,11 @@ const ProjectDetail = ({ project, onClose }) => {
         </div>
 
         {metrics.length > 0 && (
-          <div className="flex flex-wrap gap-3 px-6 py-4 bg-white/5 border-b border-white/10">
+          <div className="flex flex-wrap gap-3 px-4 sm:px-6 py-4 bg-white/5 border-b border-white/10">
             {metrics.map((metric) => (
               <div
                 key={metric}
-                className="flex items-center gap-2 bg-white/10 px-3 py-2 text-xs uppercase tracking-[0.16em]"
+                className="flex items-center gap-2 bg-white/10 px-3 py-2 text-[11px] sm:text-xs uppercase tracking-[0.12em] sm:tracking-[0.16em]"
               >
                 <Sparkles size={14} className="text-amber-300" />
                 <span>{metric}</span>
@@ -57,7 +60,7 @@ const ProjectDetail = ({ project, onClose }) => {
           </div>
         )}
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 px-6 py-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 px-4 sm:px-6 py-5 sm:py-6">
           <div className="space-y-4">
             <div className="bg-white/5 border border-white/10 p-4">
               <p className="text-[11px] uppercase tracking-[0.18em] text-gray-300 mb-2">Overview</p>
@@ -132,14 +135,14 @@ const ProjectDetail = ({ project, onClose }) => {
 
       {showArchitecture && (
         <div
-          className="fixed inset-0 z-[90] bg-black/80 backdrop-blur-sm flex items-center justify-center px-4"
+          className="fixed inset-0 z-[90] bg-black/80 backdrop-blur-sm flex items-center justify-center px-3 sm:px-4"
           onClick={() => setShowArchitecture(false)}
         >
-          <div className="relative max-w-6xl max-h-[90vh] w-full flex items-center justify-center">
+          <div className="relative max-w-6xl max-h-[85svh] sm:max-h-[90vh] w-full flex items-center justify-center">
             <button
               type="button"
               aria-label="Close full-size architecture"
-              className="absolute -top-10 right-0 bg-white/20 hover:bg-white/30 text-white p-2 rounded-full border border-white/30"
+              className="absolute top-2 right-2 sm:-top-10 sm:right-0 bg-white/20 hover:bg-white/30 text-white p-2 rounded-full border border-white/30"
               onClick={(e) => {
                 e.stopPropagation();
                 setShowArchitecture(false);

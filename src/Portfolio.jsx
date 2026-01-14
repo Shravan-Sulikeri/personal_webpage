@@ -676,9 +676,9 @@ const ExperienceSection = ({ entries, expandedId, onToggle }) => (
                 </p>
               </div>
 
-              <div className="space-y-3">
+              <div className="flex flex-col items-start space-y-3">
                 {exp.metrics.map((metric) => (
-                  <div key={metric} className="flex items-center gap-3 justify-center md:justify-start">
+                  <div key={metric} className="flex items-center gap-3 w-full justify-start">
                     <div className={`w-1 h-6 ${metricBarClass}`} />
                     <span className={`text-[11px] sm:text-xs tracking-[0.16em] sm:tracking-[0.2em] uppercase font-bold ${metricTextClass}`}>
                       {metric}
