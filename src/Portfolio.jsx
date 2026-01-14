@@ -77,7 +77,7 @@ const experienceEntries = [
     role: 'DATA ENGINEER',
     period: 'AUG 2025 - PRESENT',
     location: 'RALEIGH, NC',
-    metrics: ['ONBOARDING TIME -30%', 'CI INCONSISTENCIES -25%', 'RECALL@K REPEATABILITY +40%'],
+    metrics: ['CLINICAL NOTES PROCESSED 3M+', 'SCHEMA DRIFT -45%', 'RECALL@K RELIABILITY +30%'],
     details: [
       'Engineered a scalable ingestion pipeline on GCP using Vertex AI and Python to process 3 million+ clinical notes, enforcing schema validation for entity extraction.',
       'Implemented a Medallion Architecture on Azure Data Lake, standardizing data lineage and reducing schema drift by 45%.',
@@ -115,7 +115,7 @@ const experienceEntries = [
     role: 'CYBERSECURITY ANALYST INTERN',
     period: 'MAY 2023 - AUG 2023',
     location: 'RALEIGH, NC',
-    metrics: ['MANUAL WORKLOAD -30%', 'PROCESSING SPEED +40%', 'DETECTION ACCURACY +15%'],
+    metrics: ['DATA THROUGHPUT +35%', 'DETECTION ACCURACY +15%', 'MANUAL WORKLOAD -30%'],
     details: [
       'Developed PowerShell and Bash pipelines to ingest Azure resource logs, consolidating data from 3+ monitoring systems.',
       'Optimized log-processing algorithms using Python and C, increasing data throughput by 35% and detection accuracy by 15%.',
