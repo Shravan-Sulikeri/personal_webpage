@@ -609,20 +609,20 @@ const Hero = ({ content, stats, onPrimaryClick, onSecondaryClick }) => {
       />
       <div className="absolute inset-0 bg-black/30 pointer-events-none" aria-hidden="true" />
       <div className="absolute inset-0 px-4 sm:px-8 lg:px-14">
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <h1 className="relative text-4xl sm:text-6xl lg:text-8xl font-semibold uppercase tracking-[0.06em] sm:tracking-[0.12em] leading-tight text-center drop-shadow-[0_1px_12px_rgba(0,0,0,0.6)]">
-            <span className="absolute inset-0 text-white/30 blur-2xl scale-105" aria-hidden="true">
-              {content.title}
-            </span>
-            <span className="relative text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-200 to-white">
-              {content.title}
-            </span>
-          </h1>
-        </div>
+        <div className="relative h-full flex flex-col">
+          <div className="pt-16 sm:pt-20 md:pt-0 md:absolute md:inset-0 md:flex md:items-center md:justify-center pointer-events-none">
+            <h1 className="relative text-4xl sm:text-6xl lg:text-8xl font-semibold uppercase tracking-[0.06em] sm:tracking-[0.12em] leading-tight text-center drop-shadow-[0_1px_12px_rgba(0,0,0,0.6)]">
+              <span className="absolute inset-0 text-white/30 blur-2xl scale-105" aria-hidden="true">
+                {content.title}
+              </span>
+              <span className="relative text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-200 to-white">
+                {content.title}
+              </span>
+            </h1>
+          </div>
 
-        <div className="relative h-full flex items-end pt-20 sm:pt-24 pb-10 md:pb-24">
-          <div className="w-full text-white">
-            <div className="max-w-4xl space-y-5 text-left">
+          <div className="mt-auto pb-10 md:pb-24">
+            <div className="max-w-4xl space-y-5 text-left text-white">
               {content.subheadline ? (
                 <p className="text-[11px] sm:text-xs font-bold tracking-[0.2em] sm:tracking-[0.3em] uppercase text-gray-100 bg-black/60 inline-block px-3 py-1">
                   {content.subheadline}
