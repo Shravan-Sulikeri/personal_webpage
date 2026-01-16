@@ -33,6 +33,8 @@ import etlPipelineIcon from '../assest/etl_pipeline_icon.png';
 import aboutHeadshot from '../assest/Generated Image September 05, 2025 - 11_45PM.jpeg';
 import resumePdf from '../assest/Shravan_Sulikeri_Resume.pdf';
 import diplomaPdf from '../assest/Diploma.pdf';
+import gmailIcon from '../assest/gmailicon.png';
+import linkedinIcon from '../assest/linkedinicon.png';
 import ProjectDetail from './ProjectDetail';
 import ChatBot from './ChatBot';
 
@@ -604,6 +606,14 @@ const Hero = ({ content, stats, onPrimaryClick, onSecondaryClick }) => {
       />
       <div className="absolute inset-0 hero-gradient-drift pointer-events-none" aria-hidden="true" />
       <div
+        className="absolute inset-0 opacity-[0.14] pointer-events-none"
+        style={{
+          backgroundImage:
+            'repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(255,255,255,0.45) 50px, rgba(255,255,255,0.45) 51px)',
+        }}
+        aria-hidden="true"
+      />
+      <div
         className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/70 to-black/40 mix-blend-multiply pointer-events-none"
         aria-hidden="true"
       />
@@ -611,7 +621,7 @@ const Hero = ({ content, stats, onPrimaryClick, onSecondaryClick }) => {
       <div className="absolute inset-0 px-4 sm:px-8 lg:px-14">
         <div className="relative h-full flex flex-col">
           <div className="pt-16 sm:pt-20 md:pt-0 md:absolute md:inset-0 md:flex md:items-center md:justify-center pointer-events-none">
-            <h1 className="relative text-4xl sm:text-6xl lg:text-8xl font-semibold uppercase tracking-[0.06em] sm:tracking-[0.12em] leading-tight text-center drop-shadow-[0_1px_12px_rgba(0,0,0,0.6)]">
+            <h1 className="relative text-4xl sm:text-6xl lg:text-8xl font-ronzino uppercase tracking-[0.06em] sm:tracking-[0.12em] leading-tight text-center drop-shadow-[0_1px_12px_rgba(0,0,0,0.6)]">
               <span className="absolute inset-0 text-white/30 blur-2xl scale-105" aria-hidden="true">
                 {content.title}
               </span>
@@ -1179,7 +1189,7 @@ const Footer = ({ contact }) => {
   return (
     <footer
       id="contact"
-      className="relative overflow-hidden bg-gradient-to-br from-[#7f1d1d] to-[#450a0a] text-white py-6 sm:py-8"
+      className="relative overflow-hidden bg-gradient-to-br from-[#0b0b0b] to-[#1f2937] text-white py-6 sm:py-8"
     >
       <div
         className="absolute inset-0 opacity-10 pointer-events-none"
@@ -1196,12 +1206,17 @@ const Footer = ({ contact }) => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 w-full">
             <a
               href={`mailto:${contact.email}`}
-              className={`group border border-white/25 bg-transparent backdrop-blur-md hover:bg-white/10 hover:border-white transition-all duration-300 ease-out rounded-lg p-5 sm:p-7 flex items-center justify-between gap-4 text-left hover:scale-[1.03] hover:-translate-y-1 hover:shadow-2xl hover:shadow-red-900/40 min-h-[160px] sm:min-h-[190px] ${focusRing}`}
+              className={`group border border-white/25 bg-transparent backdrop-blur-md hover:bg-white/10 hover:border-white transition-all duration-300 ease-out rounded-lg p-5 sm:p-7 flex items-center justify-between gap-4 text-left hover:scale-[1.03] hover:-translate-y-1 hover:shadow-2xl hover:shadow-slate-900/60 min-h-[160px] sm:min-h-[190px] ${focusRing}`}
               aria-label="Email Shravan"
             >
               <div className="flex items-center gap-4">
-                <div className="h-12 w-12 rounded-full bg-white/10 flex items-center justify-center text-white">
-                  <Mail size={24} />
+                <div className="h-14 w-14 rounded-full bg-white/10 flex items-center justify-center text-white">
+                  <img
+                    src={gmailIcon}
+                    alt=""
+                    className="h-14 w-14 object-contain"
+                    aria-hidden="true"
+                  />
                 </div>
                 <div className="space-y-1">
                   <p className="text-[11px] font-bold tracking-[0.18em] sm:tracking-[0.24em] uppercase text-white">
@@ -1217,13 +1232,18 @@ const Footer = ({ contact }) => {
               href={linkedin?.href || '#'}
               target="_blank"
               rel="noreferrer"
-              className={`group border border-white/25 bg-transparent backdrop-blur-md hover:bg-white/10 hover:border-white transition-all duration-300 ease-out rounded-lg p-5 sm:p-7 flex items-center justify-between gap-4 text-left hover:scale-[1.03] hover:-translate-y-1 hover:shadow-2xl hover:shadow-red-900/40 min-h-[160px] sm:min-h-[190px] ${linkedin ? focusRing : ''
+              className={`group border border-white/25 bg-transparent backdrop-blur-md hover:bg-white/10 hover:border-white transition-all duration-300 ease-out rounded-lg p-5 sm:p-7 flex items-center justify-between gap-4 text-left hover:scale-[1.03] hover:-translate-y-1 hover:shadow-2xl hover:shadow-slate-900/60 min-h-[160px] sm:min-h-[190px] ${linkedin ? focusRing : ''
                 }`}
               aria-label="LinkedIn profile (opens in new tab)"
             >
               <div className="flex items-center gap-4">
-                <div className="h-12 w-12 rounded-full bg-white/10 flex items-center justify-center text-white">
-                  <Linkedin size={24} />
+                <div className="h-14 w-14 rounded-full bg-white/10 flex items-center justify-center text-white">
+                  <img
+                    src={linkedinIcon}
+                    alt=""
+                    className="h-14 w-14 object-contain"
+                    aria-hidden="true"
+                  />
                 </div>
                 <div className="space-y-1">
                   <p className="text-[11px] font-bold tracking-[0.18em] sm:tracking-[0.24em] uppercase text-white">
