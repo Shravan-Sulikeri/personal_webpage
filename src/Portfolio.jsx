@@ -541,20 +541,20 @@ const AboutDropdown = ({ content, isOpen, onClose }) => {
       aria-hidden={!isOpen}
       className={`fixed inset-0 z-[80] flex items-start sm:items-center justify-center px-4 sm:px-8 py-6 sm:py-10 transition-all duration-300 ease-out ${isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
-      onClick={onClose}
     >
-      <div
+      <button
+        type="button"
+        onClick={onClose}
         className={`absolute inset-0 bg-black/40 backdrop-blur-2xl transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0'
-          } pointer-events-none`}
-        aria-hidden="true"
+          }`}
+        aria-label="Close About Me panel"
       />
       <div
-        className={`relative w-full max-w-5xl max-h-[90vh] sm:max-h-[85vh] overflow-hidden rounded-2xl sm:rounded-3xl border border-white/15 bg-white/5 backdrop-blur-2xl shadow-2xl shadow-black/70 transition-all duration-300 ease-out ${isOpen ? 'translate-y-0 scale-100' : 'translate-y-4 scale-95'
+        className={`relative z-10 w-full max-w-5xl max-h-[90vh] sm:max-h-[85vh] overflow-hidden rounded-2xl sm:rounded-3xl border border-white/15 bg-white/5 backdrop-blur-2xl shadow-2xl shadow-black/70 transition-all duration-300 ease-out ${isOpen ? 'translate-y-0 scale-100' : 'translate-y-4 scale-95'
           }`}
-        onClick={(event) => event.stopPropagation()}
       >
         <div className="absolute inset-0 bg-gradient-to-br from-white/25 via-transparent to-black/30 pointer-events-none" />
-        <div className="relative z-10 p-5 sm:p-10 md:p-12 overflow-y-auto overscroll-contain max-h-[90vh] sm:max-h-[85vh]">
+        <div className="relative z-10 p-5 sm:p-10 md:p-12 overflow-y-auto overscroll-contain max-h-[90vh] sm:max-h-[85vh] touch-scroll">
           <button
             type="button"
             onClick={onClose}
@@ -846,7 +846,7 @@ const ExperienceSection = ({ entries, expandedId, onToggle }) => (
                   aria-expanded={isExpanded}
                   aria-controls={`${exp.id}-details`}
                   className={`border px-8 sm:px-10 py-3 text-[11px] sm:text-[10px] font-bold tracking-[0.18em] sm:tracking-[0.25em] uppercase transition-all flex items-center gap-2 group ${buttonClass
-                    } ${focusRing} touch-manipulation active:scale-[0.99]`}
+                    } ${focusRing} touch-manipulation active:scale-[0.99] select-none`}
                 >
                   {isExpanded ? 'Close Details' : 'View Details'}
                   {isExpanded ? (
@@ -951,7 +951,7 @@ const ProjectCard = ({ project, onSelect }) => {
     <button
       type="button"
       onClick={handleClick}
-      className={`group block h-full transition-all duration-300 sm:hover:-translate-y-1 sm:hover:shadow-lg ${cardClasses} ${focusRing} text-left touch-manipulation active:scale-[0.99]`}
+      className={`group block h-full transition-all duration-300 sm:hover:-translate-y-1 sm:hover:shadow-lg ${cardClasses} ${focusRing} text-left touch-manipulation active:scale-[0.99] select-none`}
       aria-label={`${project.title} details`}
     >
       <div className="relative aspect-[4/5] bg-gray-50 overflow-hidden">
