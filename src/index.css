@@ -27,3 +27,32 @@ a {
     padding-top: max(env(safe-area-inset-top), 0px);
   }
 }
+
+@keyframes hero-drift {
+  0% {
+    background-position: 0% 0%, 100% 0%, 50% 100%;
+  }
+  50% {
+    background-position: 60% 20%, 40% 50%, 50% 60%;
+  }
+  100% {
+    background-position: 100% 80%, 0% 100%, 60% 20%;
+  }
+}
+
+.hero-gradient-drift {
+  background-image:
+    radial-gradient(120% 120% at 0% 0%, rgba(56, 189, 248, 0.22), transparent 55%),
+    radial-gradient(120% 120% at 100% 0%, rgba(34, 197, 94, 0.16), transparent 55%),
+    radial-gradient(120% 120% at 50% 100%, rgba(14, 165, 233, 0.18), transparent 60%);
+  background-size: 200% 200%;
+  animation: hero-drift 18s ease-in-out infinite alternate;
+  mix-blend-mode: screen;
+  opacity: 0.35;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-gradient-drift {
+    animation: none;
+  }
+}

@@ -1,14 +1,14 @@
 /**
  * Portfolio page structure: NavBar, Hero, ExperienceSection (ExperienceCard), ProjectsSection (ProjectCard),
  * SkillsSection, EducationSection, CertificationsSection, and Footer are all defined in this file for a single-page layout.
- * Content controls: update heroContent, quickStats, navLinks, experienceEntries, projectEntries, skillCategories,
+ * Content controls: update heroContent, aboutContent, quickStats, navLinks, experienceEntries, projectEntries, skillCategories,
  * educationContent, certifications, contactInfo, and topBanner to edit copy or assets without touching layout code.
  * To add items: (1) duplicate an object in projectEntries/experienceEntries/skillCategories, (2) fill in titles, metrics,
  * tags, and image/logo URLs (or leave null for text fallback), (3) save—components render automatically in the grid layout.
  */
 import React, { useEffect, useRef, useState } from 'react';
-import { ArrowRight, ChevronRight, Github, Linkedin, Mail, Menu, Minus, Plus, X } from 'lucide-react';
-import heroBackground from '../assest/hero_image_main.jpg';
+import { ArrowRight, ChevronDown, ChevronRight, Github, Linkedin, Mail, Menu, Minus, Plus, X } from 'lucide-react';
+import heroBackground from '../assest/Hero _Image.jpg';
 import controlInfotechImage from '../assest/cit offfice.jpg';
 import controlInfotechLogo from '../assest/control_inftech_logo.png';
 import nexthinkIcon from '../assest/nexthink_icon.png';
@@ -26,10 +26,11 @@ import spotifyImage from '../assest/spotify_icon.png';
 import soundSwipeImage from '../assest/sound_swipe_project_card.jpg';
 import soundSwipeArchitectureImage from '../assest/sound_swipe_arc_img.png';
 import varsinixLogo from '../assest/Gemini_Generated_Image_iuo4k9iuo4k9iuo4.jpg';
-import varsinixOfficeImage from '../assest/varsinix_wide_office.png';
+import varsinixOfficeImage from '../assest/Gemini_Generated_Image_55f8wj55f8wj55f8.jpg';
 import restApiIcon from '../assest/rest_api_icon.jpg.png';
 import dataModelIcon from '../assest/data_model_icon.jpg';
 import etlPipelineIcon from '../assest/etl_pipeline_icon.png';
+import aboutHeadshot from '../assest/Generated Image September 05, 2025 - 11_45PM.jpeg';
 import resumePdf from '../assest/Shravan_Sulikeri_Resume.pdf';
 import diplomaPdf from '../assest/Diploma.pdf';
 import ProjectDetail from './ProjectDetail';
@@ -45,12 +46,26 @@ const topBanner = {
 const heroContent = {
   title: 'Shravan Sulikeri',
   subheadline: '',
-  description:
-    'Ambitious recent graduate working as a Data Engineer to streamline analytics and machine learning workflows. Expertise spans the full data lifecycle, from ingesting raw telemetry in Azure to refining vector retrieval logic in Python. demonstrated success in cutting onboarding times and increasing data throughput by 35%+ in high-pressure environments. Eager to leverage a continuous learning mindset to build robust, future-proof data ecosystems.',
+  description: '',
   primaryCta: { label: 'View Projects', targetId: 'projects' },
   secondaryCta: { label: 'View Experience', targetId: 'experience' },
   resumeAnchorId: 'resume',
   backgroundImage: heroBackground,
+};
+
+const aboutContent = {
+  name: 'Shravan Sulikeri',
+  bio: `I am a recent graduate from the University of North Carolina at Charlotte with a Bachelor of Science in Computer Science. Through a combination of academic coursework, internships, and hands-on projects, I have developed a strong technical foundation and a clear passion for working with data.
+
+My interest in data began during my first data-focused course at UNC Charlotte, Data Mining. That class fundamentally changed how I viewed technology. I saw firsthand how raw, messy data could be transformed into meaningful insights that drive real decisions. From cleaning and structuring data to uncovering patterns and trends, I became deeply interested in the entire data lifecycle. Since then, working with data has been the area of computer science that has motivated me the most.
+
+Beyond the classroom, I have worked on multiple projects outside of school and professional roles to strengthen my practical skills. These projects allowed me to apply concepts such as data pipelines, analytics, and automation in real-world scenarios rather than controlled academic settings. I enjoy building systems that are reliable, scalable, and easy for others to use and understand.
+
+One of my most impactful experiences was leading a team of five students for my senior capstone project, where I brought an idea I originally had in 2023 into production. Serving as the technical lead taught me how real-world projects are planned, scoped, and executed. I gained experience in translating requirements into technical designs, coordinating timelines, managing trade-offs, and delivering a complete product as a team. That experience solidified my interest in building production-ready systems and collaborating across disciplines.
+
+Today, I am focused on continuing to grow as a data-focused engineer, where I can work at the intersection of software, analytics, and cloud technologies. I am motivated by solving complex problems, learning continuously, and using data to create measurable impact.`,
+  headshotSrc: aboutHeadshot,
+  headshotAlt: 'Shravan Sulikeri headshot',
 };
 
 const quickStats = [
@@ -60,6 +75,7 @@ const quickStats = [
 ];
 
 const navLinks = [
+  { label: 'About Me', action: 'about' },
   { label: 'Experience', href: '#experience' },
   { label: 'Projects', href: '#projects' },
   { label: 'Skills', href: '#skills' },
@@ -86,8 +102,7 @@ const experienceEntries = [
     ],
     image: varsinixOfficeImage,
     imageAlt: 'Varsinix office',
-    imageClass: 'object-contain',
-    imageWrapperClass: 'bg-black',
+    imageClass: 'object-cover',
     theme: 'dark',
   },
   {
@@ -401,7 +416,8 @@ const Reveal = ({ children, className = '' }) => {
 };
 
 // --- COMPONENTS ---
-const NavBar = ({ brand, links, isMenuOpen, onToggleMenu, scrolled, onNavigate }) => {
+const NavBar = ({ brand, links, about, isMenuOpen, onToggleMenu, scrolled, onNavigate, isAboutOpen, onCloseAbout }) => {
+  const splitIndex = Math.ceil(links.length / 2);
   return (
     <nav
       style={navSafeAreaStyle}
@@ -437,8 +453,8 @@ const NavBar = ({ brand, links, isMenuOpen, onToggleMenu, scrolled, onNavigate }
         </button>
 
         <div className="hidden md:flex gap-7 text-[11px] font-bold tracking-[0.15em] uppercase">
-          {links.slice(0, 3).map((link) => (
-            <NavLink key={link.label} link={link} onNavigate={onNavigate} />
+          {links.slice(0, splitIndex).map((link) => (
+            <NavLink key={link.label} link={link} onNavigate={onNavigate} isAboutOpen={isAboutOpen} />
           ))}
         </div>
 
@@ -449,8 +465,8 @@ const NavBar = ({ brand, links, isMenuOpen, onToggleMenu, scrolled, onNavigate }
         </span>
 
         <div className="hidden md:flex items-center gap-7 text-[11px] font-bold tracking-[0.15em] uppercase">
-          {links.slice(3).map((link) => (
-            <NavLink key={link.label} link={link} onNavigate={onNavigate} />
+          {links.slice(splitIndex).map((link) => (
+            <NavLink key={link.label} link={link} onNavigate={onNavigate} isAboutOpen={isAboutOpen} />
           ))}
         </div>
       </div>
@@ -461,114 +477,200 @@ const NavBar = ({ brand, links, isMenuOpen, onToggleMenu, scrolled, onNavigate }
           className="md:hidden absolute top-full left-0 w-full z-[60] bg-black border-t border-gray-700 py-6 px-6 flex flex-col gap-4 text-center shadow-2xl text-white"
         >
           {links.map((link) => (
-            <NavLink key={link.label} link={link} onNavigate={onNavigate} isMobile />
+            <NavLink key={link.label} link={link} onNavigate={onNavigate} isMobile isAboutOpen={isAboutOpen} />
           ))}
         </div>
       )}
+
+      <AboutDropdown content={about} isOpen={isAboutOpen} onClose={onCloseAbout} />
     </nav>
   );
 };
 
-const NavLink = ({ link, onNavigate, isMobile }) => (
-  <a
-    href={link.href}
-    target={link.external ? '_blank' : undefined}
-    rel={link.external ? 'noreferrer' : undefined}
-    className={`text-[11px] sm:text-xs font-bold tracking-[0.16em] sm:tracking-[0.2em] uppercase text-white transition-all duration-200 hover:text-white hover:scale-105 ${isMobile ? 'py-2' : ''
-      } ${focusRing}`}
-    onClick={(e) => onNavigate(e, link)}
-    aria-label={link.external ? `${link.label} (opens in new tab)` : link.label}
-  >
-    {link.label}
-  </a>
-);
+const NavLink = ({ link, onNavigate, isMobile, isAboutOpen }) => {
+  const isToggle = link?.action === 'about';
+  const baseClassName = `text-[11px] sm:text-xs font-bold tracking-[0.16em] sm:tracking-[0.2em] uppercase text-white transition-all duration-200 hover:text-white hover:scale-105 inline-flex items-center gap-2 ${isMobile ? 'py-2 w-full justify-center' : ''
+    } ${focusRing}`;
+
+  if (isToggle) {
+    return (
+      <button
+        type="button"
+        className={baseClassName}
+        onClick={(e) => onNavigate(e, link)}
+        aria-expanded={isAboutOpen}
+        aria-controls="about-panel"
+        aria-haspopup="dialog"
+      >
+        <span>{link.label}</span>
+        <ChevronDown
+          size={14}
+          className={`transition-transform ${isAboutOpen ? 'rotate-180' : ''}`}
+          aria-hidden="true"
+        />
+      </button>
+    );
+  }
+
+  return (
+    <a
+      href={link.href}
+      target={link.external ? '_blank' : undefined}
+      rel={link.external ? 'noreferrer' : undefined}
+      className={baseClassName}
+      onClick={(e) => onNavigate(e, link)}
+      aria-label={link.external ? `${link.label} (opens in new tab)` : link.label}
+    >
+      {link.label}
+    </a>
+  );
+};
+
+const AboutDropdown = ({ content, isOpen, onClose }) => {
+  if (!content) return null;
+  const { name, bio, headshotSrc, headshotAlt } = content;
+  const bioParagraphs = bio.split('\n\n').filter(Boolean);
+  return (
+    <div
+      id="about-panel"
+      role="dialog"
+      aria-label="About me"
+      aria-modal="true"
+      aria-hidden={!isOpen}
+      className={`fixed inset-0 z-[80] flex items-start sm:items-center justify-center px-4 sm:px-8 py-6 sm:py-10 transition-all duration-300 ease-out ${isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        }`}
+      onClick={onClose}
+    >
+      <div
+        className={`absolute inset-0 bg-black/40 backdrop-blur-2xl transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0'
+          } pointer-events-none`}
+        aria-hidden="true"
+      />
+      <div
+        className={`relative w-full max-w-5xl max-h-[90vh] sm:max-h-[85vh] overflow-hidden rounded-2xl sm:rounded-3xl border border-white/15 bg-white/5 backdrop-blur-2xl shadow-2xl shadow-black/70 transition-all duration-300 ease-out ${isOpen ? 'translate-y-0 scale-100' : 'translate-y-4 scale-95'
+          }`}
+        onClick={(event) => event.stopPropagation()}
+      >
+        <div className="absolute inset-0 bg-gradient-to-br from-white/25 via-transparent to-black/30 pointer-events-none" />
+        <div className="relative z-10 p-5 sm:p-10 md:p-12 overflow-y-auto overscroll-contain max-h-[90vh] sm:max-h-[85vh]">
+          <button
+            type="button"
+            onClick={onClose}
+            className={`absolute right-4 top-4 text-white/80 hover:text-white transition ${focusRing}`}
+            aria-label="Close About Me panel"
+          >
+            <X size={16} />
+          </button>
+          <div className="flex flex-col items-center text-center gap-4 sm:gap-6">
+            {headshotSrc ? (
+              <img
+                src={headshotSrc}
+                alt={headshotAlt || 'Headshot'}
+                className="h-24 w-24 sm:h-32 sm:w-32 rounded-full object-cover border border-white/25 shadow-xl"
+                loading="lazy"
+              />
+            ) : (
+              <div className="h-24 w-24 sm:h-32 sm:w-32 rounded-full bg-white/10 border border-white/25 flex items-center justify-center text-[11px] font-bold tracking-[0.2em] uppercase text-white/70">
+                Headshot
+              </div>
+            )}
+            <div className="space-y-3 max-w-2xl">
+              <h3 className="text-xl sm:text-2xl md:text-3xl font-bold tracking-[0.14em] uppercase text-white text-center">
+                {name}
+              </h3>
+              <div className="space-y-4 text-sm sm:text-base md:text-lg text-gray-100 leading-relaxed text-left">
+                {bioParagraphs.map((paragraph, index) => (
+                  <p key={`${name}-bio-${index}`}>{paragraph}</p>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const Hero = ({ content, stats, onPrimaryClick, onSecondaryClick }) => {
-  const [heroPointer, setHeroPointer] = useState({ x: 50, y: 50 });
-
-  const handleMouseMove = (event) => {
-    const rect = event.currentTarget.getBoundingClientRect();
-    const x = ((event.clientX - rect.left) / rect.width) * 100;
-    const y = ((event.clientY - rect.top) / rect.height) * 100;
-    setHeroPointer({ x, y });
-  };
-
-  const handleMouseLeave = () => setHeroPointer({ x: 50, y: 50 });
-
   return (
     <header
       id={content.resumeAnchorId}
       className="relative w-full min-h-[100svh] md:h-[88vh] overflow-hidden bg-black group"
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
     >
       <div
         className="absolute inset-0 bg-cover bg-center opacity-80 transition-transform duration-[2000ms] group-hover:scale-105 pointer-events-none"
         style={{ backgroundImage: `url("${content.backgroundImage}")` }}
         aria-hidden="true"
       />
+      <div className="absolute inset-0 hero-gradient-drift pointer-events-none" aria-hidden="true" />
       <div
         className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/70 to-black/40 mix-blend-multiply pointer-events-none"
         aria-hidden="true"
       />
-      <div className="absolute inset-0 bg-black/20 pointer-events-none" aria-hidden="true" />
-      <div
-        className="pointer-events-none absolute inset-0 transition-opacity duration-300"
-        style={{
-          background: `radial-gradient(600px at ${heroPointer.x}% ${heroPointer.y}%, rgba(255,255,255,0.08), transparent 60%)`,
-        }}
-        aria-hidden="true"
-      />
-
-      <div className="absolute inset-0 flex items-start md:items-end pt-20 sm:pt-24 pb-10 md:pb-24 px-4 sm:px-8 lg:px-14">
-        <div className="max-w-4xl text-white space-y-5">
-          {content.subheadline ? (
-            <p className="text-[11px] sm:text-xs font-bold tracking-[0.2em] sm:tracking-[0.3em] uppercase text-gray-100 bg-black/60 inline-block px-3 py-1">
-              {content.subheadline}
-            </p>
-          ) : null}
-          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-medium uppercase tracking-[0.1em] sm:tracking-[0.18em] leading-snug sm:leading-tight drop-shadow-[0_2px_12px_rgba(0,0,0,0.75)]">
-            {content.title}
+      <div className="absolute inset-0 bg-black/30 pointer-events-none" aria-hidden="true" />
+      <div className="absolute inset-0 px-4 sm:px-8 lg:px-14">
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <h1 className="relative text-4xl sm:text-6xl lg:text-8xl font-semibold uppercase tracking-[0.06em] sm:tracking-[0.12em] leading-tight text-center drop-shadow-[0_1px_12px_rgba(0,0,0,0.6)]">
+            <span className="absolute inset-0 text-white/30 blur-2xl scale-105" aria-hidden="true">
+              {content.title}
+            </span>
+            <span className="relative text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-200 to-white">
+              {content.title}
+            </span>
           </h1>
-          <p className="text-sm sm:text-base font-medium tracking-[0.08em] sm:tracking-[0.18em] text-gray-200 max-w-2xl uppercase leading-relaxed drop-shadow-[0_2px_10px_rgba(0,0,0,0.7)]">
-            {content.description}
-          </p>
+        </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 pt-2 items-stretch">
-            {stats.map((stat) => (
-              <div
-                key={stat.label}
-                className="border border-white/30 bg-white/5 px-4 py-3 flex flex-col gap-1 text-left transition-all duration-300 hover:bg-white/10 h-full"
-              >
-                <span className="text-[11px] sm:text-[10px] font-bold tracking-[0.18em] sm:tracking-[0.25em] uppercase text-gray-300">
-                  {stat.label}
-                </span>
-                <span className="text-sm sm:text-base font-semibold tracking-[0.08em] sm:tracking-[0.12em] uppercase">
-                  {stat.value}
-                </span>
+        <div className="relative h-full flex items-end pt-20 sm:pt-24 pb-10 md:pb-24">
+          <div className="w-full text-white">
+            <div className="max-w-4xl space-y-5 text-left">
+              {content.subheadline ? (
+                <p className="text-[11px] sm:text-xs font-bold tracking-[0.2em] sm:tracking-[0.3em] uppercase text-gray-100 bg-black/60 inline-block px-3 py-1">
+                  {content.subheadline}
+                </p>
+              ) : null}
+              {content.description ? (
+                <p className="text-sm sm:text-base font-medium tracking-[0.08em] sm:tracking-[0.18em] text-gray-200 max-w-2xl uppercase leading-relaxed drop-shadow-[0_2px_10px_rgba(0,0,0,0.7)]">
+                  {content.description}
+                </p>
+              ) : null}
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 pt-2 items-stretch">
+                {stats.map((stat) => (
+                  <div
+                    key={stat.label}
+                    className="border border-white/30 bg-white/5 px-4 py-3 flex flex-col gap-1 text-left transition-all duration-300 hover:bg-white/10 h-full"
+                  >
+                    <span className="text-[11px] sm:text-[10px] font-bold tracking-[0.18em] sm:tracking-[0.25em] uppercase text-gray-300">
+                      {stat.label}
+                    </span>
+                    <span className="text-sm sm:text-base font-semibold tracking-[0.08em] sm:tracking-[0.12em] uppercase">
+                      {stat.value}
+                    </span>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
 
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4">
-            <button
-              type="button"
-              onClick={onPrimaryClick}
-              className={`inline-flex items-center justify-center gap-2 bg-[#2563eb]/20 border-2 border-[#2563eb] text-white px-8 sm:px-10 py-3 text-[11px] sm:text-xs font-bold tracking-[0.18em] sm:tracking-[0.25em] uppercase transition-all duration-300 hover:bg-[#2563eb] ${focusRing}`}
-              aria-label={`${content.primaryCta.label} section`}
-            >
-              {content.primaryCta.label}
-              <ArrowRight size={14} />
-            </button>
-            <button
-              type="button"
-              onClick={onSecondaryClick}
-              className={`inline-flex items-center justify-center gap-2 bg-white/10 border-2 border-white/50 text-white px-8 sm:px-10 py-3 text-[11px] sm:text-xs font-bold tracking-[0.18em] sm:tracking-[0.25em] uppercase transition-all duration-300 hover:bg-white hover:text-[#0f172a] ${focusRing}`}
-              aria-label={`${content.secondaryCta.label} section`}
-            >
-              {content.secondaryCta.label}
-              <ChevronRight size={14} />
-            </button>
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4">
+                <button
+                  type="button"
+                  onClick={onPrimaryClick}
+                  className={`inline-flex items-center justify-center gap-2 bg-[#2563eb]/20 border-2 border-[#2563eb] text-white px-8 sm:px-10 py-3 text-[11px] sm:text-xs font-bold tracking-[0.18em] sm:tracking-[0.25em] uppercase transition-all duration-300 hover:bg-[#2563eb] ${focusRing}`}
+                  aria-label={`${content.primaryCta.label} section`}
+                >
+                  {content.primaryCta.label}
+                  <ArrowRight size={14} />
+                </button>
+                <button
+                  type="button"
+                  onClick={onSecondaryClick}
+                  className={`inline-flex items-center justify-center gap-2 bg-white/10 border-2 border-white/50 text-white px-8 sm:px-10 py-3 text-[11px] sm:text-xs font-bold tracking-[0.18em] sm:tracking-[0.25em] uppercase transition-all duration-300 hover:bg-white hover:text-[#0f172a] ${focusRing}`}
+                  aria-label={`${content.secondaryCta.label} section`}
+                >
+                  {content.secondaryCta.label}
+                  <ChevronRight size={14} />
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -577,7 +679,28 @@ const Hero = ({ content, stats, onPrimaryClick, onSecondaryClick }) => {
 };
 
 const ExperienceSection = ({ entries, expandedId, onToggle }) => (
-  <section id="experience" className="w-full">
+  <section id="experience" className="w-full" aria-labelledby="experience-heading">
+    <div className="relative overflow-hidden bg-black text-white py-10 sm:py-16">
+      <div
+        className="absolute inset-0 opacity-10 pointer-events-none"
+        style={{
+          backgroundImage:
+            'repeating-linear-gradient(90deg, transparent, transparent 50px, #ffffff 50px, #ffffff 51px)',
+        }}
+        aria-hidden="true"
+      />
+      <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent pointer-events-none" aria-hidden="true" />
+      <div className="relative z-10 max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-10 text-center">
+        <h2
+          id="experience-heading"
+          className="text-2xl sm:text-4xl font-medium uppercase tracking-[0.12em] sm:tracking-[0.2em]"
+        >
+          Experience
+        </h2>
+        <div className="h-px w-16 sm:w-24 bg-white/30 mx-auto mt-3" aria-hidden="true" />
+      </div>
+    </div>
+
     {entries.map((exp, index) => {
       const isExpanded = expandedId === exp.id;
       const isBlueTheme = exp.theme === 'blue';
@@ -625,10 +748,10 @@ const ExperienceSection = ({ entries, expandedId, onToggle }) => (
       return (
         <article
           key={exp.id}
-          className={`flex flex-col ${index % 2 === 1 ? 'md:flex-row-reverse' : 'md:flex-row'} min-h-[560px]`}
+          className={`flex flex-col ${index % 2 === 1 ? 'md:flex-row-reverse' : 'md:flex-row'} md:min-h-[560px]`}
         >
           <div
-            className={`w-full md:w-1/2 p-10 sm:p-14 lg:p-20 flex flex-col justify-center relative overflow-hidden transition-all duration-500 ${backgroundClass
+            className={`w-full md:w-1/2 p-8 sm:p-12 lg:p-20 flex flex-col justify-center relative overflow-hidden transition-all duration-500 ${backgroundClass
               }`}
           >
             <div
@@ -727,7 +850,7 @@ const ExperienceSection = ({ entries, expandedId, onToggle }) => (
           </div>
 
           <div
-            className={`w-full md:w-1/2 h-[320px] sm:h-[420px] md:h-auto relative order-first md:order-none ${exp.imageWrapperClass || ''
+            className={`w-full md:w-1/2 h-[280px] sm:h-[420px] md:h-auto relative order-first md:order-none ${exp.imageWrapperClass || ''
               }`}
           >
             <img
@@ -764,7 +887,7 @@ const ProjectsSection = ({ projects, onProjectSelect }) => (
         <h2 className="text-3xl sm:text-4xl font-medium uppercase tracking-[0.14em] sm:tracking-[0.2em] mb-3">
           Projects
         </h2>
-        <div className="h-px w-24 bg-[#86efac] mx-auto" aria-hidden="true" />
+        <div className="h-px w-16 sm:w-24 bg-slate-700 mx-auto" aria-hidden="true" />
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8">
@@ -939,10 +1062,10 @@ const SkillsSection = ({ categories }) => (
 const EducationSection = ({ content }) => (
   <section
     id="education"
-    className="w-full min-h-[520px] flex flex-col md:flex-row relative overflow-hidden"
+    className="w-full md:min-h-[520px] flex flex-col md:flex-row relative overflow-hidden"
     aria-labelledby="education-heading"
   >
-    <div className="w-full md:w-1/2 p-10 sm:p-14 lg:p-20 flex flex-col justify-end md:justify-center relative z-10 bg-gradient-to-br from-[#00502b] to-[#00502b]">
+    <div className="w-full md:w-1/2 p-8 sm:p-12 lg:p-20 flex flex-col justify-end md:justify-center relative z-10 bg-gradient-to-br from-[#00502b] to-[#00502b]">
       <div
         className="absolute inset-0 opacity-10 pointer-events-none"
         style={{
@@ -992,7 +1115,7 @@ const EducationSection = ({ content }) => (
       </div>
     </div>
 
-    <div className="w-full md:w-1/2 h-[320px] sm:h-[400px] md:h-auto relative">
+    <div className="w-full md:w-1/2 h-[280px] sm:h-[400px] md:h-auto relative">
       <img
         src={content.campusImage}
         alt="University campus"
@@ -1019,9 +1142,10 @@ const CertificationsSection = ({ items }) => (
     <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent pointer-events-none" aria-hidden="true" />
 
     <div className="relative z-10 max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-10 text-center">
-      <h3 className="text-xl sm:text-2xl font-medium uppercase tracking-[0.14em] sm:tracking-[0.2em] mb-10">
+      <h3 className="text-xl sm:text-2xl font-medium uppercase tracking-[0.14em] sm:tracking-[0.2em]">
         Professional Certifications
       </h3>
+      <div className="h-px w-16 sm:w-24 bg-white/30 mx-auto mt-3 mb-10" aria-hidden="true" />
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
         {items.map((cert) => (
           <a
@@ -1029,7 +1153,7 @@ const CertificationsSection = ({ items }) => (
             href={cert.url}
             target="_blank"
             rel="noreferrer"
-            className={`border border-white/20 text-white p-8 transition-colors group block hover:bg-white hover:text-[#7f1d1d] ${focusRing}`}
+            className={`border border-white/20 text-white p-6 sm:p-8 transition-colors group block hover:bg-white hover:text-[#7f1d1d] ${focusRing}`}
             aria-label={`${cert.title} ${cert.sub} certification (opens in new tab)`}
           >
             <div
@@ -1073,7 +1197,7 @@ const Footer = ({ contact }) => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 w-full">
             <a
               href={`mailto:${contact.email}`}
-              className={`group border border-white/25 bg-transparent backdrop-blur-md hover:bg-white/10 hover:border-white transition-all duration-300 ease-out rounded-lg p-7 flex items-center justify-between gap-4 text-left hover:scale-[1.03] hover:-translate-y-1 hover:shadow-2xl hover:shadow-red-900/40 min-h-[190px] ${focusRing}`}
+              className={`group border border-white/25 bg-transparent backdrop-blur-md hover:bg-white/10 hover:border-white transition-all duration-300 ease-out rounded-lg p-5 sm:p-7 flex items-center justify-between gap-4 text-left hover:scale-[1.03] hover:-translate-y-1 hover:shadow-2xl hover:shadow-red-900/40 min-h-[160px] sm:min-h-[190px] ${focusRing}`}
               aria-label="Email Shravan"
             >
               <div className="flex items-center gap-4">
@@ -1094,7 +1218,7 @@ const Footer = ({ contact }) => {
               href={linkedin?.href || '#'}
               target="_blank"
               rel="noreferrer"
-              className={`group border border-white/25 bg-transparent backdrop-blur-md hover:bg-white/10 hover:border-white transition-all duration-300 ease-out rounded-lg p-7 flex items-center justify-between gap-4 text-left hover:scale-[1.03] hover:-translate-y-1 hover:shadow-2xl hover:shadow-red-900/40 min-h-[190px] ${linkedin ? focusRing : ''
+              className={`group border border-white/25 bg-transparent backdrop-blur-md hover:bg-white/10 hover:border-white transition-all duration-300 ease-out rounded-lg p-5 sm:p-7 flex items-center justify-between gap-4 text-left hover:scale-[1.03] hover:-translate-y-1 hover:shadow-2xl hover:shadow-red-900/40 min-h-[160px] sm:min-h-[190px] ${linkedin ? focusRing : ''
                 }`}
               aria-label="LinkedIn profile (opens in new tab)"
             >
@@ -1127,6 +1251,7 @@ const Footer = ({ contact }) => {
 // --- MAIN ---
 const Portfolio = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isAboutOpen, setIsAboutOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [expandedExperience, setExpandedExperience] = useState(null);
   const [selectedProject, setSelectedProject] = useState(null);
@@ -1137,7 +1262,33 @@ const Portfolio = () => {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  useEffect(() => {
+    if (!isAboutOpen) return;
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        setIsAboutOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isAboutOpen]);
+
+  useEffect(() => {
+    if (!isAboutOpen) return undefined;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [isAboutOpen]);
+
   const handleNavigate = (event, link) => {
+    if (link?.action === 'about') {
+      event.preventDefault();
+      setIsAboutOpen((prev) => !prev);
+      setIsMenuOpen(false);
+      return;
+    }
     if (link?.external) return;
     if (link?.href?.startsWith('#')) {
       event.preventDefault();
@@ -1147,6 +1298,7 @@ const Portfolio = () => {
         target.scrollIntoView({ behavior: 'smooth' });
       }
       setIsMenuOpen(false);
+      setIsAboutOpen(false);
     }
   };
 
@@ -1192,9 +1344,15 @@ const Portfolio = () => {
         brand="Sulikeri"
         links={navLinks}
         isMenuOpen={isMenuOpen}
-        onToggleMenu={() => setIsMenuOpen((prev) => !prev)}
+        about={aboutContent}
+        onToggleMenu={() => {
+          setIsMenuOpen((prev) => !prev);
+          setIsAboutOpen(false);
+        }}
         scrolled={scrolled}
         onNavigate={handleNavigate}
+        isAboutOpen={isAboutOpen}
+        onCloseAbout={() => setIsAboutOpen(false)}
       />
 
       <Hero
