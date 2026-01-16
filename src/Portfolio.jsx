@@ -738,12 +738,12 @@ const ExperienceSection = ({ entries, expandedId, onToggle }) => (
             ? 'text-[#dfbbfb]'
             : 'text-black';
       const buttonClass = isBlueTheme
-        ? 'border-white text-white hover:bg-white hover:text-[#1a365d]'
+        ? 'border-white text-white sm:hover:bg-white sm:hover:text-[#1a365d]'
         : isGrayTheme
-          ? 'border-white text-white hover:bg-white hover:text-[#000000]'
+          ? 'border-white text-white sm:hover:bg-white sm:hover:text-[#000000]'
           : isDarkTheme
-            ? 'border-white text-white hover:bg-white hover:text-[#5c2a70]'
-            : 'border-black hover:bg-black hover:text-white';
+            ? 'border-white text-white sm:hover:bg-white sm:hover:text-[#5c2a70]'
+            : 'border-black sm:hover:bg-black sm:hover:text-white';
       const patternColor = isBlueTheme ? '#bee3f8' : isGrayTheme ? '#d1d5db' : isDarkTheme ? '#ffffff' : '#e5e5e5';
       return (
         <article
@@ -836,13 +836,13 @@ const ExperienceSection = ({ entries, expandedId, onToggle }) => (
                   aria-expanded={isExpanded}
                   aria-controls={`${exp.id}-details`}
                   className={`border px-8 sm:px-10 py-3 text-[11px] sm:text-[10px] font-bold tracking-[0.18em] sm:tracking-[0.25em] uppercase transition-all flex items-center gap-2 group ${buttonClass
-                    } ${focusRing}`}
+                    } ${focusRing} touch-manipulation active:scale-[0.99]`}
                 >
                   {isExpanded ? 'Close Details' : 'View Details'}
                   {isExpanded ? (
-                    <Minus size={12} className="group-hover:rotate-180 transition-transform" aria-hidden="true" />
+                    <Minus size={12} className="sm:group-hover:rotate-180 transition-transform" aria-hidden="true" />
                   ) : (
-                    <Plus size={12} className="group-hover:rotate-90 transition-transform" aria-hidden="true" />
+                    <Plus size={12} className="sm:group-hover:rotate-90 transition-transform" aria-hidden="true" />
                   )}
                 </button>
               </div>
@@ -909,18 +909,18 @@ const ProjectCard = ({ project, onSelect }) => {
   const isLightBlue = project.theme === 'lightblue';
   const isGreen = project.theme === 'green';
   const cardClasses = isOrange
-    ? 'border border-orange-900 bg-gradient-to-br from-[#f97316] to-[#7c2d12] text-white hover:border-orange-700'
+    ? 'border border-orange-900 bg-gradient-to-br from-[#f97316] to-[#7c2d12] text-white sm:hover:border-orange-700'
     : isBlack
-      ? 'border border-neutral-900 bg-gradient-to-br from-neutral-900 to-black text-white hover:border-neutral-900'
+      ? 'border border-neutral-900 bg-gradient-to-br from-neutral-900 to-black text-white sm:hover:border-neutral-900'
       : isBlue
-        ? 'border border-blue-900 bg-gradient-to-br from-[#3b82f6] to-[#000050] text-white hover:border-blue-800'
+        ? 'border border-blue-900 bg-gradient-to-br from-[#3b82f6] to-[#000050] text-white sm:hover:border-blue-800'
         : isPurple
-          ? 'border border-purple-900 bg-gradient-to-br from-[#7c3aed] to-[#2e1065] text-white hover:border-purple-800'
+          ? 'border border-purple-900 bg-gradient-to-br from-[#7c3aed] to-[#2e1065] text-white sm:hover:border-purple-800'
           : isGreen
-            ? 'border border-emerald-900 bg-gradient-to-br from-[#22c55e] to-[#14532d] text-white hover:border-emerald-700'
+            ? 'border border-emerald-900 bg-gradient-to-br from-[#22c55e] to-[#14532d] text-white sm:hover:border-emerald-700'
             : isLightBlue
-              ? 'border border-gray-200 hover:border-[#e0f2fe] bg-[#e0f2fe] text-black'
-              : 'border border-gray-200 hover:border-[#86efac] bg-white text-black';
+              ? 'border border-gray-200 sm:hover:border-[#e0f2fe] bg-[#e0f2fe] text-black'
+              : 'border border-gray-200 sm:hover:border-[#86efac] bg-white text-black';
   const textColorClass = isOrange || isBlack || isBlue || isPurple || isGreen ? 'text-white' : 'text-black';
   const bodyTextClass = isOrange || isBlack || isBlue || isPurple || isGreen ? 'text-white' : 'text-gray-500';
   const tagClass =
@@ -930,11 +930,10 @@ const ProjectCard = ({ project, onSelect }) => {
         ? 'bg-blue-100 text-gray-800'
         : 'bg-gray-100 text-gray-600';
   const buttonClass = isBlack
-    ? 'border border-white text-white hover:bg-white hover:text-black'
-    : 'border border-black py-3 text-[10px] font-bold tracking-[0.2em] uppercase bg-black text-white transition-all duration-300 group-hover:bg-white group-hover:text-black';
+    ? 'border border-white text-white sm:hover:bg-white sm:hover:text-black'
+    : 'border border-black py-3 text-[10px] font-bold tracking-[0.2em] uppercase bg-black text-white transition-all duration-300 sm:group-hover:bg-white sm:group-hover:text-black';
 
-  const handleClick = (e) => {
-    e.preventDefault();
+  const handleClick = () => {
     onSelect?.(project);
   };
 
@@ -942,14 +941,14 @@ const ProjectCard = ({ project, onSelect }) => {
     <button
       type="button"
       onClick={handleClick}
-      className={`group block h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${cardClasses} ${focusRing} text-left`}
+      className={`group block h-full transition-all duration-300 sm:hover:-translate-y-1 sm:hover:shadow-lg ${cardClasses} ${focusRing} text-left touch-manipulation active:scale-[0.99]`}
       aria-label={`${project.title} details`}
     >
       <div className="relative aspect-[4/5] bg-gray-50 overflow-hidden">
         <img
           src={project.image}
           alt={project.title}
-          className={`w-full h-full object-cover ${project.imageClass || ''} mix-blend-multiply opacity-90 group-hover:scale-105 transition-transform duration-700`}
+          className={`w-full h-full object-cover ${project.imageClass || ''} mix-blend-multiply opacity-90 sm:group-hover:scale-105 transition-transform duration-700`}
           loading="lazy"
         />
         <div className="absolute top-4 left-0 bg-black text-white text-[10px] sm:text-[9px] px-3 py-1 font-bold tracking-[0.16em] sm:tracking-[0.2em] uppercase">
@@ -986,7 +985,7 @@ const ProjectCard = ({ project, onSelect }) => {
           {project.stackLabel}
         </p>
         <span
-          className={`w-full inline-flex items-center justify-center gap-2 py-3 text-[11px] sm:text-[10px] font-bold tracking-[0.16em] sm:tracking-[0.2em] uppercase transition-all duration-300 ${isBlack ? buttonClass : 'border border-black bg-black text-white group-hover:bg-white group-hover:text-black'
+          className={`w-full inline-flex items-center justify-center gap-2 py-3 text-[11px] sm:text-[10px] font-bold tracking-[0.16em] sm:tracking-[0.2em] uppercase transition-all duration-300 ${isBlack ? buttonClass : 'border border-black bg-black text-white sm:group-hover:bg-white sm:group-hover:text-black'
             }`}
         >
           <Github size={14} aria-hidden="true" /> View GitHub Repo
