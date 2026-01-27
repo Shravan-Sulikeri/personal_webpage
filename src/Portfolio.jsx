@@ -473,7 +473,7 @@ const NavBar = ({ brand, links, about, isMenuOpen, onToggleMenu, scrolled, onNav
         </div>
 
         <span
-          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-2xl md:text-3xl font-black tracking-widest uppercase text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-white drop-shadow-[0_2px_8px_rgba(255,255,255,0.25)] cursor-default select-none"
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-2xl md:text-3xl font-black tracking-widest uppercase text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-white drop-shadow-[0_2px_8px_rgba(255,255,255,0.25)] cursor-default select-none pointer-events-none"
         >
           {brand}
         </span>
@@ -557,20 +557,20 @@ const AboutDropdown = ({ content, isOpen, onClose }) => {
       <button
         type="button"
         onClick={onClose}
-        className={`absolute inset-0 bg-black/50 sm:backdrop-blur-2xl transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0'
+        className={`absolute inset-0 bg-black/40 sm:bg-black/50 sm:backdrop-blur-2xl transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0'
           }`}
         aria-label="Close About Me panel"
       />
       <div
-        className={`relative z-10 w-full max-w-5xl max-h-[90vh] sm:max-h-[85vh] overflow-hidden rounded-2xl sm:rounded-3xl border border-white/15 bg-white/5 sm:backdrop-blur-2xl shadow-lg sm:shadow-2xl sm:shadow-black/70 transition-all duration-300 ease-out ${isOpen ? 'translate-y-0 scale-100' : 'translate-y-4 scale-95'
+        className={`relative z-10 w-full max-w-5xl max-h-[90vh] sm:max-h-[85vh] overflow-hidden rounded-2xl sm:rounded-3xl border border-slate-200 sm:border-white/15 bg-white text-slate-900 sm:bg-white/5 sm:text-white sm:backdrop-blur-2xl shadow-lg sm:shadow-2xl sm:shadow-black/70 transition-all duration-300 ease-out ${isOpen ? 'translate-y-0 scale-100' : 'translate-y-4 scale-95'
           }`}
       >
-        <div className="absolute inset-0 bg-gradient-to-br from-white/25 via-transparent to-black/30 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-br from-white/25 via-transparent to-black/30 pointer-events-none hidden sm:block" />
         <div className="relative z-10 p-5 sm:p-10 md:p-12 overflow-y-auto overscroll-contain max-h-[90vh] sm:max-h-[85vh] touch-scroll">
           <button
             type="button"
             onClick={onClose}
-            className={`absolute right-4 top-4 text-white/80 sm:hover:text-white transition ${focusRing}`}
+            className={`absolute right-4 top-4 text-slate-600 sm:text-white/80 sm:hover:text-white transition ${focusRing}`}
             aria-label="Close About Me panel"
           >
             <X size={16} />
@@ -580,19 +580,19 @@ const AboutDropdown = ({ content, isOpen, onClose }) => {
               <img
                 src={headshotSrc}
                 alt={headshotAlt || 'Headshot'}
-                className="h-24 w-24 sm:h-32 sm:w-32 rounded-full object-cover border border-white/25 shadow-xl"
+                className="h-24 w-24 sm:h-32 sm:w-32 rounded-full object-cover border border-slate-200 sm:border-white/25 shadow-xl"
                 loading="lazy"
               />
             ) : (
-              <div className="h-24 w-24 sm:h-32 sm:w-32 rounded-full bg-white/10 border border-white/25 flex items-center justify-center text-[11px] font-bold tracking-[0.2em] uppercase text-white/70">
+              <div className="h-24 w-24 sm:h-32 sm:w-32 rounded-full bg-slate-100 sm:bg-white/10 border border-slate-200 sm:border-white/25 flex items-center justify-center text-[11px] font-bold tracking-[0.2em] uppercase text-slate-500 sm:text-white/70">
                 Headshot
               </div>
             )}
             <div className="space-y-3 max-w-2xl">
-              <h3 className="text-xl sm:text-2xl md:text-3xl font-bold tracking-[0.14em] uppercase text-white text-center">
+              <h3 className="text-lg sm:text-2xl md:text-3xl font-bold tracking-[0.08em] sm:tracking-[0.14em] sm:uppercase text-slate-900 sm:text-white text-center">
                 {name}
               </h3>
-              <div className="space-y-4 text-sm sm:text-base md:text-lg text-gray-100 leading-relaxed text-left">
+              <div className="space-y-4 text-sm sm:text-base md:text-lg text-slate-700 sm:text-gray-100 leading-relaxed text-left">
                 {bioParagraphs.map((paragraph, index) => (
                   <p key={`${name}-bio-${index}`}>{paragraph}</p>
                 ))}
