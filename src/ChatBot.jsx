@@ -87,18 +87,18 @@ const ChatBot = ({ email }) => {
   };
 
   return (
-    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end gap-3">
+    <div className="fixed bottom-4 left-4 right-4 sm:left-auto sm:bottom-6 sm:right-6 z-50 flex flex-col items-end gap-3">
       <button
         type="button"
         onClick={() => setIsOpen((prev) => !prev)}
         aria-label={isOpen ? 'Close chatbot' : 'Open chatbot'}
-        className="h-14 w-14 sm:h-16 sm:w-16 rounded-full bg-gradient-to-r from-[#2563eb] to-[#0f172a] text-white shadow-2xl flex items-center justify-center transition-transform duration-300 hover:-translate-y-0.5 hover:animate-pulse focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#2563eb] focus:ring-offset-white"
+        className="h-14 w-14 sm:h-16 sm:w-16 rounded-full bg-gradient-to-r from-[#2563eb] to-[#0f172a] text-white shadow-2xl flex items-center justify-center transition-transform duration-300 sm:hover:-translate-y-0.5 sm:hover:animate-pulse focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#2563eb] focus:ring-offset-white"
       >
         {isOpen ? <X size={22} /> : <MessageCircle size={22} />}
       </button>
 
       <div
-        className={`w-[320px] sm:w-[380px] bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-200 transform transition-all duration-300 ${isOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-4 pointer-events-none'
+        className={`w-full sm:w-[380px] bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-200 transform transition-all duration-300 ${isOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-4 pointer-events-none'
           }`}
         role="dialog"
         aria-label="AI Chatbot"
@@ -112,7 +112,7 @@ const ChatBot = ({ email }) => {
             type="button"
             onClick={() => setIsOpen(false)}
             aria-label="Close chat"
-            className="p-1 rounded-full hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white"
+            className="p-1 rounded-full sm:hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white"
           >
             <X size={16} />
           </button>
@@ -120,7 +120,7 @@ const ChatBot = ({ email }) => {
 
         <div className="relative bg-gray-50" style={{ backgroundImage: 'repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(0,0,0,0.03) 50px, rgba(0,0,0,0.03) 51px)' }}>
           <div className="absolute inset-0 bg-white/40 pointer-events-none" aria-hidden="true" />
-          <div className="relative h-72 sm:h-80 overflow-y-auto px-4 py-4 space-y-3">
+          <div className="relative h-64 sm:h-80 max-h-[60vh] overflow-y-auto px-4 py-4 space-y-3 touch-scroll">
             {messages.map((message, index) => (
               <div
                 key={`${message.sender}-${index}`}
@@ -178,7 +178,7 @@ const ChatBot = ({ email }) => {
             type="button"
             onClick={handleSend}
             disabled={isLoading || !input.trim()}
-            className="inline-flex items-center gap-2 bg-gradient-to-r from-[#2563eb] to-[#0f172a] text-white px-4 py-2 rounded-full text-sm font-semibold tracking-wide hover:shadow-md transition-all focus:outline-none focus:ring-2 focus:ring-[#2563eb] focus:ring-offset-2 focus:ring-offset-white disabled:opacity-50 disabled:cursor-not-allowed"
+            className="inline-flex items-center gap-2 bg-gradient-to-r from-[#2563eb] to-[#0f172a] text-white px-4 py-2 rounded-full text-sm font-semibold tracking-wide sm:hover:shadow-md transition-all focus:outline-none focus:ring-2 focus:ring-[#2563eb] focus:ring-offset-2 focus:ring-offset-white disabled:opacity-50 disabled:cursor-not-allowed"
             aria-label="Send message"
           >
             {isLoading ? <Loader2 size={16} className="animate-spin" /> : <Send size={16} />}

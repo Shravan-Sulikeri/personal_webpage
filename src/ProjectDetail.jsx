@@ -19,8 +19,8 @@ const ProjectDetail = ({ project, onClose }) => {
   const impactSummary = project.impactSummary || (metrics.length ? metrics.join(' • ') : null);
 
   return (
-    <div className="fixed inset-0 z-[80] flex items-start sm:items-center justify-center bg-black/70 backdrop-blur-md px-3 sm:px-4 py-4 sm:py-6 overflow-y-auto min-h-[100svh]">
-      <div className="relative w-full max-w-5xl max-h-[92svh] sm:max-h-[90vh] bg-[#0b0f19]/95 text-white border border-white/10 shadow-2xl overflow-y-auto">
+    <div className="fixed inset-0 z-[80] flex items-start sm:items-center justify-center bg-black/75 sm:backdrop-blur-md px-3 sm:px-4 py-4 sm:py-6 overflow-y-auto sm:overflow-hidden overscroll-contain min-h-[100svh] touch-scroll">
+      <div className="relative w-full max-w-5xl sm:max-h-[90vh] bg-[#0b0f19]/95 text-white border border-white/10 shadow-2xl sm:overflow-y-auto">
         <div className={`p-4 sm:p-6 bg-gradient-to-r ${gradient} text-white flex items-start justify-between gap-4`}>
           <div className="space-y-2">
             <p className="text-xs uppercase tracking-[0.3em] opacity-80">{project.category}</p>
@@ -40,7 +40,7 @@ const ProjectDetail = ({ project, onClose }) => {
             type="button"
             onClick={onClose}
             aria-label="Close project detail"
-            className="p-2 rounded-full bg-white/15 hover:bg-white/25 border border-white/20 transition"
+            className="p-2 rounded-full bg-white/15 sm:hover:bg-white/25 border border-white/20 transition"
           >
             <X size={18} />
           </button>
@@ -94,7 +94,7 @@ const ProjectDetail = ({ project, onClose }) => {
                       href={project.link}
                       target="_blank"
                       rel="noreferrer"
-                      className="text-emerald-300 hover:text-emerald-200 underline underline-offset-4"
+                      className="text-emerald-300 sm:hover:text-emerald-200 underline underline-offset-4"
                     >
                       View on GitHub
                     </a>
@@ -135,14 +135,14 @@ const ProjectDetail = ({ project, onClose }) => {
 
       {showArchitecture && (
         <div
-          className="fixed inset-0 z-[90] bg-black/80 backdrop-blur-sm flex items-center justify-center px-3 sm:px-4"
+          className="fixed inset-0 z-[90] bg-black/85 sm:backdrop-blur-sm flex items-center justify-center px-3 sm:px-4"
           onClick={() => setShowArchitecture(false)}
         >
           <div className="relative max-w-6xl max-h-[85svh] sm:max-h-[90vh] w-full flex items-center justify-center">
             <button
               type="button"
               aria-label="Close full-size architecture"
-              className="absolute top-2 right-2 sm:-top-10 sm:right-0 bg-white/20 hover:bg-white/30 text-white p-2 rounded-full border border-white/30"
+              className="absolute top-2 right-2 sm:-top-10 sm:right-0 bg-white/20 sm:hover:bg-white/30 text-white p-2 rounded-full border border-white/30"
               onClick={(e) => {
                 e.stopPropagation();
                 setShowArchitecture(false);

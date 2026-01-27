@@ -339,6 +339,18 @@ const certifications = [
     year: '2025',
     url: 'https://catalog-education.oracle.com/ords/certview/sharebadge?id=2126CB82328B8BBF110E4639C71E2B3C076D357D7B43EA529874EA73D22CFD39',
   },
+  {
+    title: 'MySQL 8.0 Database Developer',
+    sub: 'Oracle Certified Professional',
+    year: '2026',
+    url: 'https://catalog-education.oracle.com/pls/certview/sharebadge?id=3A60BB40634063E5BAC512E076D54CDBC3141258FABEFD80CF0DFC7D045FCD78',
+  },
+  {
+    title: 'MySQL Implementation',
+    sub: 'Certified Associate',
+    year: '2026',
+    url: 'https://catalog-education.oracle.com/pls/certview/sharebadge?id=2B0BE47888174080A0F79370BFF28C17C7CB295C1ED364CD49131E7995ACB295',
+  },
 ];
 
 const contactInfo = {
@@ -491,7 +503,7 @@ const NavBar = ({ brand, links, about, isMenuOpen, onToggleMenu, scrolled, onNav
 
 const NavLink = ({ link, onNavigate, isMobile, isAboutOpen }) => {
   const isToggle = link?.action === 'about';
-  const baseClassName = `text-[11px] sm:text-xs font-bold tracking-[0.16em] sm:tracking-[0.2em] uppercase text-white transition-all duration-200 hover:text-white hover:scale-105 inline-flex items-center gap-2 ${isMobile ? 'py-2 w-full justify-center' : ''
+  const baseClassName = `text-[11px] sm:text-xs font-bold tracking-[0.16em] sm:tracking-[0.2em] uppercase text-white transition-all duration-200 sm:hover:text-white sm:hover:scale-105 inline-flex items-center gap-2 ${isMobile ? 'py-2 w-full justify-center' : ''
     } ${focusRing}`;
 
   if (isToggle) {
@@ -545,12 +557,12 @@ const AboutDropdown = ({ content, isOpen, onClose }) => {
       <button
         type="button"
         onClick={onClose}
-        className={`absolute inset-0 bg-black/40 backdrop-blur-2xl transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0'
+        className={`absolute inset-0 bg-black/50 sm:backdrop-blur-2xl transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0'
           }`}
         aria-label="Close About Me panel"
       />
       <div
-        className={`relative z-10 w-full max-w-5xl max-h-[90vh] sm:max-h-[85vh] overflow-hidden rounded-2xl sm:rounded-3xl border border-white/15 bg-white/5 backdrop-blur-2xl shadow-2xl shadow-black/70 transition-all duration-300 ease-out ${isOpen ? 'translate-y-0 scale-100' : 'translate-y-4 scale-95'
+        className={`relative z-10 w-full max-w-5xl max-h-[90vh] sm:max-h-[85vh] overflow-hidden rounded-2xl sm:rounded-3xl border border-white/15 bg-white/5 sm:backdrop-blur-2xl shadow-lg sm:shadow-2xl sm:shadow-black/70 transition-all duration-300 ease-out ${isOpen ? 'translate-y-0 scale-100' : 'translate-y-4 scale-95'
           }`}
       >
         <div className="absolute inset-0 bg-gradient-to-br from-white/25 via-transparent to-black/30 pointer-events-none" />
@@ -558,7 +570,7 @@ const AboutDropdown = ({ content, isOpen, onClose }) => {
           <button
             type="button"
             onClick={onClose}
-            className={`absolute right-4 top-4 text-white/80 hover:text-white transition ${focusRing}`}
+            className={`absolute right-4 top-4 text-white/80 sm:hover:text-white transition ${focusRing}`}
             aria-label="Close About Me panel"
           >
             <X size={16} />
@@ -600,7 +612,7 @@ const Hero = ({ content, stats, onPrimaryClick, onSecondaryClick }) => {
       className="relative w-full min-h-[100svh] md:h-[88vh] overflow-hidden bg-black group"
     >
       <div
-        className="absolute inset-0 bg-cover bg-center opacity-80 transition-transform duration-[2000ms] group-hover:scale-105 pointer-events-none"
+        className="absolute inset-0 bg-cover bg-center opacity-80 transition-transform duration-[2000ms] sm:group-hover:scale-105 pointer-events-none"
         style={{ backgroundImage: `url("${content.backgroundImage}")` }}
         aria-hidden="true"
       />
@@ -648,7 +660,7 @@ const Hero = ({ content, stats, onPrimaryClick, onSecondaryClick }) => {
                 {stats.map((stat) => (
                   <div
                     key={stat.label}
-                    className="border border-white/30 bg-white/5 px-4 py-3 flex flex-col gap-1 text-left transition-all duration-300 hover:bg-white/10 h-full"
+                    className="border border-white/30 bg-white/5 px-4 py-3 flex flex-col gap-1 text-left transition-all duration-300 sm:hover:bg-white/10 h-full"
                   >
                     <span className="text-[11px] sm:text-[10px] font-bold tracking-[0.18em] sm:tracking-[0.25em] uppercase text-gray-300">
                       {stat.label}
@@ -664,7 +676,7 @@ const Hero = ({ content, stats, onPrimaryClick, onSecondaryClick }) => {
                 <button
                   type="button"
                   onClick={onPrimaryClick}
-                  className={`inline-flex items-center justify-center gap-2 bg-[#2563eb]/20 border-2 border-[#2563eb] text-white px-8 sm:px-10 py-3 text-[11px] sm:text-xs font-bold tracking-[0.18em] sm:tracking-[0.25em] uppercase transition-all duration-300 hover:bg-[#2563eb] ${focusRing}`}
+                  className={`inline-flex items-center justify-center gap-2 bg-[#2563eb]/20 border-2 border-[#2563eb] text-white px-8 sm:px-10 py-3 text-[11px] sm:text-xs font-bold tracking-[0.18em] sm:tracking-[0.25em] uppercase transition-all duration-300 sm:hover:bg-[#2563eb] ${focusRing}`}
                   aria-label={`${content.primaryCta.label} section`}
                 >
                   {content.primaryCta.label}
@@ -673,7 +685,7 @@ const Hero = ({ content, stats, onPrimaryClick, onSecondaryClick }) => {
                 <button
                   type="button"
                   onClick={onSecondaryClick}
-                  className={`inline-flex items-center justify-center gap-2 bg-white/10 border-2 border-white/50 text-white px-8 sm:px-10 py-3 text-[11px] sm:text-xs font-bold tracking-[0.18em] sm:tracking-[0.25em] uppercase transition-all duration-300 hover:bg-white hover:text-[#0f172a] ${focusRing}`}
+                  className={`inline-flex items-center justify-center gap-2 bg-white/10 border-2 border-white/50 text-white px-8 sm:px-10 py-3 text-[11px] sm:text-xs font-bold tracking-[0.18em] sm:tracking-[0.25em] uppercase transition-all duration-300 sm:hover:bg-white sm:hover:text-[#0f172a] ${focusRing}`}
                   aria-label={`${content.secondaryCta.label} section`}
                 >
                   {content.secondaryCta.label}
@@ -867,7 +879,7 @@ const ExperienceSection = ({ entries, expandedId, onToggle }) => (
               src={exp.image}
               alt={exp.imageAlt || `${exp.company} workspace`}
               className={`absolute inset-0 w-full h-full ${exp.imageClass || 'object-cover'
-                } grayscale hover:grayscale-0 transition-all duration-700`}
+                } grayscale sm:hover:grayscale-0 transition-all duration-700`}
               loading="lazy"
             />
           </div>
@@ -1046,15 +1058,15 @@ const SkillsSection = ({ categories }) => (
                       <img
                         src={skill.icon}
                         alt={skill.name}
-                        className="w-5 h-5 object-contain opacity-80 group-hover:opacity-100 transition-opacity"
+                        className="w-5 h-5 object-contain opacity-80 sm:group-hover:opacity-100 transition-opacity"
                         loading="lazy"
                       />
                     ) : (
                       <div className="w-5 h-5 flex items-center justify-center">
-                        <div className="w-1.5 h-1.5 bg-white/60 rounded-full group-hover:bg-white transition-colors" />
+                        <div className="w-1.5 h-1.5 bg-white/60 rounded-full sm:group-hover:bg-white transition-colors" />
                       </div>
                     )}
-                    <span className="text-[11px] sm:text-[10px] font-bold tracking-[0.12em] sm:tracking-[0.16em] uppercase text-gray-100 group-hover:text-white transition-colors line-clamp-1">
+                    <span className="text-[11px] sm:text-[10px] font-bold tracking-[0.12em] sm:tracking-[0.16em] uppercase text-gray-100 sm:group-hover:text-white transition-colors line-clamp-1">
                       {skill.name}
                     </span>
                   </div>
@@ -1117,7 +1129,7 @@ const EducationSection = ({ content }) => (
           href={content.resumeHref}
           target="_blank"
           rel="noreferrer"
-          className={`mt-10 inline-block border-2 border-[#cbb77a] text-[#cbb77a] px-7 py-3 text-[11px] sm:text-[10px] font-bold tracking-[0.18em] sm:tracking-[0.25em] uppercase hover:bg-[#cbb77a] hover:text-[#00502b] transition-all w-fit ${focusRing}`}
+          className={`mt-10 inline-block border-2 border-[#cbb77a] text-[#cbb77a] px-7 py-3 text-[11px] sm:text-[10px] font-bold tracking-[0.18em] sm:tracking-[0.25em] uppercase sm:hover:bg-[#cbb77a] sm:hover:text-[#00502b] transition-all w-fit ${focusRing}`}
         >
           {content.ctaLabel}
         </a>
@@ -1128,60 +1140,74 @@ const EducationSection = ({ content }) => (
       <img
         src={content.campusImage}
         alt="University campus"
-        className="absolute inset-0 w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+        className="absolute inset-0 w-full h-full object-cover grayscale sm:hover:grayscale-0 transition-all duration-700"
         loading="lazy"
       />
     </div>
   </section>
 );
 
-const CertificationsSection = ({ items }) => (
-  <section
-    id="certifications"
-    className="w-full relative overflow-hidden bg-gradient-to-br from-[#991b1b] to-[#450a0a] text-white py-16 sm:py-20"
-  >
-    <div
-      className="absolute inset-0 opacity-10 pointer-events-none"
-      style={{
-        backgroundImage:
-          'repeating-linear-gradient(90deg, transparent, transparent 50px, #ffffff 50px, #ffffff 51px)',
-      }}
-      aria-hidden="true"
-    />
-    <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent pointer-events-none" aria-hidden="true" />
+const CertificationsSection = ({ items }) => {
+  const total = items.length;
+  const hasCenteredPair = total % 3 === 2;
 
-    <div className="relative z-10 max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-10 text-center">
-      <h3 className="text-xl sm:text-2xl font-medium uppercase tracking-[0.14em] sm:tracking-[0.2em]">
-        Professional Certifications
-      </h3>
-      <div className="h-px w-16 sm:w-24 bg-white/30 mx-auto mt-3 mb-10" aria-hidden="true" />
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-        {items.map((cert) => (
-          <a
-            key={`${cert.title}-${cert.sub}`}
-            href={cert.url}
-            target="_blank"
-            rel="noreferrer"
-            className={`border border-white/20 text-white p-6 sm:p-8 transition-colors group block hover:bg-white hover:text-[#7f1d1d] ${focusRing}`}
-            aria-label={`${cert.title} ${cert.sub} certification (opens in new tab)`}
-          >
-            <div
-              className="w-12 h-1 bg-[#fca5a5] mb-6 mx-auto group-hover:bg-[#7f1d1d] transition-colors"
-              aria-hidden="true"
-            />
-            <h4 className="font-bold text-sm tracking-[0.16em] uppercase mb-2">{cert.title}</h4>
-            <p className="text-[11px] sm:text-xs text-red-200 tracking-[0.18em] sm:tracking-[0.24em] uppercase mb-4 group-hover:text-[#7f1d1d]">
-              {cert.sub}
-            </p>
-            <span className="text-[11px] sm:text-[10px] font-bold border border-white/30 px-3 py-1 rounded-full group-hover:text-[#7f1d1d] group-hover:border-[#7f1d1d]">
-              {cert.year}
-            </span>
-          </a>
-        ))}
+  return (
+    <section
+      id="certifications"
+      className="w-full relative overflow-hidden bg-gradient-to-br from-[#991b1b] to-[#450a0a] text-white py-16 sm:py-20"
+    >
+      <div
+        className="absolute inset-0 opacity-10 pointer-events-none"
+        style={{
+          backgroundImage:
+            'repeating-linear-gradient(90deg, transparent, transparent 50px, #ffffff 50px, #ffffff 51px)',
+        }}
+        aria-hidden="true"
+      />
+      <div
+        className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent pointer-events-none"
+        aria-hidden="true"
+      />
+
+      <div className="relative z-10 max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-10 text-center">
+        <h3 className="text-xl sm:text-2xl font-medium uppercase tracking-[0.14em] sm:tracking-[0.2em]">
+          Professional Certifications
+        </h3>
+        <div className="h-px w-16 sm:w-24 bg-white/30 mx-auto mt-3 mb-10" aria-hidden="true" />
+        <div className="grid grid-cols-1 md:grid-cols-6 gap-6 sm:gap-8">
+          {items.map((cert, index) => {
+            const isSecondLast = hasCenteredPair && index === total - 2;
+            const isLast = hasCenteredPair && index === total - 1;
+            const colStartClass = isSecondLast ? 'md:col-start-2' : isLast ? 'md:col-start-4' : '';
+
+            return (
+              <a
+                key={`${cert.title}-${cert.sub}`}
+                href={cert.url}
+                target="_blank"
+                rel="noreferrer"
+                className={`border border-white/20 text-white p-6 sm:p-8 transition-colors group block sm:hover:bg-white sm:hover:text-[#7f1d1d] md:col-span-2 ${colStartClass} ${focusRing}`}
+                aria-label={`${cert.title} ${cert.sub} certification (opens in new tab)`}
+              >
+                <div
+                  className="w-12 h-1 bg-[#fca5a5] mb-6 mx-auto sm:group-hover:bg-[#7f1d1d] transition-colors"
+                  aria-hidden="true"
+                />
+                <h4 className="font-bold text-sm tracking-[0.16em] uppercase mb-2">{cert.title}</h4>
+                <p className="text-[11px] sm:text-xs text-red-200 tracking-[0.18em] sm:tracking-[0.24em] uppercase mb-4 sm:group-hover:text-[#7f1d1d]">
+                  {cert.sub}
+                </p>
+                <span className="text-[11px] sm:text-[10px] font-bold border border-white/30 px-3 py-1 rounded-full sm:group-hover:text-[#7f1d1d] sm:group-hover:border-[#7f1d1d]">
+                  {cert.year}
+                </span>
+              </a>
+            );
+          })}
+        </div>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 const Footer = ({ contact }) => {
   const linkedin = contact.socials.find((social) => social.label === 'LinkedIn');
@@ -1206,7 +1232,7 @@ const Footer = ({ contact }) => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 w-full">
             <a
               href={`mailto:${contact.email}`}
-              className={`group border border-white/25 bg-transparent backdrop-blur-md hover:bg-white/10 hover:border-white transition-all duration-300 ease-out rounded-lg p-5 sm:p-7 flex items-center justify-between gap-4 text-left hover:scale-[1.03] hover:-translate-y-1 hover:shadow-2xl hover:shadow-slate-900/60 min-h-[160px] sm:min-h-[190px] ${focusRing}`}
+              className={`group border border-white/25 bg-transparent backdrop-blur-md sm:hover:bg-white/10 sm:hover:border-white transition-all duration-300 ease-out rounded-lg p-5 sm:p-7 flex items-center justify-between gap-4 text-left sm:hover:scale-[1.03] sm:hover:-translate-y-1 sm:hover:shadow-2xl sm:hover:shadow-slate-900/60 min-h-[160px] sm:min-h-[190px] ${focusRing}`}
               aria-label="Email Shravan"
             >
               <div className="flex items-center gap-4">
@@ -1232,7 +1258,7 @@ const Footer = ({ contact }) => {
               href={linkedin?.href || '#'}
               target="_blank"
               rel="noreferrer"
-              className={`group border border-white/25 bg-transparent backdrop-blur-md hover:bg-white/10 hover:border-white transition-all duration-300 ease-out rounded-lg p-5 sm:p-7 flex items-center justify-between gap-4 text-left hover:scale-[1.03] hover:-translate-y-1 hover:shadow-2xl hover:shadow-slate-900/60 min-h-[160px] sm:min-h-[190px] ${linkedin ? focusRing : ''
+              className={`group border border-white/25 bg-transparent backdrop-blur-md sm:hover:bg-white/10 sm:hover:border-white transition-all duration-300 ease-out rounded-lg p-5 sm:p-7 flex items-center justify-between gap-4 text-left sm:hover:scale-[1.03] sm:hover:-translate-y-1 sm:hover:shadow-2xl sm:hover:shadow-slate-900/60 min-h-[160px] sm:min-h-[190px] ${linkedin ? focusRing : ''
                 }`}
               aria-label="LinkedIn profile (opens in new tab)"
             >
@@ -1293,13 +1319,13 @@ const Portfolio = () => {
   }, [isAboutOpen]);
 
   useEffect(() => {
-    if (!isAboutOpen) return undefined;
+    if (!isAboutOpen && !selectedProject) return undefined;
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
     return () => {
       document.body.style.overflow = previousOverflow;
     };
-  }, [isAboutOpen]);
+  }, [isAboutOpen, selectedProject]);
 
   const handleNavigate = (event, link) => {
     if (link?.action === 'about') {
@@ -1333,7 +1359,7 @@ const Portfolio = () => {
   return (
     <div
       id="top"
-      className="safe-area-top min-h-screen bg-white font-sans text-black selection:bg-black selection:text-white scroll-smooth"
+      className="safe-area-top min-h-screen bg-white font-sans text-black selection:bg-black selection:text-white scroll-smooth overflow-x-hidden"
     >
       <a
         href="#main"
@@ -1352,7 +1378,7 @@ const Portfolio = () => {
             href={topBanner.linkHref}
             target="_blank"
             rel="noreferrer"
-            className="hover:text-gray-300 transition-colors underline-offset-4"
+            className="sm:hover:text-gray-300 transition-colors underline-offset-4"
           >
             {topBanner.linkLabel}
           </a>
