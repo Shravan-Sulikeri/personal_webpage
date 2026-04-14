@@ -7,7 +7,7 @@
  * tags, and image/logo URLs (or leave null for text fallback), (3) save—components render automatically in the grid layout.
  */
 import React, { useEffect, useRef, useState } from 'react';
-import { ArrowRight, ChevronDown, ChevronRight, Github, Linkedin, Mail, Menu, Minus, Plus, X } from 'lucide-react';
+import { ArrowRight, ChevronDown, ChevronRight, Github, Menu, Minus, Plus, X } from 'lucide-react';
 import heroBackground from '../assest/Hero _Image.jpg';
 import controlInfotechImage from '../assest/cit offfice.jpg';
 import controlInfotechLogo from '../assest/control_inftech_logo.png';
@@ -22,7 +22,6 @@ import firstCitizensImage from '../assest/fcb_image.webp';
 import firstCitizensLogo from '../assest/url.jpg';
 import careSightImage from '../assest/care_sight.jpeg';
 import careSightArchitectureImage from '../assest/caresight_system_arc.png';
-import spotifyImage from '../assest/spotify_icon.png';
 import soundSwipeImage from '../assest/sound_swipe_project_card.jpg';
 import soundSwipeArchitectureImage from '../assest/sound_swipe_arc_img.png';
 import varsinixLogo from '../assest/Gemini_Generated_Image_iuo4k9iuo4k9iuo4.jpg';
@@ -40,7 +39,7 @@ import ChatBot from './ChatBot';
 
 // --- GLOBAL CONTENT CONFIG ---
 const topBanner = {
-  message: 'Recent Graduate • Summer 2025',
+  message: 'Junior Data Engineer @ Varsinix • Open to Opportunities',
   linkLabel: 'View LinkedIn',
   linkHref: 'https://www.linkedin.com/in/shravan-sulikeri/',
 };
@@ -92,15 +91,15 @@ const experienceEntries = [
     id: 'varsinix',
     company: 'Varsinix',
     logoUrl: varsinixLogo,
-    role: 'DATA ENGINEER',
+    role: 'JUNIOR DATA ENGINEER',
     period: 'AUG 2025 - PRESENT',
-    location: 'RALEIGH, NC',
-    metrics: ['CLINICAL NOTES PROCESSED 3M+', 'SCHEMA DRIFT -45%', 'RECALL@K RELIABILITY +30%'],
+    location: 'CARY, NC',
+    metrics: ['CLINICAL NOTES PROCESSED 5M+', 'SCHEMA DRIFT -45%', 'RECALL@K RELIABILITY +30%'],
     details: [
-      'Engineered a scalable ingestion pipeline on GCP using Vertex AI and Python to process 3 million+ clinical notes, enforcing schema validation for entity extraction.',
-      'Implemented a Medallion Architecture on Azure Data Lake, standardizing data lineage and reducing schema drift by 45%.',
-      'Refactored Qdrant vector search logic using Python, reducing neural network evolution failures by 35% and stabilizing retrieval outputs.',
-      'Collaborated within an Agile team to build a reproducible pipeline, improving Recall@K reliability by 30% across more than 2 million samples.',
+      'Architected a Python-based GCP ingestion pipeline using Vertex AI to process 5M+ unstructured clinical notes; enforced strict schema validation and deterministic preprocessing to enable scalable entity extraction and NER model training.',
+      'Engineered an Azure-based Medallion architecture (Bronze-Silver-Gold) utilizing contract-driven schemas and automated lineage tracking to stabilize biomedical ingestion, reducing pipeline drift by 45%.',
+      'Streamlined Python-based Qdrant vector search and embedding workflows to mitigate ANN retrieval instability across iterative model updates, reducing evolution failures by 35% and stabilizing retrieval consistency for production clinical search.',
+      'Developed a containerized and fully reproducible ML data pipeline within an Agile framework; engineered end-to-end quality controls across 2M+ clinical samples, improving Recall@K reliability by 30% for production risk modeling.',
     ],
     image: varsinixOfficeImage,
     imageAlt: 'Varsinix office',
@@ -159,10 +158,10 @@ const projectEntries = [
     theme: 'orange',
     stackSummary: 'PYTHON • DUCKDB • SCIKIT-LEARN • REACT • TAILWIND',
     impactSummary:
-      'Achieved 0.9907 AUC for race winner prediction • Engineered 61 ML-ready features • Automated orchestration from raw ingestion to frontend delivery.',
+      'Achieved 0.8907 AUC for race winner prediction • Engineered 61 ML-ready features • Automated orchestration from raw ingestion to frontend delivery.',
     impactStats: [
-      'BEST MODEL TEST AUC: 0.9907 (RANDOM FOREST)',
-      'PROCESSES 220K+ LAPS & 31K+ WEATHER POINTS',
+      'BEST MODEL TEST AUC: 0.8907 (RANDOM FOREST)',
+      'PROCESSES 221K+ LAP RECORDS',
       'FULL PIPELINE RUNS IN ~15 MINS LOCALLY',
     ],
     architectureImage: f1ArchitectureImage,
@@ -170,22 +169,23 @@ const projectEntries = [
   },
   {
     title: 'CareSight',
-    category: 'AI / HEALTHCARE',
-    description: 'AI powered patient risk scoring and readmission prediction platform for clinicians.',
+    category: 'HEALTHCARE ANALYTICS',
+    description:
+      'Healthcare analytics platform with a FAISS + FastAPI RAG pipeline analyzing 8M+ clinical notes and Airflow-orchestrated ETL across 8M+ records.',
     image: careSightImage,
     imageClass: 'object-center',
     link: 'https://github.com/Shravan-Sulikeri/caresight',
     logo: null,
-    tags: ['TENSORFLOW', 'PREDICTIVE ANALYTICS', 'GCP', 'HEALTHCARE AI'],
+    tags: ['FAISS', 'FASTAPI', 'DBT', 'APACHE AIRFLOW', 'POSTGRESQL', 'HEALTHCARE AI'],
     theme: 'green',
     impactStats: [
-      'AUC ≥ 0.89 for readmission risk',
-      'Batch risk scoring under 2 minutes',
-      'Compliance-focused audit and access logging',
+      'BI QUERY PERFORMANCE +35% VIA DBT STAR SCHEMAS',
+      'RISK DETECTION ACCURACY +50% WITH RAG PIPELINE',
+      'END-TO-END ETL LATENCY -40% WITH AIRFLOW',
     ],
     architectureImage: careSightArchitectureImage,
     stackSummary:
-      'Python ML pipeline with TensorFlow and scikit learn, FastAPI backend, PostgreSQL or GCP warehouse, healthcare analytics and monitoring',
+      'dbt • PostgreSQL • FAISS • FastAPI • Apache Airflow • Python • Healthcare Analytics',
   },
   {
     title: 'SOUNDSWIPE APP',
@@ -255,10 +255,11 @@ const skillCategories = [
     skills: [
       { name: 'Python', icon: SKILL_ICONS.python },
       { name: 'SQL', icon: SKILL_ICONS.sql },
-      { name: 'C#', icon: SKILL_ICONS.csharp },
       { name: 'JavaScript', icon: SKILL_ICONS.javascript },
       { name: 'TypeScript', icon: SKILL_ICONS.typescript },
-      { name: 'R', icon: SKILL_ICONS.r },
+      { name: 'C#', icon: SKILL_ICONS.csharp },
+      { name: 'C', icon: null },
+      { name: 'PowerShell', icon: null },
     ],
   },
   {
@@ -275,12 +276,13 @@ const skillCategories = [
   {
     title: 'ML & Analytics',
     skills: [
+      { name: 'Scikit-Learn', icon: SKILL_ICONS.scikit_learn },
       { name: 'MLflow', icon: SKILL_ICONS.mlflow },
       { name: 'Vertex AI', icon: SKILL_ICONS.vertex_ai },
-      { name: 'Scikit-learn', icon: SKILL_ICONS.scikit_learn },
+      { name: 'FAISS', icon: null },
       { name: 'Qdrant', icon: SKILL_ICONS.qdrant },
       { name: 'Pandas', icon: SKILL_ICONS.pandas },
-      { name: 'PowerBI', icon: SKILL_ICONS.powerbi },
+      { name: 'Power BI', icon: SKILL_ICONS.powerbi },
     ],
   },
   {
@@ -297,15 +299,15 @@ const skillCategories = [
     ],
   },
   {
-    title: 'Orchestration & Tools',
+    title: 'Tools & Frameworks',
     skills: [
-      { name: 'Apache Airflow', icon: SKILL_ICONS.airflow },
       { name: 'FastAPI', icon: SKILL_ICONS.fastapi },
+      { name: 'Flask', icon: null },
+      { name: 'React.js', icon: null },
+      { name: 'Apache Airflow', icon: SKILL_ICONS.airflow },
       { name: 'PostgreSQL', icon: SKILL_ICONS.postgresql },
-      { name: 'REST APIs', icon: SKILL_ICONS.rest_api },
-      { name: 'Jira', icon: SKILL_ICONS.jira },
-      { name: 'Grafana', icon: SKILL_ICONS.grafana },
       { name: 'Nexthink', icon: SKILL_ICONS.nexthink },
+      { name: 'Grafana', icon: SKILL_ICONS.grafana },
     ],
   },
 ];
@@ -1286,7 +1288,7 @@ const Footer = ({ contact }) => {
         </div>
 
         <p className="text-xs tracking-[0.14em] sm:tracking-[0.2em] uppercase text-white">
-          © 2025 {contact.branding} · Data Engineer.
+          © 2026 {contact.branding} · Junior Data Engineer.
         </p>
       </div>
     </footer>
