@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, startTransition } from 'react';
 import { Bot, MessageCircle, Send, X, Loader2 } from 'lucide-react';
 import resumePdf from '../assest/Shravan_Sulikeri_Resume.pdf';
 
@@ -320,15 +320,22 @@ const ChatBot = () => {
     const trimmed = text.trim();
     if (!trimmed || isTyping) return;
 
-    setShowChips(false);
-    setMessages((prev) => [...prev, { sender: 'user', text: trimmed }]);
+    // Clear input immediately so the field feels responsive
     setInput('');
-    setIsTyping(true);
+
+    // Defer message list + typing indicator updates so the browser can paint first
+    startTransition(() => {
+      setShowChips(false);
+      setMessages((prev) => [...prev, { sender: 'user', text: trimmed }]);
+      setIsTyping(true);
+    });
 
     setTimeout(() => {
       const reply = getLocalReply(trimmed);
-      setMessages((prev) => [...prev, reply]);
-      setIsTyping(false);
+      startTransition(() => {
+        setMessages((prev) => [...prev, reply]);
+        setIsTyping(false);
+      });
       setTimeout(() => inputRef.current?.focus(), 50);
     }, 350);
   };
