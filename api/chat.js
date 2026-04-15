@@ -1,8 +1,7 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import Anthropic from "@anthropic-ai/sdk";
 import { getSystemPrompt, personalInfo } from "./knowledge.js";
 
-// Initialize Google Gemini
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
 export default async function handler(req, res) {
     // Handle CORS
@@ -25,41 +24,33 @@ export default async function handler(req, res) {
             return res.status(400).json({ error: "Message is required" });
         }
 
-        // Check if API key is configured
-        if (!process.env.GEMINI_API_KEY) {
-            console.error("GEMINI_API_KEY is not configured");
+        if (!process.env.ANTHROPIC_API_KEY) {
+            console.error("ANTHROPIC_API_KEY is not configured");
             return res.status(200).json({
                 response: `I'm having trouble connecting right now. Please email Shravan directly at ${personalInfo.email} for assistance.`,
                 fallback: true,
             });
         }
 
-        // Initialize the model
-        const model = genAI.getGenerativeModel({
-            model: "gemini-2.0-flash",
-            generationConfig: {
-                temperature: 0.7,
-                topP: 0.8,
-                topK: 40,
-                maxOutputTokens: 500,
-            },
+        const response = await client.messages.create({
+            model: "claude-haiku-4-5",
+            max_tokens: 512,
+            system: getSystemPrompt(),
+            messages: [
+                { role: "user", content: message },
+            ],
         });
 
-        // Build the prompt with system context
-        const systemPrompt = getSystemPrompt();
-        const fullPrompt = `${systemPrompt}\n\nUser question: ${message}\n\nRespond helpfully and concisely:`;
+        const text = response.content[0]?.type === "text"
+            ? response.content[0].text
+            : "";
 
-        // Generate response
-        const result = await model.generateContent(fullPrompt);
-        const response = result.response.text();
+        return res.status(200).json({ response: text });
 
-        return res.status(200).json({ response });
     } catch (error) {
         console.error("Chat API error:", error);
-
-        // Provide a graceful fallback
         return res.status(200).json({
-            response: `I'm sorry, I'm having a moment! For now, you can reach Shravan at ${personalInfo.email} or check out his LinkedIn profile.`,
+            response: `I'm sorry, I'm having a moment! You can reach Shravan at ${personalInfo.email} or check out his LinkedIn profile.`,
             fallback: true,
         });
     }
