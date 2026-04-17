@@ -220,7 +220,7 @@ const SKILL_ICONS = {
   pyspark: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apachespark/apachespark-original.svg',
   duckdb: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/duckdb/duckdb-original.svg',
   dbt: 'https://cdn.jsdelivr.net/gh/gilbarbara/logos@master/logos/dbt-icon.svg',
-  databricks: 'https://cdn.jsdelivr.net/gh/gilbarbara/logos@master/logos/databricks-icon.svg',
+  databricks: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg',
   azure_factory: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg',
   delta_lake: deltaLakeIcon,
   mlflow: 'https://cdn.jsdelivr.net/gh/gilbarbara/logos@master/logos/mlflow-icon.svg',
