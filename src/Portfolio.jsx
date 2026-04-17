@@ -19,12 +19,10 @@ import uncCharlotteImage from '../assest/unc_clt.jpg';
 import f1Image from '../assest/f1.jpg';
 import f1ArchitectureImage from '../assest/F1-Dash System arc.png';
 import firstCitizensImage from '../assest/fcb_image.webp';
-import firstCitizensLogo from '../assest/url.jpg';
 import careSightImage from '../assest/care_sight.jpeg';
 import careSightArchitectureImage from '../assest/caresight_system_arc.png';
 import soundSwipeImage from '../assest/sound_swipe_project_card.jpg';
 import soundSwipeArchitectureImage from '../assest/sound_swipe_arc_img.png';
-import varsinixLogo from '../assest/Gemini_Generated_Image_iuo4k9iuo4k9iuo4.jpg';
 import varsinixOfficeImage from '../assest/Gemini_Generated_Image_55f8wj55f8wj55f8.jpg';
 import restApiIcon from '../assest/rest_api_icon.jpg.png';
 import dataModelIcon from '../assest/data_model_icon.jpg';
@@ -46,8 +44,8 @@ const topBanner = {
 
 const heroContent = {
   title: 'Shravan Sulikeri',
-  subheadline: '',
-  description: '',
+  subheadline: 'Data Engineer · Open to New Grad Roles',
+  description: 'Building clinical ML pipelines on GCP and Azure. Open to Data Engineering, Software Engineering, and Data Analyst roles.',
   primaryCta: { label: 'View Projects', targetId: 'projects' },
   secondaryCta: { label: 'View Experience', targetId: 'experience' },
   resumeAnchorId: 'resume',
@@ -56,21 +54,17 @@ const heroContent = {
 
 const aboutContent = {
   name: 'Shravan Sulikeri',
-  bio: `I am a recent graduate from the University of North Carolina at Charlotte with a Bachelor of Science in Computer Science. Through a combination of academic coursework, internships, and hands-on projects, I have developed a strong technical foundation and a clear passion for working with data.
+  bio: `I'm a Computer Science graduate from UNC Charlotte with a focus on data engineering, ML pipelines, and cloud infrastructure. I've built production systems on GCP and Azure, from clinical NER pipelines to vector search workflows processing millions of records.
 
-My interest in data began during my first data-focused course at UNC Charlotte, Data Mining. That class fundamentally changed how I viewed technology. I saw firsthand how raw, messy data could be transformed into meaningful insights that drive real decisions. From cleaning and structuring data to uncovering patterns and trends, I became deeply interested in the entire data lifecycle. Since then, working with data has been the area of computer science that has motivated me the most.
+I led a team of five for my senior capstone, taking an idea from 2023 all the way to production. That experience taught me how to scope requirements, manage trade-offs, and ship as a team, not just write code alone.
 
-Beyond the classroom, I have worked on multiple projects outside of school and professional roles to strengthen my practical skills. These projects allowed me to apply concepts such as data pipelines, analytics, and automation in real-world scenarios rather than controlled academic settings. I enjoy building systems that are reliable, scalable, and easy for others to use and understand.
-
-One of my most impactful experiences was leading a team of five students for my senior capstone project, where I brought an idea I originally had in 2023 into production. Serving as the technical lead taught me how real-world projects are planned, scoped, and executed. I gained experience in translating requirements into technical designs, coordinating timelines, managing trade-offs, and delivering a complete product as a team. That experience solidified my interest in building production-ready systems and collaborating across disciplines.
-
-Today, I am focused on continuing to grow as a data-focused engineer, where I can work at the intersection of software, analytics, and cloud technologies. I am motivated by solving complex problems, learning continuously, and using data to create measurable impact.`,
+Today I'm looking for Data Engineering, Software Engineering, or Data Analyst roles where I can keep building things that matter.`,
   headshotSrc: aboutHeadshot,
   headshotAlt: 'Shravan Sulikeri headshot',
 };
 
 const quickStats = [
-  { label: 'Experience', value: '1+ YEARS' },
+  { label: 'Records Processed', value: '5M+ CLINICAL' },
   { label: 'Top Skills', value: 'PYTHON • SQL • DATA ENGINEERING' },
   { label: 'Location', value: 'RALEIGH, NC' },
 ];
@@ -90,7 +84,7 @@ const experienceEntries = [
   {
     id: 'varsinix',
     company: 'Varsinix',
-    logoUrl: varsinixLogo,
+    logoUrl: null,
     role: 'JUNIOR DATA ENGINEER',
     period: 'AUG 2025 - PRESENT',
     location: 'CARY, NC',
@@ -109,7 +103,7 @@ const experienceEntries = [
   {
     id: 'first-citizens',
     company: 'First Citizens Bank',
-    logoUrl: firstCitizensLogo,
+    logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/b/bb/First_Citizens_BancShares_logo.svg',
     role: 'SYSTEMS ENGINEER INTERN',
     period: 'MAY 2025 - AUG 2025',
     location: 'RALEIGH, NC',
@@ -152,6 +146,7 @@ const projectEntries = [
       'Full-stack racing analytics platform that ingests 2018-2025 telemetry to engineer 61 features, trains three production models, and serves ranked race predictions to an interactive React dashboard.',
     image: f1Image,
     link: 'https://github.com/Shravan-Sulikeri/f1-dash',
+    demoLink: null,
     logo: 'https://upload.wikimedia.org/wikipedia/commons/3/33/F1.svg',
     tags: ['PYTHON', 'DUCKDB', 'MACHINE LEARNING', 'REACT'],
     stackLabel: 'PYTHON • DUCKDB • SCIKIT-LEARN • REACT • TAILWIND',
@@ -175,6 +170,7 @@ const projectEntries = [
     image: careSightImage,
     imageClass: 'object-center',
     link: 'https://github.com/Shravan-Sulikeri/caresight',
+    demoLink: null,
     logo: null,
     tags: ['FAISS', 'FASTAPI', 'DBT', 'APACHE AIRFLOW', 'POSTGRESQL', 'HEALTHCARE AI'],
     theme: 'green',
@@ -195,6 +191,7 @@ const projectEntries = [
 
     image: soundSwipeImage,
     link: 'https://github.com/Shravan-Sulikeri/sound-swipe-app',
+    demoLink: null,
     logo: 'https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg',
     tags: ['REACT', 'NODE.JS', 'SPOTIFY API', 'AI RECOMMENDATION ENGINE', 'REALTIME'],
     theme: 'purple',
@@ -216,15 +213,18 @@ const SKILL_ICONS = {
   javascript: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg',
   typescript: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg',
   r: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/r/r-original.svg',
+  powershell: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/powershell/powershell-original.svg',
+  c: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg',
   pyspark: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apachespark/apachespark-original.svg',
   duckdb: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/duckdb/duckdb-original.svg',
   dbt: 'https://cdn.jsdelivr.net/gh/gilbarbara/logos@master/logos/dbt-icon.svg',
-  databricks: 'https://upload.wikimedia.org/wikipedia/commons/6/63/Databricks_Logo.png',
+  databricks: 'https://cdn.jsdelivr.net/gh/gilbarbara/logos@master/logos/databricks-icon.svg',
   azure_factory: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg',
   delta_lake: deltaLakeIcon,
-  mlflow: 'https://upload.wikimedia.org/wikipedia/commons/3/38/Jupyter_logo.svg',
+  mlflow: 'https://cdn.jsdelivr.net/gh/gilbarbara/logos@master/logos/mlflow-icon.svg',
   vertex_ai: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg',
   scikit_learn: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/scikitlearn/scikitlearn-original.svg',
+  faiss: 'https://cdn.jsdelivr.net/gh/gilbarbara/logos@master/logos/meta-icon.svg',
   qdrant: 'https://cdn.jsdelivr.net/gh/gilbarbara/logos@master/logos/qdrant-icon.svg',
   tensorflow: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg',
   pandas: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg',
@@ -234,7 +234,7 @@ const SKILL_ICONS = {
   docker: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg',
   kubernetes: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg',
   git: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg',
-  github_actions: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg',
+  github_actions: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/githubactions/githubactions-original.svg',
   jenkins: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jenkins/jenkins-original.svg',
   fastapi: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg',
   postgresql: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg',
@@ -258,8 +258,8 @@ const skillCategories = [
       { name: 'JavaScript', icon: SKILL_ICONS.javascript },
       { name: 'TypeScript', icon: SKILL_ICONS.typescript },
       { name: 'C#', icon: SKILL_ICONS.csharp },
-      { name: 'C', icon: null },
-      { name: 'PowerShell', icon: null },
+      { name: 'C', icon: SKILL_ICONS.c },
+      { name: 'PowerShell', icon: SKILL_ICONS.powershell },
     ],
   },
   {
@@ -279,7 +279,7 @@ const skillCategories = [
       { name: 'Scikit-Learn', icon: SKILL_ICONS.scikit_learn },
       { name: 'MLflow', icon: SKILL_ICONS.mlflow },
       { name: 'Vertex AI', icon: SKILL_ICONS.vertex_ai },
-      { name: 'FAISS', icon: null },
+      { name: 'FAISS', icon: SKILL_ICONS.faiss },
       { name: 'Qdrant', icon: SKILL_ICONS.qdrant },
       { name: 'Pandas', icon: SKILL_ICONS.pandas },
       { name: 'Power BI', icon: SKILL_ICONS.powerbi },
@@ -302,8 +302,8 @@ const skillCategories = [
     title: 'Tools & Frameworks',
     skills: [
       { name: 'FastAPI', icon: SKILL_ICONS.fastapi },
-      { name: 'Flask', icon: null },
-      { name: 'React.js', icon: null },
+      { name: 'Flask', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg' },
+      { name: 'React.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg' },
       { name: 'Apache Airflow', icon: SKILL_ICONS.airflow },
       { name: 'PostgreSQL', icon: SKILL_ICONS.postgresql },
       { name: 'Nexthink', icon: SKILL_ICONS.nexthink },

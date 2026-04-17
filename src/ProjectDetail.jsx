@@ -100,6 +100,19 @@ const ProjectDetail = ({ project, onClose }) => {
                     </a>
                   </li>
                 )}
+                {project.demoLink && (
+                  <li>
+                    <span className="font-semibold text-gray-200">Live Demo:</span>{' '}
+                    <a
+                      href={project.demoLink}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-blue-300 sm:hover:text-blue-200 underline underline-offset-4"
+                    >
+                      View Live Demo
+                    </a>
+                  </li>
+                )}
               </ul>
             </div>
           </div>
