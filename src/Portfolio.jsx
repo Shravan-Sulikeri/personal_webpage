@@ -19,10 +19,12 @@ import uncCharlotteImage from '../assest/unc_clt.jpg';
 import f1Image from '../assest/f1.jpg';
 import f1ArchitectureImage from '../assest/F1-Dash System arc.png';
 import firstCitizensImage from '../assest/fcb_image.webp';
+import firstCitizensLogo from '../assest/url.jpg';
 import careSightImage from '../assest/care_sight.jpeg';
 import careSightArchitectureImage from '../assest/caresight_system_arc.png';
 import soundSwipeImage from '../assest/sound_swipe_project_card.jpg';
 import soundSwipeArchitectureImage from '../assest/sound_swipe_arc_img.png';
+import varsinixLogo from '../assest/Gemini_Generated_Image_iuo4k9iuo4k9iuo4.jpg';
 import varsinixOfficeImage from '../assest/Gemini_Generated_Image_55f8wj55f8wj55f8.jpg';
 import restApiIcon from '../assest/rest_api_icon.jpg.png';
 import dataModelIcon from '../assest/data_model_icon.jpg';
@@ -84,7 +86,7 @@ const experienceEntries = [
   {
     id: 'varsinix',
     company: 'Varsinix',
-    logoUrl: null,
+    logoUrl: varsinixLogo,
     role: 'JUNIOR DATA ENGINEER',
     period: 'AUG 2025 - PRESENT',
     location: 'CARY, NC',
@@ -103,7 +105,7 @@ const experienceEntries = [
   {
     id: 'first-citizens',
     company: 'First Citizens Bank',
-    logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/b/bb/First_Citizens_BancShares_logo.svg',
+    logoUrl: firstCitizensLogo,
     role: 'SYSTEMS ENGINEER INTERN',
     period: 'MAY 2025 - AUG 2025',
     location: 'RALEIGH, NC',
